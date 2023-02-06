@@ -3,7 +3,7 @@
 
 // MIT License
 //
-// Copyright (c) 2022 Ian Parberry
+// Copyright (c) 2023 Ian Parberry
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -34,13 +34,10 @@
 /// \brief Searchable sorting network.
 ///
 /// The searchable sorting network class will perform a backtracking search
-/// for a sorting network of a given depth and number of inputs. It periodically
-/// dumps its state into a dump file, and will restart from that file if it is
-/// present when it starts up.
+/// for a sorting network of a given depth and number of inputs.
 
 class CSearchableSortingNetwork: public C1NFSortingNetwork{
   protected:  
-    FILE* m_hDumpFile = nullptr; ///< Handle to dump file.
     int m_nCount = 0; ///< Number of comparator networks found that actually sort.
     int m_nCumulativeCPUSecs = 0; ///< Cumulative CPU time in seconds.
 

@@ -3,7 +3,7 @@
 
 // MIT License
 //
-// Copyright (c) 2022 Ian Parberry
+// Copyright (c) 2023 Ian Parberry
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -23,17 +23,51 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
+#include <iostream>
+
 #include "Nearsort.h"
 
-/// \brief Main.
-///
-/// Main.
-/// \return 0.
+#include "ThreadManager.h"
+#include "Task.h"
+#include "Timer.h"
+
+/// Create a thread manager and a timer. Insert tasks into the thread manager.
+/// Start the timer. Report current data and time, and the number of available
+/// threads. Spawn the threads and wait for them to terminate. Use the timer
+/// to report current time, elapsed time, and CPU time, then have the thread
+/// manager process the results.
+/// \return 0 (What could possibly go wrong?)
 
 int main(){
-  CAutocomplete* pSearch = new CAutocomplete;
-  pSearch->backtrack();
-  delete pSearch;
+  //CAutocomplete* pSearch = new CAutocomplete;
+  //pSearch->backtrack();
+  //delete pSearch;
+
+  CThreadManager* pThreadManager = new CThreadManager; //thread manager
+  CTimer* pTimer = new CTimer; //timer for elapsed and CPU time
+
+  for(size_t i=0; i<16; i++) //create empty tasks
+    pThreadManager->Insert(new CTask);
+
+  pTimer->Start(); //start timing CPU and elapsed time
+
+  std::cout << "Start " << pTimer->GetTimeAndDate() << std::endl;
+  std::cout << pThreadManager->GetNumThreads() << " threads" << std::endl;
+  std::cout << std::flush;
+
+  pThreadManager->Spawn(); //spawn threads
+  pThreadManager->Wait(); //wait for threads to finish
+
+  std::cout << "Finish " << pTimer->GetTimeAndDate() << std::endl;
+  std::cout << "Elapsed time " << pTimer->GetElapsedTime() << std::endl;
+  std::cout << "CPU time " << pTimer->GetCPUTime() << std::endl;
+
+  pThreadManager->Process(); //process results
+
+  //clean up and exit
+
+  delete pTimer;
+  delete pThreadManager;
 
   return 0;
 } //main
