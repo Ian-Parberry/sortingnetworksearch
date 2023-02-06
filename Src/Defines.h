@@ -29,6 +29,8 @@
 #define INPUTS 5 ///< Number of inputs.
 #define DEPTH 5 ///< Depth.
 
+#define COUNTONLY true ///< Define true to count only, no sorting networks output.
+
 #define odd(n) ((n) & 1) ///< Oddness test.
 #define oddfloor(n) (odd(n)?(n):((n)-1)) ///< If even, round down to make odd.
 #define evenceil(n) (odd(n)?((n)+1):(n)) ///< If odd, round up to make even.
