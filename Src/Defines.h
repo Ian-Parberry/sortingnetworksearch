@@ -26,9 +26,11 @@
 #ifndef __Defines_h__
 #define __Defines_h__
 
-#define INPUTS 7 ///< Number of inputs.
-#define DEPTH 6 ///< Depth.
+#define INPUTS 5 ///< Number of inputs.
+#define DEPTH 5 ///< Depth.
 
 #define odd(n) ((n) & 1) ///< Oddness test.
+#define oddfloor(n) (odd(n)?(n):((n)-1)) ///< If even, round down to make odd.
+#define evenceil(n) (odd(n)?((n)+1):(n)) ///< If odd, round up to make even.
 
 #endif //__Defines_h__

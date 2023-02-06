@@ -47,7 +47,7 @@ CMatching::CMatching(const CMatching& m){ //copy constructor
 /// Initialize to the identity matching.
 
 void CMatching::Initialize(){
-  for(size_t i=0; i<(odd(INPUTS)? INPUTS + 1: INPUTS); i++){
+  for(size_t i=0; i<evenceil(INPUTS); i++){
     m_nMatching[i] = i;
     m_nMap[i] = i;
     m_nStack[i] = (int)i - 1;
@@ -61,7 +61,7 @@ bool CMatching::Next(){
   size_t s = 4;
   size_t i = m_nStack[s - 1];
 
-  while(i < 1 && s < (odd(INPUTS)? INPUTS: INPUTS - 1)){
+  while(i < 1 && s < oddfloor(INPUTS)){
     size_t temp = m_nMatching[s - 2];
 
     for(size_t j=s-1; j>=2; j--){
@@ -113,7 +113,7 @@ void SwapPair(int m[], size_t i, size_t j){
 /// Normalize the matching.
 
 void CMatching::Normalize(){ 
-  const size_t n = odd(INPUTS)? INPUTS + 1: INPUTS;
+  const size_t n = evenceil(INPUTS);
   int m[n]; //for copy of matching, will get negative numbers during processing
   
   for(size_t j=0; j<n; j++)

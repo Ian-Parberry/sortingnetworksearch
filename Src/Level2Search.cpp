@@ -102,7 +102,7 @@ CLevel2Search::CLevel2Search(){
 
 const size_t CLevel2Search::GetIndex(CMatching& matching) const{
   size_t index = 0; //the index value to be returned
-  size_t b = GetNumMatchings(INPUTS)/(odd(INPUTS)? INPUTS: INPUTS - 1); //block size to be skipped
+  size_t b = GetNumMatchings(INPUTS)/(oddfloor(INPUTS)); //block size to be skipped
   size_t m[INPUTS + 1]; //local copy of matching to manipulate
 
   //grab a copy of matching into the array m
@@ -118,7 +118,7 @@ const size_t CLevel2Search::GetIndex(CMatching& matching) const{
   
   //compute index
 
-  for(size_t n=odd(INPUTS)? INPUTS + 1: INPUTS; n>2; n-=2){ //for each comparator
+  for(size_t n=evenceil(INPUTS); n>2; n-=2){ //for each comparator
     size_t max = 1; //the index of the largest channel on the max side of a comparator
     
     for(size_t i=1; i<=INPUTS; i+=2)
@@ -188,7 +188,7 @@ const std::vector<CMatching>& CLevel2Search::GetMatchings() const{
 const size_t CLevel2Search::GetNumMatchings(const size_t n) const{
   size_t result = 1;
 
-  for(size_t i = odd(n)? n: n - 1; i>1; i-=2)
+  for(size_t i = oddfloor(n); i>1; i-=2)
     result *= i;
 
   return result;
