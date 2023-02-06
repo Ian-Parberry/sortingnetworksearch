@@ -26,6 +26,19 @@
 #ifndef __Defines_h__
 #define __Defines_h__
 
+// Optimal depth of sorting networks:
+//  2 inputs, depth 1
+//  3 inputs, depth 3
+//  4 inputs, depth 3
+//  5 inputs, depth 5
+//  6 inputs, depth 5
+//  7 inputs, depth 6
+//  8 inputs, depth 6
+//  9 inputs, depth 7
+// 10 inputs, depth 7
+// 11 inputs, depth 8
+// 12 inputs, depth 8
+
 #define INPUTS 5 ///< Number of inputs.
 #define DEPTH 5 ///< Depth.
 
