@@ -28,17 +28,22 @@
 
 #include "BaseTask.h"
 
+class CNearsort;
+
 /// \brief Task.
 ///
 /// This task descriptor, derived from `CBaseTask`, overrides the 
-/// `CBaseTask::Process()` function. The task described is merely to wait a
-/// short period of time. Your task processing code should go there.
+/// `CBaseTask::Process()` function.
 
 class CTask: public CBaseTask{
+  private:
+    CNearsort* m_pSearch = nullptr; ///< Searchable sorting network.
+
   public:
-    CTask(); ///< Default constructor.
+    CTask(CNearsort*); ///< Default constructor.
 
     virtual void Perform(); ///< Perform the task.
+    const size_t GetCount() const; ///< Get count.
 }; //CTask
 
 #endif //__Task_h__

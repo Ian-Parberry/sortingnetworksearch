@@ -36,14 +36,18 @@ CThreadManager::CThreadManager(): CBaseThreadManager(){
 } //constructor
 
 /// Overrides the virtual function `CBaseThreadManager::ProcessTask()` in order
-/// to process the results stored in the completed task descriptor. In this
-/// case it means printing to the console a list of a task identifiers and
-/// the thread identifier of the thread that completed each task. Your task
-/// processing code should go here instead.
+/// to process the results stored in the completed task descriptor. 
 /// \param pTask Pointer to a task descriptor.
 
 void CThreadManager::ProcessTask(CTask* pTask){
   if(pTask) //safety
-    std::cout << "Task " << pTask->GetTaskId() <<
-      " performed by thread " << pTask->GetThreadId() << std::endl; 
+    m_nCount += pTask->GetCount();
 } //ProcessTask
+
+/// Reader function for the count, that is, the number of sorting networks
+/// found.
+/// \return The count.
+
+const size_t CThreadManager::GetCount() const{
+  return m_nCount;
+} //GetCount

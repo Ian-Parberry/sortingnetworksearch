@@ -39,10 +39,13 @@
 
 class CThreadManager: public CBaseThreadManager<CTask>{
   protected:
+    size_t m_nCount = 0; ///< Number of comparator networks found that sort.
     void ProcessTask(CTask*); ///< Process the result of a task.
 
   public:
     CThreadManager(); ///< Constructor.
+
+    const size_t GetCount() const; ///< Get count.
 }; //CThreadManager
 
 #endif //__ThreadManager_h__

@@ -38,7 +38,7 @@
 
 class CSearchableSortingNetwork: public C1NFSortingNetwork{
   protected:  
-    int m_nCount = 0; ///< Number of comparator networks found that actually sort.
+    size_t m_nCount = 0; ///< Number of comparator networks found that sort.
     int m_nCumulativeCPUSecs = 0; ///< Cumulative CPU time in seconds.
 
     CMatching m_nMatching[DEPTH]; ///< Matchings that make up comparator network in a form that makes searching faster. 
@@ -48,22 +48,23 @@ class CSearchableSortingNetwork: public C1NFSortingNetwork{
     int m_nNumMatchings = 0; ///< Number of matchings of this size.
     int m_nTop = 0; ///< Topmost level.
 
-    void firstComparatorNetwork(int); ///< Set to first comparator network.
+    void FirstComparatorNetwork(int); ///< Set to first comparator network.
     bool nextComparatorNetwork(); ///< Change to next comparator network.
     void SynchMatchingRepresentations(int); ///< Synchronize the two different matching representations.
     void InitMatchingRepresentations(int); ///< Initialize the two different matching representations.
 
     virtual void SaveGeneratedSortingNetwork(); ///< Save comparator network.
     virtual void SetToS(); ///< Set top of stack.
-    void search(); ///< Do the actual search.
+    void Search(); ///< Do the actual search.
 
-    virtual void process(); ///< Process a candidate comparator network.
+    virtual void Process(); ///< Process a candidate comparator network.
 
   public:
     CSearchableSortingNetwork(); ///< Constructor.
 
-    virtual void backtrack(); ///< Backtracking search.
-    void writeToLogFile(); ///< Write an entry to the log file.
+    virtual void Backtrack(); ///< Backtracking search.
+
+    const size_t GetCount() const; ///< Get count.
 }; //CSearchableSortingNetwork
 
 #endif //__SearchableSortingNetwork_h__

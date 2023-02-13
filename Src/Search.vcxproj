@@ -154,7 +154,6 @@
   <ItemGroup>
     <ClCompile Include="BinaryGrayCode.cpp" />
     <ClCompile Include="ComparatorNetwork.cpp" />
-    <ClCompile Include="CPUtime.cpp" />
     <ClCompile Include="Autocomplete.cpp" />
     <ClCompile Include="Nearsort.cpp" />
     <ClCompile Include="SearchableSortingNetwork.cpp" />

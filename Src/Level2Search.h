@@ -44,14 +44,15 @@ class CLevel2Search{
     std::set<size_t> m_stlUsed; ///< Set of indices of used matchings.
     std::vector<CMatching> m_stlResults; ///< Results.
 
-    const size_t GetIndex(CMatching&) const; ///< Get the index of a matching.
     size_t Permute(CMatching&, const size_t); ///< Permute the matching.
-    const size_t GetNumMatchings(const size_t) const; ///< Get number of matchings.
+    void SaveResults() const; ///< Save results of level 2 search.
+
+    const size_t GetIndex(CMatching&) const; ///< Get the index of a matching.
+    const size_t GetNumMatchings(const size_t) const; ///< Number of matchings.
 
   public:
     CLevel2Search(); ///< Constructor.
     
-    //const CMatching& operator[](const size_t) const; ///< Overloaded index operator.
     const std::vector<CMatching>& GetMatchings() const; ///< Get matching vector.
 }; //CLevel2Search
 

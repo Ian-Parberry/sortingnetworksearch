@@ -27,6 +27,14 @@
 
 #include "Defines.h"
 
+/// Constructor.
+/// \param L2Matching Level 2 matching.
+/// \param index Lexicographics number of level 2 matching.
+
+CAutocomplete::CAutocomplete(CMatching& L2Matching, const size_t index):
+  C2NFSearchableSortingNetwork(L2Matching, index){
+} //constructor
+
 /// Check whether stub of a sorting network sorts when the current input has
 /// channel flipped. This overrides `CSortingNetwork::sort()`. Attempts to 
 /// build the last level while testing it.

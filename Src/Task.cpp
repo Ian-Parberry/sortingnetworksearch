@@ -27,18 +27,28 @@
 #include <thread>
 
 #include "Task.h"
+#include "Nearsort.h"
 
 /// Default constructor. All this does is call the `CBaseTask` default
 /// constructor. If you have any initialization code, then it should go here.
 
-CTask::CTask(): CBaseTask(){
+CTask::CTask(CNearsort* p): 
+  CBaseTask(), m_pSearch(p){
 } //constructor
 
-/// Perform this task. This function overrides `CBaseTask::Perform()`. The
-/// task described here is merely to wait a short period of time. Your task
-/// code should go here instead.
+/// Perform this task. This function overrides `CBaseTask::Perform()`.
 
 void CTask::Perform(){
-  const size_t delay = 400*(m_nThreadId + 1);
-  std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+  if(m_pSearch)
+    m_pSearch->Backtrack();
 } //Perform
+
+/// Reader function for the count, that is, the number of sorting networks
+/// found.
+/// \return The count.
+
+const size_t CTask::GetCount() const{
+  if(m_pSearch)
+    return m_pSearch->GetCount();
+  else return 0;
+} //GetCount

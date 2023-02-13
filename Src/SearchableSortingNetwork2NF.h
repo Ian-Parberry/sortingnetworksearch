@@ -44,10 +44,9 @@ class C2NFSearchableSortingNetwork:
     void SaveGeneratedSortingNetwork(); ///< Save comparator network.
 
   public:
-    C2NFSearchableSortingNetwork(); ///< Constructor.
-    ~C2NFSearchableSortingNetwork(); ///< Destructor.
+    C2NFSearchableSortingNetwork(CMatching&, const size_t); ///< Constructor.
 
-    void backtrack();  ///< Backtracking search.
+    void Backtrack();  ///< Backtracking search.
 }; //C2NFSearchableSortingNetwork
 
 #endif //__SearchableSortingNetwork2NF_h_

@@ -24,6 +24,7 @@
 // IN THE SOFTWARE.
 
 #include <iostream>
+#include <fstream>
 
 #include "Nearsort.h"
 
@@ -39,35 +40,54 @@
 /// \return 0 (What could possibly go wrong?)
 
 int main(){
-  CNearsort* pSearch = new CNearsort;
-  pSearch->backtrack();
-  delete pSearch;
+  CTimer* pTimer = new CTimer; //timer for elapsed and CPU time
+  pTimer->Start(); //start timing CPU and elapsed time
 
-  //CThreadManager* pThreadManager = new CThreadManager; //thread manager
-  //CTimer* pTimer = new CTimer; //timer for elapsed and CPU time
+  //print header information to console
 
-  //for(size_t i=0; i<16; i++) //create empty tasks
-  //  pThreadManager->Insert(new CTask);
+  std::cout << "Start " << pTimer->GetTimeAndDate() << std::endl;
+  std::cout << std::flush;
 
-  //pTimer->Start(); //start timing CPU and elapsed time
+  CLevel2Search* pLevel2Search = new CLevel2Search(); //for level 2 matchings
+  auto L2Matchings = pLevel2Search->GetMatchings(); //get level 2 matchings
+  size_t i = 0; //index of current matching
 
-  //std::cout << "Start " << pTimer->GetTimeAndDate() << std::endl;
-  //std::cout << pThreadManager->GetNumThreads() << " threads" << std::endl;
-  //std::cout << std::flush;
+  //create thread manager and insert tasks to task queue
 
-  //pThreadManager->Spawn(); //spawn threads
-  //pThreadManager->Wait(); //wait for threads to finish
+  CThreadManager* pThreadManager = new CThreadManager; //thread manager
 
-  //std::cout << "Finish " << pTimer->GetTimeAndDate() << std::endl;
-  //std::cout << "Elapsed time " << pTimer->GetElapsedTime() << std::endl;
-  //std::cout << "CPU time " << pTimer->GetCPUTime() << std::endl;
+  for(auto matching: L2Matchings) //for each level2 matching
+    pThreadManager->Insert(new CTask(new CNearsort(matching, i++))); //insert task
 
-  //pThreadManager->Process(); //process results
+  //perform multi-threaded backtracking search
+
+  pThreadManager->Spawn(); //spawn threads
+  pThreadManager->Wait(); //wait for threads to finish
+  pThreadManager->Process(); //process results
+
+  std::cout << "Finish " << pTimer->GetTimeAndDate() << std::endl;
+
+  //compose string that summarizes the search results
+
+  const std::string strSummary = std::to_string(pThreadManager->GetCount()) +
+    " " + std::to_string(INPUTS) + "-input sorting networks of depth " +
+    std::to_string(DEPTH) +" found in " + pTimer->GetElapsedTime() + " using " +
+    pTimer->GetCPUTime() + " CPU time over " +
+    std::to_string(pThreadManager->GetNumThreads()) + " threads";
+
+  std::cout << strSummary << std::endl; //print summary to log file
+
+  //append summary to log file
+
+  std::ofstream logfile("log.txt", std::ios::app);
+  logfile << strSummary << std::endl;
+  logfile.close();
 
   ////clean up and exit
 
-  //delete pTimer;
-  //delete pThreadManager;
+  delete pTimer;
+  delete pThreadManager;
+  delete pLevel2Search;
 
   return 0;
 } //main

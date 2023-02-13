@@ -25,6 +25,14 @@
 
 #include "Nearsort.h"
 
+/// Constructor.
+/// \param L2Matching Level 2 matching.
+/// \param index Lexicographics number of level 2 matching.
+
+CNearsort::CNearsort(CMatching& L2Matching, const size_t index):
+  CAutocomplete(L2Matching, index){
+} //constructor
+
 /// Check whether sorting network nearsorts all inputs.
 /// \return true iff it sorts
 
@@ -115,24 +123,24 @@ bool CNearsort::stillnearsorts(const size_t delta){
 } //stillnearsorts
 
 /// Process a comparator network, which is pretty much the same as
-/// `CSearchableSortingNetwork::process()` except that you stop one level
+/// `CSearchableSortingNetwork::Process()` except that you stop one level
 /// early and prune if the network so far fails to nearsort all inputs.
 /// If it fails to nearsort, then it won't sort. Continue with
 /// those that nearsort because some of them might actually sort.
 
-void CNearsort::process(){
+void CNearsort::Process(){
   if(nearsorts()){
     InitMatchingRepresentations(DEPTH - 2);
     bool unfinished = true;
 
     while(unfinished){
-      CSearchableSortingNetwork::process();
+      CSearchableSortingNetwork::Process();
       unfinished = m_nMatching[DEPTH - 2].Next();   
 
       if(unfinished)SynchMatchingRepresentations(DEPTH - 2);
     } //while
   } //if
-} //process
+} //Process
 
 /// Set top of stack `m_nToS` to the third-last level of the sorting network.
 

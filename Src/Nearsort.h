@@ -49,8 +49,11 @@ class CNearsort: public CAutocomplete{
     bool evennearsorts(); ///< Does it nearly sort, even number of inputs?
     bool nearsorts(); ///< Does it nearly sort?
  
-    void process(); ///< Process a candidate comparator network.
+    void Process(); ///< Process a candidate comparator network.
     void SetToS(); ///< Set top of stack.
+
+  public:
+    CNearsort(CMatching& L2Matching, const size_t index); ///< Constructor.
 }; //CNearsort
 
 #endif //__Nearsort_h__

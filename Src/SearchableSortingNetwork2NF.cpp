@@ -28,61 +28,48 @@
 #include "SearchableSortingNetwork2NF.h"
 #include "Defines.h"
 
-/// Initialize the stack, the matching representations, and the
-/// index of the second level matching. Create a level 2 search object.
+unsigned int CPUTimeInMilliseconds();
 
-C2NFSearchableSortingNetwork::C2NFSearchableSortingNetwork():
-  CSearchableSortingNetwork()
+/// Constructor.
+/// \param L2Matching Level 2 matching.
+/// \param index Lexicographics number of level 2 matching.
+
+C2NFSearchableSortingNetwork::C2NFSearchableSortingNetwork(
+  CMatching& L2Matching, const size_t index):
+  CSearchableSortingNetwork(),
+  m_nSecondLevelIndex(index)
 {
   m_nStack[0] = 0;
-  InitMatchingRepresentations(0); //make sure the level 0 matching is the identity
-  m_nSecondLevelIndex = 0; //start with the first candidate for level 2
-  m_pLevel2 = new CLevel2Search();
+  InitMatchingRepresentations(0); //the level 1 matching is the identity
+
+  for(int j=0; j<INPUTS; j++)
+    m_nMatching[1][j] = L2Matching[j]; //install candidate
 } //constructor
 
-/// Delete the level 2 search object.
+/// Initialize and then start a backtracking search for all sorting networks
+/// in Second Normal Form of given width and depth.
 
-C2NFSearchableSortingNetwork::~C2NFSearchableSortingNetwork(){
-  delete m_pLevel2;
-} //destructor
-
-/// Initialize and then start a backtracking search for all sorting networks of
-/// given width and depth.
-
-void C2NFSearchableSortingNetwork::backtrack(){
-  printf("Starting search for %d-input sorting networks of depth %d.\n",
-    INPUTS, DEPTH);
-
-  m_nSecondLevelIndex = 0;
-
-  for(auto matching: m_pLevel2->GetMatchings()){
-    for(int j=0; j<INPUTS; j++)
-      m_nMatching[1][j] = matching[j]; //install candidate
-      
-    if(odd(INPUTS))m_nMatching[1][INPUTS] = INPUTS;
-    SynchMatchingRepresentations(1); //synch representation for testing
-    firstComparatorNetwork(2); //initialize from there down
-
-    search(); //begin actual search
-
-    m_nSecondLevelIndex++; //next candidate
-  } //for
-
-  writeToLogFile(); //report results
-} //backtrack
+void C2NFSearchableSortingNetwork::Backtrack(){ 
+  if(odd(INPUTS))m_nMatching[1][INPUTS] = INPUTS; 
+  SynchMatchingRepresentations(1); //synch representation for testing
+  FirstComparatorNetwork(2); //initialize from there down
+  Search(); //begin actual search
+} //Backtrack
 
 /// Save a generated sorting network into a file with a suitable name.
 /// Save comparator network to a file whose name encodes number of inputs,
-/// depth, and size. For example an 8-input comparator network of depth
-/// 5 with 12 comparators would be saved to file w8d5s12.txt.
+/// depth, second level index, size, and lexicographics number. For example,
+/// an 8-input comparator network of depth 5 with level 2 index 99, and 
+/// 12 comparators, which is the 20th sorting network found, would be saved 
+/// to file w8d5x99s12n20.txt.
 
 void C2NFSearchableSortingNetwork::SaveGeneratedSortingNetwork(){
   size_t size = RemoveRepeatedComparators(); //size after redundant comparators removed
   
-  std::string filename = 
+  std::string filename = //construct file name
     "w" + std::to_string(INPUTS) + 
     "d" + std::to_string(DEPTH) +
-    "l" + std::to_string(m_nSecondLevelIndex) +
+    "x" + std::to_string(m_nSecondLevelIndex) +
     "s" + std::to_string(size) +
     "n" + std::to_string(m_nCount) + ".txt"; 
 

@@ -68,46 +68,45 @@ void CSearchableSortingNetwork::SetToS(){
 /// Process a comparator network, which means testing whether it sorts, and if
 /// it does, saving it to a file and incrementing a counter.
 
-void CSearchableSortingNetwork::process(){
+void CSearchableSortingNetwork::Process(){
   if(sorts()){ //if it sorts
     SaveGeneratedSortingNetwork(); //save it
     m_nCount++; //add 1 to the total
   } //if
-} //process
+} //Process
 
 /// Perform a backtracking search, assuming everything has been initialized in
 /// a suitable fashion.
 
-void CSearchableSortingNetwork::search(){
+void CSearchableSortingNetwork::Search(){
   bool unfinished = true; //assume we're not finished
 
   while(unfinished){ //until we're finished
-    process(); //process the corrent comparator network, that is, see if it sorts
+    Process(); //process the corrent comparator network, that is, see if it sorts
     unfinished = nextComparatorNetwork(); //get the next comparator network, we're finished if this function says so  
   } //while
-} //search
+} //Search
 
 /// Initialize and then start a backtracking search for all sorting networks
 /// of given width and depth.
 
-void CSearchableSortingNetwork::backtrack(){
+void CSearchableSortingNetwork::Backtrack(){
   m_nCount = 0; //we've found none so far
-  firstComparatorNetwork(1); //assuming first normal form here
-  search(); //perform the search
-  writeToLogFile(); //write results to the log file for later perusal
-} //backtrack
+  FirstComparatorNetwork(1); //assuming first normal form here
+  Search(); //perform the search
+} //Backtrack
 
 /// Set to first comparator network from some given level down to the bottom.
 /// \param toplevel Top level of comparator network we are constructing here.
 
-void CSearchableSortingNetwork::firstComparatorNetwork(int toplevel){
+void CSearchableSortingNetwork::FirstComparatorNetwork(int toplevel){
   m_nTop = toplevel; //save value of toplevel for later use
 
   for(int i=toplevel; i<DEPTH; i++){ //for each level in range
     InitMatchingRepresentations(i); //initialize both matching representations
     //m_nStack[i] = 0;
   }
-} //firstComparatorNetwork
+} //FirstComparatorNetwork
 
 /// Synchronize m_nMatch to m_nMatching at a given level. The latter is 
 /// assumed to be correct.
@@ -148,16 +147,6 @@ void CSearchableSortingNetwork::InitMatchingRepresentations(int level){
 /// \return false if there are no more comparator networks.
 
 bool CSearchableSortingNetwork::nextComparatorNetwork(){
-//#if defined VANILLA || defined FIRSTNORMALFORM || defined SECONDNORMALFORM
-//  m_nToS = d - 1;
-//#elif defined AUTOCOMPLETE
-//  m_nToS = d - 2;
-//#elif defined NEARSORT
-//  m_nToS = d - 3;
-//#elif defined SUPERNEARSORT
-//  m_nToS = d - 4;
-//#endif
-
   SetToS(); //set top of stack
 
   m_nStack[m_nToS]++;
@@ -179,21 +168,10 @@ bool CSearchableSortingNetwork::nextComparatorNetwork(){
   return m_nToS >= m_nTop; //there are no more if we blow the top of the stack
 } //nextComparatorNetwork
 
-/// Write an entry to the log file recording how many sorting networks found and
-/// how much CPU time was used. Slam it up on the console too.
+/// Reader function for the count, that is, the number of sorting networks
+/// found.
+/// \return The count.
 
-void CSearchableSortingNetwork::writeToLogFile(){   
-  FILE* logfile;
-  fopen_s(&logfile, "log.txt", "at");
-
-  if(logfile){
-    float t = (float)CPUTimeInMilliseconds()/1000.0f;
-
-    fprintf_s(logfile, 
-      "%d %d-input sorting networks of depth %d found in %0.3f seconds CPU time.\n",
-      m_nCount, INPUTS, DEPTH, t); 
-    printf("%d found in %0.3f seconds CPU time.\n", m_nCount, t);
-
-    fclose(logfile);
-  } //if
-} //writetologfile
+const size_t CSearchableSortingNetwork::GetCount() const{
+  return m_nCount;
+} //GetCount

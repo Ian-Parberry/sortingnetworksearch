@@ -40,6 +40,9 @@ class CAutocomplete: public C2NFSearchableSortingNetwork{
     void initSortingTest(); ///< Initialize the sorting test. 
     void initLastLevel(); ///< Initialize the last level of the comparator network.
     bool sorts(); ///< Does it sort?
+
+  public:
+    CAutocomplete(CMatching&, const size_t); ///< Constructor.
 }; //CAutocomplete
 
 #endif //__Autocomplete_h__
