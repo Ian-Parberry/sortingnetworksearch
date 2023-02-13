@@ -39,35 +39,35 @@
 /// \return 0 (What could possibly go wrong?)
 
 int main(){
-  //CAutocomplete* pSearch = new CAutocomplete;
-  //pSearch->backtrack();
-  //delete pSearch;
+  CNearsort* pSearch = new CNearsort;
+  pSearch->backtrack();
+  delete pSearch;
 
-  CThreadManager* pThreadManager = new CThreadManager; //thread manager
-  CTimer* pTimer = new CTimer; //timer for elapsed and CPU time
+  //CThreadManager* pThreadManager = new CThreadManager; //thread manager
+  //CTimer* pTimer = new CTimer; //timer for elapsed and CPU time
 
-  for(size_t i=0; i<16; i++) //create empty tasks
-    pThreadManager->Insert(new CTask);
+  //for(size_t i=0; i<16; i++) //create empty tasks
+  //  pThreadManager->Insert(new CTask);
 
-  pTimer->Start(); //start timing CPU and elapsed time
+  //pTimer->Start(); //start timing CPU and elapsed time
 
-  std::cout << "Start " << pTimer->GetTimeAndDate() << std::endl;
-  std::cout << pThreadManager->GetNumThreads() << " threads" << std::endl;
-  std::cout << std::flush;
+  //std::cout << "Start " << pTimer->GetTimeAndDate() << std::endl;
+  //std::cout << pThreadManager->GetNumThreads() << " threads" << std::endl;
+  //std::cout << std::flush;
 
-  pThreadManager->Spawn(); //spawn threads
-  pThreadManager->Wait(); //wait for threads to finish
+  //pThreadManager->Spawn(); //spawn threads
+  //pThreadManager->Wait(); //wait for threads to finish
 
-  std::cout << "Finish " << pTimer->GetTimeAndDate() << std::endl;
-  std::cout << "Elapsed time " << pTimer->GetElapsedTime() << std::endl;
-  std::cout << "CPU time " << pTimer->GetCPUTime() << std::endl;
+  //std::cout << "Finish " << pTimer->GetTimeAndDate() << std::endl;
+  //std::cout << "Elapsed time " << pTimer->GetElapsedTime() << std::endl;
+  //std::cout << "CPU time " << pTimer->GetCPUTime() << std::endl;
 
-  pThreadManager->Process(); //process results
+  //pThreadManager->Process(); //process results
 
-  //clean up and exit
+  ////clean up and exit
 
-  delete pTimer;
-  delete pThreadManager;
+  //delete pTimer;
+  //delete pThreadManager;
 
   return 0;
 } //main
