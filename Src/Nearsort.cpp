@@ -123,7 +123,7 @@ bool CNearsort::stillnearsorts(const size_t delta){
 } //stillnearsorts
 
 /// Process a comparator network, which is pretty much the same as
-/// `CSearchableSortingNetwork::Process()` except that you stop one level
+/// `CSearchable::Process()` except that you stop one level
 /// early and prune if the network so far fails to nearsort all inputs.
 /// If it fails to nearsort, then it won't sort. Continue with
 /// those that nearsort because some of them might actually sort.
@@ -134,7 +134,7 @@ void CNearsort::Process(){
     bool unfinished = true;
 
     while(unfinished){
-      CSearchableSortingNetwork::Process();
+      CSearchable::Process();
       unfinished = m_nMatching[DEPTH - 2].Next();   
 
       if(unfinished)SynchMatchingRepresentations(DEPTH - 2);

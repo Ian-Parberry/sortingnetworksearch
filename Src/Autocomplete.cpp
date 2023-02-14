@@ -32,7 +32,7 @@
 /// \param index Lexicographics number of level 2 matching.
 
 CAutocomplete::CAutocomplete(CMatching& L2Matching, const size_t index):
-  C2NFSearchableSortingNetwork(L2Matching, index){
+  C2NF(L2Matching, index){
 } //constructor
 
 /// Check whether stub of a sorting network sorts when the current input has
@@ -68,7 +68,7 @@ bool CAutocomplete::stillsorts(const size_t delta){
 
 /// Initialize the network for the sorting test, that is, make the Gray code
 /// word for input be all zeros, and the values on every channel at every level
-/// be zero. Yhis differs from `C1NFSortingNetwork::initSortingTest()` in that
+/// be zero. Yhis differs from `C1NF::initSortingTest()` in that
 /// it doesn't initialize values in the first and last levels.
 
 void CAutocomplete::initSortingTest(){   

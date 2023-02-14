@@ -160,9 +160,9 @@
     <ClCompile Include="ComparatorNetwork.cpp" />
     <ClCompile Include="Autocomplete.cpp" />
     <ClCompile Include="Nearsort.cpp" />
-    <ClCompile Include="SearchableSortingNetwork.cpp" />
-    <ClCompile Include="SearchableSortingNetwork2NF.cpp" />
-    <ClCompile Include="SortingNetwork1NF.cpp" />
+    <ClCompile Include="Searchable.cpp" />
+    <ClCompile Include="2NF.cpp" />
+    <ClCompile Include="1NF.cpp" />
     <ClCompile Include="Level2Search.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Matching.cpp" />
@@ -178,9 +178,9 @@
     <ClInclude Include="Autocomplete.h" />
     <ClInclude Include="Nearsort.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SearchableSortingNetwork.h" />
-    <ClInclude Include="SearchableSortingNetwork2NF.h" />
-    <ClInclude Include="SortingNetwork1NF.h" />
+    <ClInclude Include="Searchable.h" />
+    <ClInclude Include="2NF.h" />
+    <ClInclude Include="1NF.h" />
     <ClInclude Include="Level2Search.h" />
     <ClInclude Include="Matching.h" />
     <ClInclude Include="SortingNetwork.h" />

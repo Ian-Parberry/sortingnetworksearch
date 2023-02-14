@@ -1,5 +1,5 @@
-/// \file SearchableSortingNetwork.h
-/// \brief Interface for the searchable sorting network CSearchableSortingNetwork.
+/// \file Searchable.h
+/// \brief Interface for the searchable sorting network CSearchable.
 
 // MIT License
 //
@@ -23,10 +23,10 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#ifndef __SearchableSortingNetwork_h__
-#define __SearchableSortingNetwork_h__
+#ifndef __Searchable_h__
+#define __Searchable_h__
 
-#include "SortingNetwork1NF.h"
+#include "1NF.h"
 
 #include "Defines.h"
 #include "Matching.h"
@@ -36,7 +36,7 @@
 /// The searchable sorting network class will perform a backtracking search
 /// for a sorting network of a given depth and number of inputs.
 
-class CSearchableSortingNetwork: public C1NFSortingNetwork{
+class CSearchable: public C1NF{
   protected:  
     size_t m_nCount = 0; ///< Number of comparator networks found that sort.
     int m_nCumulativeCPUSecs = 0; ///< Cumulative CPU time in seconds.
@@ -60,11 +60,11 @@ class CSearchableSortingNetwork: public C1NFSortingNetwork{
     virtual void Process(); ///< Process a candidate comparator network.
 
   public:
-    CSearchableSortingNetwork(); ///< Constructor.
+    CSearchable(); ///< Constructor.
 
     virtual void Backtrack(); ///< Backtracking search.
 
     const size_t GetCount() const; ///< Get count.
-}; //CSearchableSortingNetwork
+}; //CSearchable
 
-#endif //__SearchableSortingNetwork_h__
+#endif //__Searchable_h__

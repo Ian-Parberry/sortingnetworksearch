@@ -1,5 +1,5 @@
-/// \file SortingNetwork1NF.h
-/// \brief Interface for the first normal form sorting network C1NFSortingNetwork.
+/// \file 2NF.h
+/// \brief Interface for the searchable second normal form sorting network C2NF.
 
 // MIT License
 //
@@ -23,26 +23,28 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#ifndef __SortingNetwork1NF_h__
-#define __SortingNetwork1NF_h__
+#ifndef __2NF_h_
+#define __2NF_h_
 
-#include "SortingNetwork.h"
+#include "Searchable.h"
+#include "Level2Search.h"
 
-/// \brief Sorting network in first normal form.
+/// \brief Second normal form searchable sorting network.
 ///
-/// A first normal form sorting network has comparators in the first
-/// level between channels 0-1, 2-3, 4-5, etc. This simplifies the sorting
-/// test since we need only test ternary Gray code strings instead of binary.
+/// A first normal form sorting network that takes its second level from a 
+/// generator that provides second level candidates unique up to symmetry.
 
-class C1NFSortingNetwork: public CSortingNetwork{
-  protected: 
-    void initSortingTest(); ///< Initialize the sorting test.
-    bool stillsorts(const size_t); ///< Does it still sort when a bit is changed?
-    bool sorts(); ///< Does it sort?
-    bool evensorts(); ///< Does it sort if there are an odd number of inputs and we fix the value on the last channel?
+class C2NF: public CSearchable{ 
+  protected:   
+    CLevel2Search* m_pLevel2 = nullptr; ///< Pointer to Level 2 generator.
+    size_t m_nSecondLevelIndex = 0; ///< Index of current level 2 candidate.
+
+    void SaveGeneratedSortingNetwork(); ///< Save comparator network.
 
   public:
-    C1NFSortingNetwork(); ///< Constructor.
-}; //C1NFSortingNetwork
+    C2NF(CMatching&, const size_t); ///< Constructor.
 
-#endif //__SortingNetwork1NF_h__
+    void Backtrack();  ///< Backtracking search.
+}; //C2NF
+
+#endif //__2NF_h_

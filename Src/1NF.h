@@ -1,5 +1,5 @@
-/// \file SearchableSortingNetwork2NF.h
-/// \brief Interface for the searchable second normal form sorting network C2NFSearchableSortingNetwork.
+/// \file 1NF.h
+/// \brief Interface for the first normal form sorting network C1NF.
 
 // MIT License
 //
@@ -23,30 +23,26 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#ifndef __SearchableSortingNetwork2NF_h_
-#define __SearchableSortingNetwork2NF_h_
+#ifndef __1NF_h__
+#define __1NF_h__
 
-#include "SearchableSortingNetwork.h"
-#include "Level2Search.h"
+#include "SortingNetwork.h"
 
-/// \brief Second normal form searchable sorting network.
+/// \brief Sorting network in first normal form.
 ///
-/// A first normal form sorting network that takes its second level from a 
-/// generator that provides second level candidates unique up to symmetry.
+/// A first normal form sorting network has comparators in the first
+/// level between channels 0-1, 2-3, 4-5, etc. This simplifies the sorting
+/// test since we need only test ternary Gray code strings instead of binary.
 
-class C2NFSearchableSortingNetwork:
-  public CSearchableSortingNetwork
-{ 
-  protected:   
-    CLevel2Search* m_pLevel2 = nullptr; ///< Pointer to Level 2 generator.
-    size_t m_nSecondLevelIndex = 0; ///< Index of current level 2 candidate.
-
-    void SaveGeneratedSortingNetwork(); ///< Save comparator network.
+class C1NF: public CSortingNetwork{
+  protected: 
+    void initSortingTest(); ///< Initialize the sorting test.
+    bool sorts(); ///< Does it sort all inputs?
+    bool stillsorts(const size_t); ///< Does it still sort when a bit is changed?
+    bool evensorts(); ///< Does it sort if there are an odd number of inputs and we fix the value on the last channel?
 
   public:
-    C2NFSearchableSortingNetwork(CMatching&, const size_t); ///< Constructor.
+    C1NF(); ///< Constructor.
+}; //C1NF
 
-    void Backtrack();  ///< Backtracking search.
-}; //C2NFSearchableSortingNetwork
-
-#endif //__SearchableSortingNetwork2NF_h_
+#endif //__1NF_h__

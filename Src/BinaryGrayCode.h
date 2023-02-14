@@ -45,7 +45,7 @@
 
 class CBinaryGrayCode{
   friend class CSortingNetwork;
-  friend class C1NFSortingNetwork;
+  friend class C1NF;
   friend class CAutocomplete;
   friend class CNearsort;
 

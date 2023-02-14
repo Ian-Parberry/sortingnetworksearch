@@ -1,5 +1,5 @@
 /// \file SearchableSortingNetwork2NF.cpp
-/// \brief Code for the searchable second normal form sorting network C2NFSearchableSortingNetwork.
+/// \brief Code for the searchable second normal form sorting network C2NF.
 
 // MIT License
 //
@@ -25,7 +25,7 @@
 
 #include <stdio.h>
 
-#include "SearchableSortingNetwork2NF.h"
+#include "2NF.h"
 #include "Defines.h"
 
 unsigned int CPUTimeInMilliseconds();
@@ -34,9 +34,9 @@ unsigned int CPUTimeInMilliseconds();
 /// \param L2Matching Level 2 matching.
 /// \param index Lexicographics number of level 2 matching.
 
-C2NFSearchableSortingNetwork::C2NFSearchableSortingNetwork(
+C2NF::C2NF(
   CMatching& L2Matching, const size_t index):
-  CSearchableSortingNetwork(),
+  CSearchable(),
   m_nSecondLevelIndex(index)
 {
   m_nStack[0] = 0;
@@ -49,7 +49,7 @@ C2NFSearchableSortingNetwork::C2NFSearchableSortingNetwork(
 /// Initialize and then start a backtracking search for all sorting networks
 /// in Second Normal Form of given width and depth.
 
-void C2NFSearchableSortingNetwork::Backtrack(){ 
+void C2NF::Backtrack(){ 
   if(odd(INPUTS))m_nMatching[1][INPUTS] = INPUTS; 
   SynchMatchingRepresentations(1); //synch representation for testing
   FirstComparatorNetwork(2); //initialize from there down
@@ -63,7 +63,7 @@ void C2NFSearchableSortingNetwork::Backtrack(){
 /// 12 comparators, which is the 20th sorting network found, would be saved 
 /// to file w8d5x99s12n20.txt.
 
-void C2NFSearchableSortingNetwork::SaveGeneratedSortingNetwork(){
+void C2NF::SaveGeneratedSortingNetwork(){
   size_t size = RemoveRepeatedComparators(); //size after redundant comparators removed
   
   std::string filename = //construct file name

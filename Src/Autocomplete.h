@@ -26,14 +26,14 @@
 #ifndef __Autocomplete_h__
 #define __Autocomplete_h__
 
-#include "SearchableSortingNetwork2NF.h"
+#include "2NF.h"
 
 /// \brief Searchable second normal form sorting network with autocomplete.
 ///
 /// A searchable second normal form sorting network that tries to autocomplete
 /// the last level instead of iterating through all possibilities.
 
-class CAutocomplete: public C2NFSearchableSortingNetwork{
+class CAutocomplete: public C2NF{
   protected:  
     void SetToS(); ///< Set top of stack.
     bool stillsorts(const size_t); ///< Does it still sort when a bit is changed?

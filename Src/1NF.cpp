@@ -1,5 +1,5 @@
 /// \file SortingNetwork1NF.cpp
-/// \brief Code for the first normal form sorting network C1NFSortingNetwork.
+/// \brief Code for the first normal form sorting network C1NF.
 
 // MIT License
 //
@@ -26,13 +26,13 @@
 #include "Defines.h"
 #include "TernaryGrayCode.h"
 
-#include "SortingNetwork1NF.h"
+#include "1NF.h"
 
 /// Create a ternary Gray code generator and set the first layer to the
 /// identity matching, which places comparators between channels 0 and 1,
 /// 2 and 3, 4 and 5, etc.
 
-C1NFSortingNetwork::C1NFSortingNetwork(){
+C1NF::C1NF(){
   m_pGrayCode = new CTernaryGrayCode;
 
   //n is the largest even number no greater than the number of inputs
@@ -48,7 +48,7 @@ C1NFSortingNetwork::C1NFSortingNetwork(){
 /// word for input be all zeros, and the values on every channel at every level
 /// be zero.
 
-void C1NFSortingNetwork::initSortingTest(){ 
+void C1NF::initSortingTest(){ 
   m_pGrayCode->initalize(); //initialize the Gray code to all zeros.
   initValues(1, DEPTH - 1); //initialize the network values to all zeros.
 } //initSortingTest
@@ -57,7 +57,7 @@ void C1NFSortingNetwork::initSortingTest(){
 /// \param delta Index of channel to flip.
 /// \return true if it still sorts when channel is flipped.
 
-bool C1NFSortingNetwork::stillsorts(const size_t delta){
+bool C1NF::stillsorts(const size_t delta){
   return flipinput(delta - 1, 1, DEPTH - 1) ==
     m_pGrayCode->m_nZeros + m_pGrayCode->m_nBit[delta] - 1;
 } //stillsorts
@@ -69,7 +69,7 @@ bool C1NFSortingNetwork::stillsorts(const size_t delta){
 /// hypothetical last even-numbered channel will not be changed.
 /// \return true iff it sorts
 
-bool C1NFSortingNetwork::evensorts(){ 
+bool C1NF::evensorts(){ 
   size_t i = 0;  //index of bit to flip
   bool bSorts = true; //assume it sorts until we find otherwise
 
@@ -86,7 +86,7 @@ bool C1NFSortingNetwork::evensorts(){
 /// channel separately, testing it first with value zero then with value 1.
 /// \return true iff it sorts
 
-bool C1NFSortingNetwork::sorts(){ 
+bool C1NF::sorts(){ 
   //first handle the case where n is even, and the case where n is odd
   //and fails to sort an input that ends with a zero
   initSortingTest(); //set all channels to zero

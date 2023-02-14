@@ -1,5 +1,5 @@
 /// \file SearchableSortingNetwork.cpp
-/// \brief Code for the searchable sorting network class CSearchableSortingNetwork.
+/// \brief Code for the searchable sorting network class CSearchable.
 
 // MIT License
 //
@@ -26,14 +26,14 @@
 #include <stdio.h>
 #include <windows.h> //for timeGetTime()
 
-#include "SearchableSortingNetwork.h"
+#include "Searchable.h"
 
 unsigned int CPUTimeInMilliseconds(); //guess what this does?
 
 /// Initialize the CPU timer, compute the number of matchings and store it in
 /// m_nNumMatchings.
 
-CSearchableSortingNetwork::CSearchableSortingNetwork(): C1NFSortingNetwork(){
+CSearchable::CSearchable(): C1NF(){
   m_nCumulativeCPUSecs = 0; //initialize timer
 
   //compute number of matchings and store in m_nNumMatchings
@@ -47,7 +47,7 @@ CSearchableSortingNetwork::CSearchableSortingNetwork(): C1NFSortingNetwork(){
 /// depth, and size. For example an 8-input comparator network of depth
 /// 5 with 12 comparators would be saved to file w8d5s12.txt.
 
-void CSearchableSortingNetwork::SaveGeneratedSortingNetwork(){
+void CSearchable::SaveGeneratedSortingNetwork(){
   const size_t size = RemoveRepeatedComparators(); //size after redundant comparators removed
   
   std::string filename = 
@@ -61,14 +61,14 @@ void CSearchableSortingNetwork::SaveGeneratedSortingNetwork(){
 
 /// Set top of stack `m_nToS` to the last level of the sorting network.
 
-void CSearchableSortingNetwork::SetToS(){
+void CSearchable::SetToS(){
   m_nToS = DEPTH - 1;
 } //SetToS
 
 /// Process a comparator network, which means testing whether it sorts, and if
 /// it does, saving it to a file and incrementing a counter.
 
-void CSearchableSortingNetwork::Process(){
+void CSearchable::Process(){
   if(sorts()){ //if it sorts
     SaveGeneratedSortingNetwork(); //save it
     m_nCount++; //add 1 to the total
@@ -78,7 +78,7 @@ void CSearchableSortingNetwork::Process(){
 /// Perform a backtracking search, assuming everything has been initialized in
 /// a suitable fashion.
 
-void CSearchableSortingNetwork::Search(){
+void CSearchable::Search(){
   bool unfinished = true; //assume we're not finished
 
   while(unfinished){ //until we're finished
@@ -90,7 +90,7 @@ void CSearchableSortingNetwork::Search(){
 /// Initialize and then start a backtracking search for all sorting networks
 /// of given width and depth.
 
-void CSearchableSortingNetwork::Backtrack(){
+void CSearchable::Backtrack(){
   m_nCount = 0; //we've found none so far
   FirstComparatorNetwork(1); //assuming first normal form here
   Search(); //perform the search
@@ -99,7 +99,7 @@ void CSearchableSortingNetwork::Backtrack(){
 /// Set to first comparator network from some given level down to the bottom.
 /// \param toplevel Top level of comparator network we are constructing here.
 
-void CSearchableSortingNetwork::FirstComparatorNetwork(int toplevel){
+void CSearchable::FirstComparatorNetwork(int toplevel){
   m_nTop = toplevel; //save value of toplevel for later use
 
   for(int i=toplevel; i<DEPTH; i++){ //for each level in range
@@ -112,7 +112,7 @@ void CSearchableSortingNetwork::FirstComparatorNetwork(int toplevel){
 /// assumed to be correct.
 /// \param level The level at which to synchronize matchings.
 
-void CSearchableSortingNetwork::SynchMatchingRepresentations(int level){
+void CSearchable::SynchMatchingRepresentations(int level){
   for(size_t j=0; j<INPUTS; j+=2){ //for each pair of channels
     size_t x = m_nMatching[level][j]; //channel at left end of comparator
     size_t y = m_nMatching[level][j+1]; //channel at the other end
@@ -130,7 +130,7 @@ void CSearchableSortingNetwork::SynchMatchingRepresentations(int level){
 /// Initialize m_nMatch and m_nMatching to the first matching at a given level.
 /// \param level The level at which to initialize matchings.
 
-void CSearchableSortingNetwork::InitMatchingRepresentations(int level){
+void CSearchable::InitMatchingRepresentations(int level){
   m_nMatching[level].Initialize();  //initialize the generatable form
   m_nStack[level] = 0; //and its stack
 
@@ -146,7 +146,7 @@ void CSearchableSortingNetwork::InitMatchingRepresentations(int level){
 /// the need for recursion.
 /// \return false if there are no more comparator networks.
 
-bool CSearchableSortingNetwork::nextComparatorNetwork(){
+bool CSearchable::nextComparatorNetwork(){
   SetToS(); //set top of stack
 
   m_nStack[m_nToS]++;
@@ -172,6 +172,6 @@ bool CSearchableSortingNetwork::nextComparatorNetwork(){
 /// found.
 /// \return The count.
 
-const size_t CSearchableSortingNetwork::GetCount() const{
+const size_t CSearchable::GetCount() const{
   return m_nCount;
 } //GetCount
