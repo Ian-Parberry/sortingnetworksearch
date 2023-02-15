@@ -1,3 +1,3 @@
-# Sorting Network Exhaustive Search
+# Backtracking for Small Sorting Networks
 
 
