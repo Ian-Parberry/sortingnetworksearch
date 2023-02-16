@@ -26,7 +26,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "Nearsort.h"
+#include "Nearsort2.h"
 
 #include "ThreadManager.h"
 #include "Task.h"

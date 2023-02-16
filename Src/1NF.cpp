@@ -49,7 +49,7 @@ C1NF::C1NF(){
 /// be zero.
 
 void C1NF::initSortingTest(){ 
-  m_pGrayCode->initalize(); //initialize the Gray code to all zeros.
+  m_pGrayCode->initialize(); //initialize the Gray code to all zeros.
   initValues(1, DEPTH - 1); //initialize the network values to all zeros.
 } //initSortingTest
 

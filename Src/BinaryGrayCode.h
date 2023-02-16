@@ -48,6 +48,7 @@ class CBinaryGrayCode{
   friend class C1NF;
   friend class CAutocomplete;
   friend class CNearsort;
+  friend class CNearsort2;
 
   protected:
     size_t m_nZeros = 0; ///< Number of zeros in the code word.
@@ -55,7 +56,7 @@ class CBinaryGrayCode{
     size_t m_nStack[INPUTS + 3] = {0}; ///< Stack to remove recursion.
 
   public:
-    virtual void initalize(); ///< Get first code word.
+    virtual void initialize(); ///< Get first code word.
     virtual size_t next(); ///< Get next code word.
 }; //CBinaryGrayCode
 

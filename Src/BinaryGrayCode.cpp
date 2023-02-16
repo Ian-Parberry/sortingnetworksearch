@@ -28,14 +28,14 @@
 /// Reset Gray code generator to the first word in Gray code order, which is
 /// the all-zero word.
 
-void CBinaryGrayCode::initalize(){ 
+void CBinaryGrayCode::initialize(){ 
   m_nZeros = INPUTS; //all zeros
   
   for(size_t i=0; i<=INPUTS+2; i++){
     m_nBit[i] = 0; //all zeros
     m_nStack[i] = i + 1; //recursion stack initial conditions
   } //for
-} //initalize
+} //initialize
 
 /// Get the next binary word in binary reflected Gray code order, which will
 /// differ from the previous one in exactly one bit.

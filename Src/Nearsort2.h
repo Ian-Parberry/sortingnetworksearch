@@ -1,5 +1,5 @@
-/// \file TernaryGrayCode.cpp
-/// \brief Code for the ternary reflected Gray code generator CTernaryGrayCode.
+/// \file Nearsort.h
+/// \brief Interface for the sorting network class CNearsort2.
 
 // MIT License
 //
@@ -23,36 +23,26 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#include "TernaryGrayCode.h"
+#ifndef __Nearsort2_h__
+#define __Nearsort2_h__
 
-/// Reset Gray code generator to the first word in Gray code order, the
-/// all-zero word.
+#include "Nearsort.h"
 
-void CTernaryGrayCode::initialize(){ 
-  CBinaryGrayCode::initialize(); //reset as for the binary version
-  
-  for(size_t i=0; i<=INPUTS+2; i++) //reset the direction array too
-    m_nDirection[i] = 0;
-} //initialize
+/// \brief Searchable sorting network with nearsort2.
+///
+/// CNearsort2 is a version of CNearsort that uses the nearsort2 heuristic, 
+/// which is based on reachability, to prune two levels from the end.
 
-/// Get the next binary word in ternary reflected Gray code order, which will
-/// differ from the previous one in exactly one bit.
-/// \return Index of the bit that has changed, in the range 1..INPUTS. 
-/// Out of range means we're finished.
+class CNearsort2: public CNearsort{
+  protected: 
+    bool stillnearsorts2(const size_t delta); ///< Does it still nearsort with this input change?
+    bool evennearsorts2(); ///< Does it nearly sort, even number of inputs?
+    bool nearsorts2(); ///< Does it nearly sort?
 
-size_t CTernaryGrayCode::next(){
-  size_t i = m_nStack[0]; 
-  m_nStack[0] = 1;
-  size_t j = 2*i - m_nBit[2*i - m_nDirection[i]];
-  m_nBit[j] ^= 1;
+    void Process(); ///< Process a candidate comparator network.
 
-  if(m_nBit[2*i] == m_nBit[2*i - 1]){
-    m_nDirection[i] ^= 1;
-    m_nStack[i-1] = m_nStack[i];
-    m_nStack[i] = i + 1;
-  } //if
+public:
+  CNearsort2(CMatching&, const size_t); ///< Constructor.
+}; //CNearsort2
 
-  m_nZeros += 1 - 2*m_nBit[j]; 
-
-  return j;
-} //next
+#endif //__Nearsort2_h__

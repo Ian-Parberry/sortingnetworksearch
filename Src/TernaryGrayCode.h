@@ -50,7 +50,7 @@ class CTernaryGrayCode: public CBinaryGrayCode{
     int m_nDirection[INPUTS + 3]; ///< Direction of ternary change.
 
   public:
-    void initalize(); ///< Get first code word.
+    void initialize(); ///< Get first code word.
     size_t next(); ///< Get next code word.
 }; //CTernaryGrayCode
 

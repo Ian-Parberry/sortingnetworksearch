@@ -72,7 +72,7 @@ bool CAutocomplete::stillsorts(const size_t delta){
 /// it doesn't initialize values in the first and last levels.
 
 void CAutocomplete::initSortingTest(){   
-  m_pGrayCode->initalize(); //initialize the Gray code to all zeros.
+  m_pGrayCode->initialize(); //initialize the Gray code to all zeros.
   initValues(1, DEPTH - 2); //initialize the network values to all zeros.
 } //initSortingTest
 

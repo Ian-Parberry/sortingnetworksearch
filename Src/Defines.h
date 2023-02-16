@@ -39,8 +39,8 @@
 // 11 inputs, depth 8
 // 12 inputs, depth 8
 
-#define INPUTS 11 ///< Number of inputs.
-#define DEPTH 7 ///< Depth.
+#define INPUTS 9 ///< Number of inputs.
+#define DEPTH 6 ///< Depth.
 
 #define COUNTONLY true ///< True to count but not output sorting networks.
 
