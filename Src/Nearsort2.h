@@ -40,6 +40,7 @@ class CNearsort2: public CNearsort{
     bool nearsorts2(); ///< Does it nearly sort?
 
     void Process(); ///< Process a candidate comparator network.
+    void SetToS(); ///< Set top of stack.
 
 public:
   CNearsort2(CMatching&, const size_t); ///< Constructor.

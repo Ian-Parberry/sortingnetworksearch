@@ -57,7 +57,7 @@ int main(){
   CThreadManager* pThreadManager = new CThreadManager; //thread manager
 
   for(auto matching: L2Matchings) //for each level2 matching
-    pThreadManager->Insert(new CTask(new CNearsort(matching, i++))); //insert task
+    pThreadManager->Insert(new CTask(new CNearsort2(matching, i++))); //insert task
 
   //perform multi-threaded backtracking search
 

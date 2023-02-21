@@ -96,6 +96,7 @@ bool CNearsort2::stillnearsorts2(const size_t delta){
   if(j == k)return true; //self
 
   //reachability heuristic: size of "from" <= 7
+
   if(!m_bReachableFrom[j][k]){
     if(m_nReachCountFrom[j] >= 7) return false; //not there and no room
 	  m_nReachCountFrom[j]++;
@@ -103,6 +104,7 @@ bool CNearsort2::stillnearsorts2(const size_t delta){
   } //if
   
   //reachability heuristic: size of "to" <= 7
+
   if(!m_bReachableTo[j][k]){
     if(m_nReachCountTo[k] >= 7) return false; //not there and no room
 	  m_nReachCountTo[k]++;
@@ -110,6 +112,7 @@ bool CNearsort2::stillnearsorts2(const size_t delta){
   } //if
   
   //reachability heuristic: size of "from" union "to" <= 9
+
   if(!m_bReachable[j][k]){
     if(m_nReachCount[j] >= 9 || m_nReachCount[k] >= 9) return false; //not there and no room
 	  m_nReachCount[j]++; m_nReachCount[k]++;
@@ -138,3 +141,9 @@ void CNearsort2::Process(){
     } //while
   } //if
 } //Process
+
+  /// Set top of stack `m_nToS` to the fourth-last level of the sorting network.
+
+void CNearsort2::SetToS(){
+  m_nToS = DEPTH - 4;
+} //SetToS

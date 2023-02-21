@@ -27,12 +27,12 @@
 #include <thread>
 
 #include "Task.h"
-#include "Nearsort.h"
+#include "Nearsort2.h"
 
 /// Default constructor. All this does is call the `CBaseTask` default
 /// constructor. If you have any initialization code, then it should go here.
 
-CTask::CTask(CNearsort* p): 
+CTask::CTask(CNearsort2* p): 
   CBaseTask(), m_pSearch(p){
 } //constructor
 

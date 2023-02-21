@@ -113,6 +113,7 @@ bool CNearsort::stillnearsorts(const size_t delta){
   } //if
   
   //reachability heuristic: size of "from" union "to" <= 5
+
   if(!m_bReachable[j][k]){
     if(m_nReachCount[j] >= 5 || m_nReachCount[k] >= 5) return false; //not there and no room
 	  m_nReachCount[j]++; m_nReachCount[k]++;

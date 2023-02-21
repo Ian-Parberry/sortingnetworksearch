@@ -28,7 +28,7 @@
 
 #include "BaseTask.h"
 
-class CNearsort;
+class CNearsort2;
 
 /// \brief Task.
 ///
@@ -37,10 +37,10 @@ class CNearsort;
 
 class CTask: public CBaseTask{
   private:
-    CNearsort* m_pSearch = nullptr; ///< Searchable sorting network.
+    CNearsort2* m_pSearch = nullptr; ///< Searchable sorting network.
 
   public:
-    CTask(CNearsort*); ///< Default constructor.
+    CTask(CNearsort2*); ///< Default constructor.
 
     virtual void Perform(); ///< Perform the task.
     const size_t GetCount() const; ///< Get count.
