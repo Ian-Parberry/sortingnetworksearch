@@ -27,6 +27,7 @@
 #define __BinaryGrayCode_h__
 
 #include "Defines.h"
+#include "Settings.h"
 
 /// \brief Binary reflected Gray code generator.
 ///
@@ -43,7 +44,7 @@
 /// is fundamental to the exhaustive search and accessor functions would
 /// just serve to slow things down.
 
-class CBinaryGrayCode{
+class CBinaryGrayCode: public CSettings{
   friend class CSortingNetwork;
   friend class C1NF;
   friend class CAutocomplete;
@@ -52,8 +53,8 @@ class CBinaryGrayCode{
 
   protected:
     size_t m_nZeros = 0; ///< Number of zeros in the code word.
-    size_t m_nBit[INPUTS + 3] = {0}; ///< Current code word.
-    size_t m_nStack[INPUTS + 3] = {0}; ///< Stack to remove recursion.
+    size_t m_nBit[MAXINPUTS + 3] = {0}; ///< Current code word.
+    size_t m_nStack[MAXINPUTS + 3] = {0}; ///< Stack to remove recursion.
 
   public:
     virtual void initialize(); ///< Get first code word.

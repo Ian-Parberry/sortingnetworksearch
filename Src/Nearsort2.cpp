@@ -33,33 +33,32 @@ CNearsort2::CNearsort2(CMatching& L2Matching, const size_t index):
   CNearsort(L2Matching, index){
 } //constructor
 
-/// Check whether sorting network nearsorts2 all inputs.
-/// Works for even `INPUTS`, and for odd `INPUTS` it doesn't change the 
-/// last input.
+/// Check whether sorting network nearsorts2 all inputs. Works for even width,
+/// and for odd width it doesn't change the last input.
 /// \return true iff it sorts
 
 bool CNearsort2::evennearsorts2(){ 
   size_t i = 0;
   bool bNearSorts = true;
 
-  while(bNearSorts && i<=INPUTS){
+  while(bNearSorts && i<=m_nWidth){
     i = m_pGrayCode->next();
-    bNearSorts = bNearSorts && (i>INPUTS || stillnearsorts2(i));
+    bNearSorts = bNearSorts && (i>m_nWidth || stillnearsorts2(i));
   } //while
 
   return bNearSorts;
 } //evennearsorts2
 
 /// Check whether sorting network nearsorts2 all inputs.
-/// Works for both odd and even `INPUTS`.
+/// Works for both odd and even `m_nWidth`.
 /// \return true iff it nearsorts2
 
 bool CNearsort2::nearsorts2(){
   m_pGrayCode->initialize();  
-  initValues(1, DEPTH - 4);
+  initValues(1, m_nDepth - 4);
 
-  for(int i=0; i<INPUTS; i++){
-    for(int j=0; j<INPUTS; j++)
+  for(int i=0; i<m_nWidth; i++){
+    for(int j=0; j<m_nWidth; j++)
 	    m_bReachableFrom[i][j] = m_bReachableTo[i][j] = m_bReachable[i][j] = false;
     
     m_nReachCountFrom[i] = m_nReachCountTo[i] = m_nReachCount[i] = 0;
@@ -68,14 +67,14 @@ bool CNearsort2::nearsorts2(){
   if(!evennearsorts2())
     return false;
 
-  if(INPUTS & 1){ //odd number of inputs, handle the last one independently   
+  if(m_nWidth & 1){ //odd number of inputs, handle the last one independently   
     m_pGrayCode->initialize();  
-    initValues(1, DEPTH - 4);
+    initValues(1, m_nDepth - 4);
 
-    for(int j=1; j<DEPTH; j++)
-      m_nValue[j][INPUTS - 1] = 1;
+    for(int j=1; j<m_nDepth; j++)
+      m_nValue[j][m_nWidth - 1] = 1;
 
-    m_pGrayCode->m_nZeros = INPUTS - 1;
+    m_pGrayCode->m_nZeros = m_nWidth - 1;
 
     if(!evennearsorts2())
       return false;
@@ -90,7 +89,7 @@ bool CNearsort2::nearsorts2(){
 /// \return true if it still nearsorts2 when channel is flipped.
 
 bool CNearsort2::stillnearsorts2(const size_t delta){ 
-  const size_t j = flipinput(delta - 1U, 1, DEPTH - 4);
+  const size_t j = flipinput(delta - 1U, 1, m_nDepth - 4);
   const size_t k = m_pGrayCode->m_nZeros + m_pGrayCode->m_nBit[delta] - 1; //target channel
   
   if(j == k)return true; //self
@@ -130,14 +129,14 @@ bool CNearsort2::stillnearsorts2(const size_t delta){
 
 void CNearsort2::Process(){
   if(nearsorts2()){
-    InitMatchingRepresentations(DEPTH - 3);
+    InitMatchingRepresentations(m_nDepth - 3);
     bool unfinished = true;
 
     while(unfinished){
       CNearsort::Process();
-      unfinished = m_nMatching[DEPTH - 3].Next(); 
+      unfinished = m_nMatching[m_nDepth - 3].Next(); 
       if(unfinished)
-        SynchMatchingRepresentations(DEPTH - 3);
+        SynchMatchingRepresentations(m_nDepth - 3);
     } //while
   } //if
 } //Process
@@ -145,5 +144,5 @@ void CNearsort2::Process(){
   /// Set top of stack `m_nToS` to the fourth-last level of the sorting network.
 
 void CNearsort2::SetToS(){
-  m_nToS = DEPTH - 4;
+  m_nToS = (int)m_nDepth - 4;
 } //SetToS

@@ -37,7 +37,7 @@ CMatching::CMatching(){
 /// \param m Matching to copy.
 
 CMatching::CMatching(const CMatching& m){ //copy constructor
-  for(size_t i=0; i<INPUTS+1; i++){
+  for(size_t i=0; i<m_nWidth+1; i++){
     m_nMatching[i] = m.m_nMatching[i];
     m_nMap[i] = m.m_nMap[i];
     m_nStack[i] = m.m_nStack[i];
@@ -47,7 +47,7 @@ CMatching::CMatching(const CMatching& m){ //copy constructor
 /// Initialize to the identity matching.
 
 void CMatching::Initialize(){
-  for(size_t i=0; i<evenceil(INPUTS); i++){
+  for(size_t i=0; i<evenceil(m_nWidth); i++){
     m_nMatching[i] = i;
     m_nMap[i] = i;
     m_nStack[i] = (int)i - 1;
@@ -61,7 +61,7 @@ bool CMatching::Next(){
   size_t s = 4;
   size_t i = m_nStack[s - 1];
 
-  while(i < 1 && s < oddfloor(INPUTS)){
+  while(i < 1 && s < oddfloor(m_nWidth)){
     size_t temp = m_nMatching[s - 2];
 
     for(size_t j=s-1; j>=2; j--){
@@ -94,7 +94,7 @@ bool CMatching::Next(){
 /// \param i The first index.
 /// \param j The second index.
 
-void SwapPair(int m[], size_t i, size_t j){
+void CMatching::SwapPair(int m[], size_t i, size_t j){
   const size_t i0 = 2*i;
   const size_t i1 = i0 + 1;
   const size_t j0 = 2*j;
@@ -103,7 +103,7 @@ void SwapPair(int m[], size_t i, size_t j){
   std::swap(m[i0], m[j0]);
   std::swap(m[i1], m[j1]);
 
-  for(size_t k=0; k<INPUTS; k++)
+  for(size_t k=0; k<m_nWidth; k++)
     if(m[k] == i0)           m[k] = (int)j0;
     else if(m[k] == (int)j0) m[k] = (int)i0;
     else if(m[k] == (int)i1) m[k] = (int)j1;
@@ -113,28 +113,27 @@ void SwapPair(int m[], size_t i, size_t j){
 /// Normalize the matching.
 
 void CMatching::Normalize(){ 
-  const size_t n = evenceil(INPUTS);
-  int m[n]; //for copy of matching, will get negative numbers during processing
+  const size_t n = evenceil(m_nWidth);
   
   for(size_t j=0; j<n; j++)
-    m[j] = (int)m_nMatching[m_nMap[j]^1];
+    m_nCopy[j] = (int)m_nMatching[m_nMap[j]^1];
 
   size_t next = 1;
 
   for(size_t j=0; j<n; j++){
     const size_t src = std::max(next++, j/2 + 1); 
 
-    if(m[j] > int(2*src + 1))
-      SwapPair(m, src, m[j]/2);
+    if(m_nCopy[j] > int(2*src + 1))
+      SwapPair(m_nCopy, src, m_nCopy[j]/2);
   } //for
 
   size_t top = 0;
 
   for(size_t k=0; k<n; k++)
-    if(m[k] >= 0){
+    if(m_nCopy[k] >= 0){
       m_nMatching[top++] = k;
-      m_nMatching[top++] = m[k];
-      m[m[k]] = -1;
+      m_nMatching[top++] = m_nCopy[k];
+      m_nCopy[m_nCopy[k]] = -1;
     } //if
 } //Normalize
 
@@ -167,10 +166,10 @@ void CMatching::Swap(const size_t i, const size_t j){
 CMatching::operator std::string() const{
   std::string str; //result string
 
-  for(size_t i=0; i<INPUTS-1; i++) //for all but last entry
+  for(size_t i=0; i<m_nWidth-1; i++) //for all but last entry
     str += std::to_string(m_nMatching[i]) + " "; //append space separated
 
-  return str + std::to_string(m_nMatching[INPUTS - 1]); //append last entry
+  return str + std::to_string(m_nMatching[m_nWidth - 1]); //append last entry
 } //std::string
 
 /// Index operator, used to access members of `m_nMatching`.
@@ -187,7 +186,7 @@ size_t& CMatching::operator[](const size_t i){
 
 CMatching& CMatching::operator=(const CMatching& m){
   if(this != &m){
-    for(int i=0; i<INPUTS+1; i++){
+    for(int i=0; i<m_nWidth+1; i++){
       m_nMatching[i] = m.m_nMatching[i];
       m_nMap[i] = m.m_nMap[i];
       m_nStack[i] = m.m_nStack[i];
@@ -206,8 +205,8 @@ CMatching& CMatching::operator=(const CMatching& m){
 bool operator<(const CMatching& k1, const CMatching& k2){
   if(&k1 != &k2){  
     size_t i = 0; //index
-    while(i <= INPUTS && k1.m_nMatching[i] == k2.m_nMatching[i]) i++;
-    return (i <= INPUTS)? k1.m_nMatching[i] < k2.m_nMatching[i]: false;
+    while(i <= k1.m_nWidth && k1.m_nMatching[i] == k2.m_nMatching[i]) i++;
+    return (i <= k1.m_nWidth)? k1.m_nMatching[i] < k2.m_nMatching[i]: false;
   } //if
 
   return false;

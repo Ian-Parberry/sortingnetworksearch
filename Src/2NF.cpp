@@ -23,12 +23,8 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#include <stdio.h>
-
 #include "2NF.h"
 #include "Defines.h"
-
-unsigned int CPUTimeInMilliseconds();
 
 /// Constructor.
 /// \param L2Matching Level 2 matching.
@@ -42,7 +38,7 @@ C2NF::C2NF(
   m_nStack[0] = 0;
   InitMatchingRepresentations(0); //the level 1 matching is the identity
 
-  for(int j=0; j<INPUTS; j++)
+  for(int j=0; j<m_nWidth; j++)
     m_nMatching[1][j] = L2Matching[j]; //install candidate
 } //constructor
 
@@ -50,7 +46,7 @@ C2NF::C2NF(
 /// in Second Normal Form of given width and depth.
 
 void C2NF::Backtrack(){ 
-  if(odd(INPUTS))m_nMatching[1][INPUTS] = INPUTS; 
+  if(odd(m_nWidth))m_nMatching[1][m_nWidth] = m_nWidth; 
   SynchMatchingRepresentations(1); //synch representation for testing
   FirstComparatorNetwork(2); //initialize from there down
   Search(); //begin actual search
@@ -67,12 +63,11 @@ void C2NF::SaveGeneratedSortingNetwork(){
   size_t size = RemoveRepeatedComparators(); //size after redundant comparators removed
   
   std::string filename = //construct file name
-    "w" + std::to_string(INPUTS) + 
-    "d" + std::to_string(DEPTH) +
+    "w" + std::to_string(m_nWidth) + 
+    "d" + std::to_string(m_nDepth) +
     "x" + std::to_string(m_nSecondLevelIndex) +
     "s" + std::to_string(size) +
     "n" + std::to_string(m_nCount) + ".txt"; 
 
   save(filename); //save to file with that name
 } //SaveGeneratedSortingNetwork
-

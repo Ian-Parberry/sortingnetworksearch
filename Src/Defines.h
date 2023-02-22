@@ -39,10 +39,11 @@
 // 11 inputs, depth 8
 // 12 inputs, depth 8
 
-#define INPUTS 11 ///< Number of inputs.
-#define DEPTH 7 ///< Depth.
 
-#define COUNTONLY true ///< True to count but not output sorting networks.
+#define MAXINPUTS 12 ///< Maximum number of inputs.
+#define MAXDEPTH 7 ///< Maximum depth.
+
+#define COUNTONLY false ///< True to count but not output sorting networks.
 
 #define odd(n) ((n) & 1) ///< Oddness test.
 #define oddfloor(n) (odd(n)?(n):((n)-1)) ///< If even, round down to make odd.

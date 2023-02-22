@@ -43,7 +43,7 @@ bool CNearsort::evennearsorts(){
   do{
     bNearSorts = stillnearsorts(i);
     i = m_pGrayCode->next();
-  }while(bNearSorts && i <= INPUTS); 
+  }while(bNearSorts && i <= m_nWidth); 
 
   return bNearSorts;
 } //evennearsorts
@@ -54,10 +54,10 @@ bool CNearsort::evennearsorts(){
 
 bool CNearsort::nearsorts(){
   m_pGrayCode->initialize();  
-  initValues(1, DEPTH - 3);
+  initValues(1, m_nDepth - 3);
 
-  for(int i=0; i<INPUTS; i++){
-    for(int j=0; j<INPUTS; j++)
+  for(int i=0; i<m_nWidth; i++){
+    for(int j=0; j<m_nWidth; j++)
 	    m_bReachableFrom[i][j] = m_bReachableTo[i][j] = m_bReachable[i][j] = false;
     
     m_nReachCountFrom[i] = m_nReachCountTo[i] = m_nReachCount[i] = 0;
@@ -68,14 +68,14 @@ bool CNearsort::nearsorts(){
 
   //if odd number of inputs, handle the last one
 
-  if(odd(INPUTS)){     
+  if(odd(m_nWidth)){     
     m_pGrayCode->initialize();  
-    initValues(1, DEPTH - 3);
+    initValues(1, m_nDepth - 3);
 
-    for(int j=1; j<DEPTH; j++)
-      m_nValue[j][INPUTS - 1] = 1;
+    for(int j=1; j<m_nDepth; j++)
+      m_nValue[j][m_nWidth - 1] = 1;
 
-    m_pGrayCode->m_nZeros = INPUTS - 1;
+    m_pGrayCode->m_nZeros = m_nWidth - 1;
 
     if(!evennearsorts())
       return false;
@@ -90,7 +90,7 @@ bool CNearsort::nearsorts(){
 /// \return true if it still nearsorts when channel is flipped.
 
 bool CNearsort::stillnearsorts(const size_t delta){ 
-  size_t j = flipinput(delta - 1, 1, DEPTH - 3); //source channel into level d-2
+  size_t j = flipinput(delta - 1, 1, m_nDepth - 3); //source channel into level d-2
   const size_t k = m_pGrayCode->m_nZeros +
     m_pGrayCode->m_nBit[delta] - 1; //target channel out of level d-1
   
@@ -131,14 +131,14 @@ bool CNearsort::stillnearsorts(const size_t delta){
 
 void CNearsort::Process(){
   if(nearsorts()){
-    InitMatchingRepresentations(DEPTH - 2);
+    InitMatchingRepresentations(m_nDepth - 2);
     bool unfinished = true;
 
     while(unfinished){
       CSearchable::Process();
-      unfinished = m_nMatching[DEPTH - 2].Next();   
+      unfinished = m_nMatching[m_nDepth - 2].Next();   
 
-      if(unfinished)SynchMatchingRepresentations(DEPTH - 2);
+      if(unfinished)SynchMatchingRepresentations(m_nDepth - 2);
     } //while
   } //if
 } //Process
@@ -146,5 +146,5 @@ void CNearsort::Process(){
 /// Set top of stack `m_nToS` to the third-last level of the sorting network.
 
 void CNearsort::SetToS(){
-  m_nToS = DEPTH - 3;
+  m_nToS = (int)m_nDepth - 3;
 } //SetToS

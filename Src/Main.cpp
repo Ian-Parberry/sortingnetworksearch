@@ -43,6 +43,14 @@ int main(){
   CTimer* pTimer = new CTimer; //timer for elapsed and CPU time
   pTimer->Start(); //start timing CPU and elapsed time
 
+  //get width and depth
+
+  CSettings cSettings;
+  const size_t nWidth = 9;
+  const size_t nDepth = 6;
+  cSettings.SetWidth(nWidth);
+  cSettings.SetDepth(nDepth);
+
   //print header information to console
 
   std::cout << "Start " << pTimer->GetTimeAndDate() << std::endl;
@@ -70,8 +78,8 @@ int main(){
   //compose string that summarizes the search results
 
   const std::string strSummary = std::to_string(pThreadManager->GetCount()) +
-    " " + std::to_string(INPUTS) + "-input sorting networks of depth " +
-    std::to_string(DEPTH) +" found in " + pTimer->GetElapsedTime() + " using " +
+    " " + std::to_string(nWidth) + "-input sorting networks of depth " +
+    std::to_string(nDepth) +" found in " + pTimer->GetElapsedTime() + " using " +
     pTimer->GetCPUTime() + " CPU time over " +
     std::to_string(pThreadManager->GetNumThreads()) + " threads";
 

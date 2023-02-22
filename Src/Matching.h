@@ -29,17 +29,20 @@
 #include <string>
 
 #include "Defines.h"
+#include "Settings.h"
 
 /// \brief Perfect matching.
 ///
 /// CMatching represents a perfect matching on n vertices... well, as
 /// perfect as it can be if n is odd.
 
-class CMatching{
+class CMatching: public CSettings{
   private:   
-    size_t m_nMatching[INPUTS + 1] = {0}; ///< Matching.
-    size_t m_nMap[INPUTS + 1] = {0}; ///< Matching index map.
-    int m_nStack[INPUTS + 1] = {0}; ///< Stack to remove recursion from permutation.
+    size_t m_nMatching[MAXINPUTS + 1] = {0}; ///< Matching.
+    int m_nCopy[MAXINPUTS + 1] = {0}; ///< Integer copy of matching.
+    size_t m_nMap[MAXINPUTS + 1] = {0}; ///< Matching index map.
+    int m_nStack[MAXINPUTS + 1] = {0}; ///< Stack to remove recursion from permutation.
+    void SwapPair(int[], size_t, size_t); ///< Swap pair.
 
   public:
     CMatching(); ///< Void constructor

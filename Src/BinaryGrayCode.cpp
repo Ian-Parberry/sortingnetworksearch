@@ -29,9 +29,9 @@
 /// the all-zero word.
 
 void CBinaryGrayCode::initialize(){ 
-  m_nZeros = INPUTS; //all zeros
+  m_nZeros = m_nWidth; //all zeros
   
-  for(size_t i=0; i<=INPUTS+2; i++){
+  for(size_t i=0; i<=m_nWidth+2; i++){
     m_nBit[i] = 0; //all zeros
     m_nStack[i] = i + 1; //recursion stack initial conditions
   } //for

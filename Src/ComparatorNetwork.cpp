@@ -23,16 +23,14 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#include <stdio.h>
-
 #include "ComparatorNetwork.h"
 
 /// Initialize the matching array to represent a comparator network with no
 /// comparators.
 
 CComparatorNetwork::CComparatorNetwork(){
-  for(size_t i=0; i<DEPTH; i++) //for each level
-    for(size_t j=0; j<INPUTS; j++) //for each channel
+  for(size_t i=0; i<m_nDepth; i++) //for each level
+    for(size_t j=0; j<m_nWidth; j++) //for each channel
       m_nMatch[i][j] = j; //connected to self means no comparator
 } //constructor
  
@@ -41,14 +39,14 @@ CComparatorNetwork::CComparatorNetwork(){
 /// \return Number of comparators after redundant ones have been removed.
 
 size_t CComparatorNetwork::RemoveRepeatedComparators(){
-  size_t count = 2*(INPUTS/2); //number of comparators
+  size_t count = 2*(m_nWidth/2); //number of comparators
 
-  for(size_t i=0; i<DEPTH; i++) //for each level
-    for(size_t j=0; j<INPUTS; j++) //for each channel
+  for(size_t i=0; i<m_nDepth; i++) //for each level
+    for(size_t j=0; j<m_nWidth; j++) //for each channel
       m_bRedundant[i][j] = false;
 
-  for(size_t i=1; i<DEPTH; i++) //for each level except the top one
-    for(size_t j=0; j<INPUTS; j++) //for each channel
+  for(size_t i=1; i<m_nDepth; i++) //for each level except the top one
+    for(size_t j=0; j<m_nWidth; j++) //for each channel
       if((m_nMatch[i][j] == m_nMatch[i-1][j]) && !m_bRedundant[i][j]) //if channel connected to same one in previous level
         m_bRedundant[i][j] = true;  //remove connection
       else if(m_nMatch[i][j] != j)count++;
@@ -66,8 +64,8 @@ void CComparatorNetwork::save(const std::string& fname){
   fopen_s(&output, fname.c_str(), "wt");
 
   if(output){    
-    for(size_t i=0; i<DEPTH; i++){ //for each level
-      for(size_t j=0; j<INPUTS; j++){ //for each channel
+    for(size_t i=0; i<m_nDepth; i++){ //for each level
+      for(size_t j=0; j<m_nWidth; j++){ //for each channel
         size_t k = m_nMatch[i][j]; //comparator between channel j and k at level i
         
         if(!m_bRedundant[i][j] && k > j)

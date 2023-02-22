@@ -29,10 +29,10 @@
 #include "Task.h"
 #include "Nearsort2.h"
 
-/// Default constructor. All this does is call the `CBaseTask` default
-/// constructor. If you have any initialization code, then it should go here.
+/// Default constructor.
+/// \param p Pointer to searchable sorting network.
 
-CTask::CTask(CNearsort2* p): 
+CTask::CTask(CSearchable* p): 
   CBaseTask(), m_pSearch(p){
 } //constructor
 
@@ -43,8 +43,7 @@ void CTask::Perform(){
     m_pSearch->Backtrack();
 } //Perform
 
-/// Reader function for the count, that is, the number of sorting networks
-/// found.
+/// Reader function for the number of sorting networks found.
 /// \return The count.
 
 const size_t CTask::GetCount() const{

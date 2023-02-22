@@ -42,7 +42,7 @@ CAutocomplete::CAutocomplete(CMatching& L2Matching, const size_t index):
 /// \return true if it still sorts when channel is flipped.
 
 bool CAutocomplete::stillsorts(const size_t delta){
-  size_t j = flipinput(delta - 1, 1, DEPTH - 2);
+  size_t j = flipinput(delta - 1, 1, m_nDepth - 2);
 
   //Build last layer, if necessary. Changed channel is currently j.
   size_t k = m_pGrayCode->m_nZeros + m_pGrayCode->m_nBit[delta] - 1; //destination channel
@@ -51,8 +51,8 @@ bool CAutocomplete::stillsorts(const size_t delta){
     return true; //success
 
   else{  
-    size_t& cj = m_nMatch[DEPTH - 1][j]; //one end of comparator
-    size_t& ck = m_nMatch[DEPTH - 1][k]; //other end of comparator
+    size_t& cj = m_nMatch[m_nDepth - 1][j]; //one end of comparator
+    size_t& ck = m_nMatch[m_nDepth - 1][k]; //other end of comparator
 
     if(cj == k && ck == j)
       return true; //comparator already exists  
@@ -73,15 +73,15 @@ bool CAutocomplete::stillsorts(const size_t delta){
 
 void CAutocomplete::initSortingTest(){   
   m_pGrayCode->initialize(); //initialize the Gray code to all zeros.
-  initValues(1, DEPTH - 2); //initialize the network values to all zeros.
+  initValues(1, m_nDepth - 2); //initialize the network values to all zeros.
 } //initSortingTest
 
 /// Initializes the testable representation of the last level of the sorting 
 /// network to be empty, that is, containing no comparators.
 
 void CAutocomplete::initLastLevel(){
-  for(int j=0; j<INPUTS; j++) //for each channel
-    m_nMatch[DEPTH - 1][j] = j;
+  for(int j=0; j<m_nWidth; j++) //for each channel
+    m_nMatch[m_nDepth - 1][j] = j;
 } //initLastLevel
 
 /// Check whether sorting network sorts all inputs.
@@ -101,12 +101,12 @@ bool CAutocomplete::sorts(){
   if(!evensorts())return false;  //test inputs ending in zero
 
   //if odd number of inputs, check input that end with a one 
-  if(odd(INPUTS)){   
+  if(odd(m_nWidth)){   
     initSortingTest(); //set all channels to zero
 
-    for(int j=0; j<DEPTH; j++) //set all values on last channel to one
-      m_nValue[j][INPUTS - 1] = 1;
-    m_pGrayCode->m_nZeros = INPUTS - 1; //correct the count of zeros
+    for(int j=0; j<m_nDepth; j++) //set all values on last channel to one
+      m_nValue[j][m_nWidth - 1] = 1;
+    m_pGrayCode->m_nZeros = m_nWidth - 1; //correct the count of zeros
 
     if(!evensorts())return false; //test inputs ending with one
   } //if
@@ -117,5 +117,5 @@ bool CAutocomplete::sorts(){
 /// Set top of stack `m_nToS` to the second-last level of the sorting network.
 
 void CAutocomplete::SetToS(){
-  m_nToS = DEPTH - 2;
+  m_nToS = (int)m_nDepth - 2;
 } //SetToS

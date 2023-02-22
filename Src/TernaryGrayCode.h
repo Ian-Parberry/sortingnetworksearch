@@ -47,7 +47,7 @@
 
 class CTernaryGrayCode: public CBinaryGrayCode{
   protected:
-    int m_nDirection[INPUTS + 3]; ///< Direction of ternary change.
+    int m_nDirection[MAXINPUTS + 3]; ///< Direction of ternary change.
 
   public:
     void initialize(); ///< Get first code word.

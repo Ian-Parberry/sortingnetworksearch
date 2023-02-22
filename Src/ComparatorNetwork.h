@@ -29,6 +29,7 @@
 #include <string>
 
 #include "Defines.h"
+#include "Settings.h"
 
 /// \brief Comparator network.
 ///
@@ -39,10 +40,10 @@
 /// sorting network. Note that this is different from the implementation in
 /// `CMatching`, which is optimized for search rather than verification.
 
-class CComparatorNetwork{
+class CComparatorNetwork: public CSettings{
   protected: 
-    size_t m_nMatch[DEPTH][INPUTS] = {0}; ///< Matchings at each level.
-    bool m_bRedundant[DEPTH][INPUTS] = {false}; ///< True if comparator is redundant.
+    size_t m_nMatch[MAXDEPTH][MAXINPUTS] = {0}; ///< Matchings at each level.
+    bool m_bRedundant[MAXDEPTH][MAXINPUTS] = {false}; ///< True if comparator is redundant.
     
     size_t RemoveRepeatedComparators(); ///< Remove redundant comparators and return size.
 

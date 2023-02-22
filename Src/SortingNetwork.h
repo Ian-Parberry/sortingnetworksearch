@@ -43,7 +43,7 @@
 class CSortingNetwork: public CComparatorNetwork{
   protected: 
     CBinaryGrayCode *m_pGrayCode = nullptr; ///< Gray code generator.
-    size_t m_nValue[DEPTH][INPUTS] = {0}; ///< Values at each level when sorting.
+    size_t m_nValue[MAXDEPTH][MAXINPUTS] = {0}; ///< Values at each level when sorting.
 
     virtual void initSortingTest(); ///< Initialize the sorting test.
     virtual bool stillsorts(const size_t delta); ///< Does it still sort when a bit is changed?

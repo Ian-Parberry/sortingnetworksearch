@@ -39,19 +39,18 @@
 class CSearchable: public C1NF{
   protected:  
     size_t m_nCount = 0; ///< Number of comparator networks found that sort.
-    int m_nCumulativeCPUSecs = 0; ///< Cumulative CPU time in seconds.
 
-    CMatching m_nMatching[DEPTH]; ///< Matchings that make up comparator network in a form that makes searching faster. 
+    CMatching m_nMatching[MAXDEPTH]; ///< Matchings that make up comparator network in a form that makes searching faster. 
 
-    int m_nStack[DEPTH] = {0}; ///< Stack to remove recursion from search.
+    int m_nStack[MAXDEPTH] = {0}; ///< Stack to remove recursion from search.
     int m_nToS = 0; ///< Top of stack.
     int m_nNumMatchings = 0; ///< Number of matchings of this size.
     int m_nTop = 0; ///< Topmost level.
 
-    void FirstComparatorNetwork(int); ///< Set to first comparator network.
+    void FirstComparatorNetwork(size_t); ///< Set to first comparator network.
     bool nextComparatorNetwork(); ///< Change to next comparator network.
-    void SynchMatchingRepresentations(int); ///< Synchronize the two different matching representations.
-    void InitMatchingRepresentations(int); ///< Initialize the two different matching representations.
+    void SynchMatchingRepresentations(size_t); ///< Synchronize the two different matching representations.
+    void InitMatchingRepresentations(size_t); ///< Initialize the two different matching representations.
 
     virtual void SaveGeneratedSortingNetwork(); ///< Save comparator network.
     virtual void SetToS(); ///< Set top of stack.

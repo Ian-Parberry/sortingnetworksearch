@@ -36,7 +36,7 @@ C1NF::C1NF(){
   m_pGrayCode = new CTernaryGrayCode;
 
   //n is the largest even number no greater than the number of inputs
-  const size_t n = INPUTS - (INPUTS & 1); 
+  const size_t n = m_nWidth - (m_nWidth & 1); 
 
   //first layer is the identity matching
 
@@ -50,7 +50,7 @@ C1NF::C1NF(){
 
 void C1NF::initSortingTest(){ 
   m_pGrayCode->initialize(); //initialize the Gray code to all zeros.
-  initValues(1, DEPTH - 1); //initialize the network values to all zeros.
+  initValues(1, m_nDepth - 1); //initialize the network values to all zeros.
 } //initSortingTest
 
 /// Check that sorting network sorts when the current input has channel flipped.
@@ -58,7 +58,7 @@ void C1NF::initSortingTest(){
 /// \return true if it still sorts when channel is flipped.
 
 bool C1NF::stillsorts(const size_t delta){
-  return flipinput(delta - 1, 1, DEPTH - 1) ==
+  return flipinput(delta - 1, 1, m_nDepth - 1) ==
     m_pGrayCode->m_nZeros + m_pGrayCode->m_nBit[delta] - 1;
 } //stillsorts
 
@@ -73,9 +73,9 @@ bool C1NF::evensorts(){
   size_t i = 0;  //index of bit to flip
   bool bSorts = true; //assume it sorts until we find otherwise
 
-  while(bSorts && i<=INPUTS){ //bail if it doesn't sort, or we've tried all binary inputs
+  while(bSorts && i<=m_nWidth){ //bail if it doesn't sort, or we've tried all binary inputs
     i = m_pGrayCode->next(); //next bit to flip in Gray code order
-    bSorts = bSorts && (i>INPUTS || stillsorts(i)); //check whether it still sorts when this bit is flipped
+    bSorts = bSorts && (i>m_nWidth || stillsorts(i)); //check whether it still sorts when this bit is flipped
   } //while
   return bSorts;
 } //sorts
@@ -93,13 +93,13 @@ bool C1NF::sorts(){
   if(!evensorts())return false;  //test inputs ending in zero
 
   //if odd number of inputs, check input that end with a one 
-  if(odd(INPUTS)){   
+  if(odd(m_nWidth)){   
     initSortingTest(); //set all channels to zero
 
-    for(int j=0; j<DEPTH; j++) //set all values on last channel to one
-      m_nValue[j][INPUTS - 1] = 1;
+    for(int j=0; j<m_nDepth; j++) //set all values on last channel to one
+      m_nValue[j][m_nWidth - 1] = 1;
 
-    m_pGrayCode->m_nZeros = INPUTS - 1; //correct the count of zeros
+    m_pGrayCode->m_nZeros = m_nWidth - 1; //correct the count of zeros
 
     if(!evensorts())return false; //test inputs ending with one
   } //if

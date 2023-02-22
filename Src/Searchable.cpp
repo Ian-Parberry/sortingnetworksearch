@@ -23,22 +23,13 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#include <stdio.h>
-#include <windows.h> //for timeGetTime()
-
 #include "Searchable.h"
 
-unsigned int CPUTimeInMilliseconds(); //guess what this does?
-
-/// Initialize the CPU timer, compute the number of matchings and store it in
-/// m_nNumMatchings.
+/// Compute the number of matchings and store it in `m_nNumMatchings`.
 
 CSearchable::CSearchable(): C1NF(){
-  m_nCumulativeCPUSecs = 0; //initialize timer
-
-  //compute number of matchings and store in m_nNumMatchings
   m_nNumMatchings = 1;
-  for(int i = INPUTS + (INPUTS&1) - 1; i>1; i-=2)
+  for(int i = int(m_nWidth + (m_nWidth&1)) - 1; i>1; i-=2)
     m_nNumMatchings *= i;
 } //constructor
 
@@ -51,8 +42,8 @@ void CSearchable::SaveGeneratedSortingNetwork(){
   const size_t size = RemoveRepeatedComparators(); //size after redundant comparators removed
   
   std::string filename = 
-    "w" + std::to_string(INPUTS) + 
-    "d" + std::to_string(DEPTH) +
+    "w" + std::to_string(m_nWidth) + 
+    "d" + std::to_string(m_nDepth) +
     "s" + std::to_string(size) +
     "n" + std::to_string(m_nCount) + ".txt"; 
 
@@ -62,7 +53,7 @@ void CSearchable::SaveGeneratedSortingNetwork(){
 /// Set top of stack `m_nToS` to the last level of the sorting network.
 
 void CSearchable::SetToS(){
-  m_nToS = DEPTH - 1;
+  m_nToS = (int)m_nDepth - 1;
 } //SetToS
 
 /// Process a comparator network, which means testing whether it sorts, and if
@@ -99,25 +90,23 @@ void CSearchable::Backtrack(){
 /// Set to first comparator network from some given level down to the bottom.
 /// \param toplevel Top level of comparator network we are constructing here.
 
-void CSearchable::FirstComparatorNetwork(int toplevel){
-  m_nTop = toplevel; //save value of toplevel for later use
+void CSearchable::FirstComparatorNetwork(size_t toplevel){
+  m_nTop = (int)toplevel; //save value of toplevel for later use
 
-  for(int i=toplevel; i<DEPTH; i++){ //for each level in range
+  for(size_t i=toplevel; i<m_nDepth; i++) //for each level in range
     InitMatchingRepresentations(i); //initialize both matching representations
-    //m_nStack[i] = 0;
-  }
 } //FirstComparatorNetwork
 
 /// Synchronize m_nMatch to m_nMatching at a given level. The latter is 
 /// assumed to be correct.
 /// \param level The level at which to synchronize matchings.
 
-void CSearchable::SynchMatchingRepresentations(int level){
-  for(size_t j=0; j<INPUTS; j+=2){ //for each pair of channels
+void CSearchable::SynchMatchingRepresentations(size_t level){
+  for(size_t j=0; j<m_nWidth; j+=2){ //for each pair of channels
     size_t x = m_nMatching[level][j]; //channel at left end of comparator
-    size_t y = m_nMatching[level][j+1]; //channel at the other end
+    size_t y = m_nMatching[level][j + 1]; //channel at the other end
 
-    if(y == INPUTS) //if the rightmost channel is the last one in a comparator network with an odd number of inputs
+    if(y == m_nWidth) //if the rightmost channel is the last one in a comparator network with an odd number of inputs
       m_nMatch[level][x] = x; //it's empty
 
     else{ //make the testable representation
@@ -130,15 +119,15 @@ void CSearchable::SynchMatchingRepresentations(int level){
 /// Initialize m_nMatch and m_nMatching to the first matching at a given level.
 /// \param level The level at which to initialize matchings.
 
-void CSearchable::InitMatchingRepresentations(int level){
+void CSearchable::InitMatchingRepresentations(size_t level){
   m_nMatching[level].Initialize();  //initialize the generatable form
   m_nStack[level] = 0; //and its stack
 
-  for(size_t j=0; j<INPUTS; j++) //initialize the testable form
+  for(size_t j=0; j<m_nWidth; j++) //initialize the testable form
     m_nMatch[level][j] = j^1;
 
-  if(odd(INPUTS)) //one extra one if n is odd
-    m_nMatch[level][INPUTS - 1] = INPUTS - 1;
+  if(odd(m_nWidth)) //one extra one if n is odd
+    m_nMatch[level][m_nWidth - 1] = m_nWidth - 1;
 } //InitMatchingRepresentations
 
 /// Change to next comparator network.

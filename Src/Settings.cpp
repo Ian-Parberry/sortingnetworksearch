@@ -1,5 +1,5 @@
-/// \file TernaryGrayCode.cpp
-/// \brief Code for the ternary reflected Gray code generator CTernaryGrayCode.
+/// \file Settings.cpp
+/// \brief Code for CSetttings.
 
 // MIT License
 //
@@ -23,36 +23,21 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#include "TernaryGrayCode.h"
+#include "Settings.h"
 
-/// Reset Gray code generator to the first word in Gray code order, the
-/// all-zero word.
+size_t CSettings::m_nWidth = 9;
+size_t CSettings::m_nDepth = 6;
 
-void CTernaryGrayCode::initialize(){ 
-  CBinaryGrayCode::initialize(); //reset as for the binary version
-  
-  for(size_t i=0; i<=m_nWidth+2; i++) //reset the direction array too
-    m_nDirection[i] = 0;
-} //initialize
+/// Set the width.
+/// \param w Width.
 
-/// Get the next binary word in ternary reflected Gray code order, which will
-/// differ from the previous one in exactly one bit.
-/// \return Index of the bit that has changed, in the range 1..m_nWidth. 
-/// Out of range means we're finished.
+void CSettings::SetWidth(const size_t w){
+  m_nWidth = w;
+} //SetWidth
 
-size_t CTernaryGrayCode::next(){
-  size_t i = m_nStack[0]; 
-  m_nStack[0] = 1;
-  size_t j = 2*i - m_nBit[2*i - m_nDirection[i]];
-  m_nBit[j] ^= 1;
-
-  if(m_nBit[2*i] == m_nBit[2*i - 1]){
-    m_nDirection[i] ^= 1;
-    m_nStack[i-1] = m_nStack[i];
-    m_nStack[i] = i + 1;
-  } //if
-
-  m_nZeros += 1 - 2*m_nBit[j]; 
-
-  return j;
-} //next
+/// Set the depth.
+/// \param d Depth.
+ 
+void CSettings::SetDepth(const size_t d){
+  m_nDepth = d;
+} //SetDepth

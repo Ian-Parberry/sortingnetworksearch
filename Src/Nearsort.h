@@ -36,14 +36,14 @@
 
 class CNearsort: public CAutocomplete{
   protected:
-    bool m_bReachableFrom[INPUTS][INPUTS]; ///< Reachable from.
-    int m_nReachCountFrom[INPUTS]; ///< Count of channels reachable from.
+    bool m_bReachableFrom[MAXINPUTS][MAXINPUTS] = {false}; ///< Reachable from.
+    int m_nReachCountFrom[MAXINPUTS] = {0}; ///< Count of channels reachable from.
 
-    bool m_bReachableTo[INPUTS][INPUTS]; ///< Reachable to.
-    int m_nReachCountTo[INPUTS]; ///< Count of channels reachable to.
+    bool m_bReachableTo[MAXINPUTS][MAXINPUTS] = {false}; ///< Reachable to.
+    int m_nReachCountTo[MAXINPUTS] = {0}; ///< Count of channels reachable to.
 
-    bool m_bReachable[INPUTS][INPUTS]; ///< Reachable from or to.
-    int m_nReachCount[INPUTS]; ///< Count of channels reachable from or to.
+    bool m_bReachable[MAXINPUTS][MAXINPUTS] = {false}; ///< Reachable from or to.
+    int m_nReachCount[MAXINPUTS] = {0}; ///< Count of channels reachable from or to.
 
     bool stillnearsorts(const size_t); ///< Does it still nearsort with this input change?
     bool evennearsorts(); ///< Does it nearly sort, even number of inputs?

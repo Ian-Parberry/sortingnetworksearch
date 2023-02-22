@@ -43,7 +43,7 @@ CSortingNetwork::~CSortingNetwork(){
 
 void CSortingNetwork::initValues(const size_t firstlayer, const size_t lastlayer){
   for(size_t i=firstlayer; i<=lastlayer; i++) //for each layer in range
-    for(size_t j=0; j<INPUTS; j++) //for each channel
+    for(size_t j=0; j<m_nWidth; j++) //for each channel
       m_nValue[i][j] = 0; //set the value on this channel at that layer to zero
 } //initValues
 
@@ -53,7 +53,7 @@ void CSortingNetwork::initValues(const size_t firstlayer, const size_t lastlayer
 
 void CSortingNetwork::initSortingTest(){ 
   m_pGrayCode->initialize(); //initialize the Gray code to all zeros.
-  initValues(0, DEPTH - 1); //initialize the network values to all zeros.
+  initValues(0, m_nDepth - 1); //initialize the network values to all zeros.
 } //initSortingTest
 
 /// Flip value and propagate down the comparator network.
@@ -80,7 +80,7 @@ size_t CSortingNetwork::flipinput(size_t j, const size_t firstlayer, const size_
 /// \return true if it still sorts when channel is flipped.
 
 bool CSortingNetwork::stillsorts(const size_t delta){
-  return flipinput(delta - 1, 0, DEPTH - 1) == 
+  return flipinput(delta - 1, 0, m_nDepth - 1) == 
     m_pGrayCode->m_nZeros + m_pGrayCode->m_nBit[delta] - 1;
 } //stillsorts
 
@@ -91,9 +91,9 @@ bool CSortingNetwork::sorts(){
   size_t i = 0; //index of bit to flip
   bool bSorts = true; //assume it sorts until we find otherwise
   initSortingTest(); //intialize input and values in comparator network to zero
-  while(bSorts && i<=INPUTS){ //bail if it doesn't sort, or we've tried all binary inputs
+  while(bSorts && i<=m_nWidth){ //bail if it doesn't sort, or we've tried all binary inputs
     i = m_pGrayCode->next(); //next bit to flip in Gray code order
-    bSorts = bSorts && (i>INPUTS || stillsorts(i)); //check whether it still sorts when this bit is flipped
+    bSorts = bSorts && (i>m_nWidth || stillsorts(i)); //check whether it still sorts when this bit is flipped
   } //while
   return bSorts;
 } //sorts
