@@ -32,8 +32,8 @@ class CSettings{
     static size_t m_nDepth; ///< Comparator network depth.
 
   public:
-    void SetWidth(const size_t); ///< Set width.
-    void SetDepth(const size_t); ///< Set depth.
+    static void SetWidth(const size_t); ///< Set width.
+    static void SetDepth(const size_t); ///< Set depth.
 }; //CSettings
 
 #endif
