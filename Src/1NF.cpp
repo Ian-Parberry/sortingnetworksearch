@@ -33,10 +33,9 @@
 /// 2 and 3, 4 and 5, etc.
 
 C1NF::C1NF(){
-  m_pGrayCode = new CTernaryGrayCode;
+  m_pGrayCode = new CTernaryGrayCode2;
 
-  //n is the largest even number no greater than the number of inputs
-  const size_t n = m_nWidth - (m_nWidth & 1); 
+  const size_t n = evenfloor(m_nWidth); 
 
   //first layer is the identity matching
 

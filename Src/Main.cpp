@@ -48,23 +48,12 @@ void ReadParams(size_t& n, size_t& d){
     std::string strLine;
     std::cout << "Enter number of inputs. Must be at least 3 and at most 12. "
       << std::endl << "> ";
-    ok = true;
+    
+    std::getline(std::cin, strLine);
+    n = (size_t)std::stoi(strLine);
+    ok = n >= 3 && n <= 12;
 
-    try{
-      std::getline(std::cin, strLine);
-      n = (size_t)std::stoi(strLine);
-    } //try
-    catch(std::invalid_argument const& ex){
-      ok = false;
-    } //catch
-    catch(std::out_of_range const& ex){
-      ok = false;
-    } //catch
-
-    ok = ok && n >= 3 && n <= 12;
-
-    if(!ok)
-      std::cout << "Out of range" << std::endl;
+    if(!ok)std::cout << "Out of range" << std::endl;
   } //while
 
   
@@ -80,8 +69,7 @@ void ReadParams(size_t& n, size_t& d){
 
     ok = d >= 3 && d <= 8;
 
-    if(!ok)
-      std::cout << "Out of range" << std::endl;
+    if(!ok)std::cout << "Out of range" << std::endl;
 
     //make sure depth is within range for the width
 
@@ -146,10 +134,16 @@ void Search(CThreadManager* pThreadManager, const size_t nDepth){
     CSearchable* pSearch = nullptr; //for the searchable sorting network
 
     switch(nDepth){ //choose optimization depending on depth
-      case 2:  pSearch = new C2NF(matching, i++); break;
-      case 3:  pSearch = new CAutocomplete(matching, i++); break;
-      case 4:  pSearch = new CNearsort(matching, i++); break;
-      default: pSearch = new CNearsort2(matching, i++); break;
+      case 2: pSearch = new C2NF(matching, i++); break;
+      case 3: pSearch = new CAutocomplete(matching, i++); break;
+      case 4: pSearch = new CNearsort(matching, i++); break;
+      default: 
+#ifdef USE_NEARSORT2
+        pSearch = new CNearsort2(matching, i++); 
+#else
+        pSearch = new CNearsort(matching, i++); 
+#endif
+        break;
     } //switch
 
     pThreadManager->Insert(new CTask(pSearch)); //insert search task

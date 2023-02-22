@@ -25,6 +25,9 @@
 
 #include "TernaryGrayCode.h"
 
+//////////////////////////////////////////////////////////////////////////////
+//CTernaryGrayCode functions
+
 /// Reset Gray code generator to the first word in Gray code order, the
 /// all-zero word.
 
@@ -56,3 +59,26 @@ size_t CTernaryGrayCode::next(){
 
   return j;
 } //next
+
+//////////////////////////////////////////////////////////////////////////////
+//CTernaryGrayCode2 functions
+
+CTernaryGrayCode2::CTernaryGrayCode2(){
+  CTernaryGrayCode::initialize();
+
+  size_t n = CTernaryGrayCode::next();
+  while(n <= m_nWidth){
+    m_stdDelta.push_back(n); 
+    n = CTernaryGrayCode::next();
+  } //while
+} //constructor
+
+size_t CTernaryGrayCode2::next(){
+  if(m_nIndex < m_stdDelta.size())
+    return m_stdDelta[m_nIndex++];
+  else return m_nWidth + 3;
+} //next
+
+void CTernaryGrayCode2::initialize(){ 
+  m_nIndex = 0;
+} //initialize

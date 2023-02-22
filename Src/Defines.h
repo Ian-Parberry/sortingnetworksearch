@@ -26,13 +26,14 @@
 #ifndef __Defines_h__
 #define __Defines_h__
 
-#define MAXINPUTS 12 ///< Maximum number of inputs.
+#define MAXINPUTS 12 ///< Maximum width, that is, number of inputs.
 #define MAXDEPTH 7 ///< Maximum depth.
 
-#define COUNTONLY false ///< True to count but not output sorting networks.
+#define USE_NEARSORT2 ///< Define to use the nearsort2 heuristic.
 
 #define odd(n) ((n) & 1) ///< Oddness test.
 #define oddfloor(n) (odd(n)?(n):((n)-1)) ///< If even, round down to make odd.
+#define evenfloor(n) (odd(n)?(n)-1:((n))) ///< If odd, round down to make even.
 #define evenceil(n) (odd(n)?((n)+1):(n)) ///< If odd, round up to make even.
 
 #endif //__Defines_h__

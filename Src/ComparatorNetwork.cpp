@@ -58,8 +58,6 @@ size_t CComparatorNetwork::RemoveRepeatedComparators(){
 /// \param fname File name.
 
 void CComparatorNetwork::save(const std::string& fname){
-  if(COUNTONLY)return; //bail out if no output required
-
   FILE* output = nullptr;
   fopen_s(&output, fname.c_str(), "wt");
 
