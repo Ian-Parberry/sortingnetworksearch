@@ -28,7 +28,7 @@
 
 /// Constructor.
 /// \param L2Matching Level 2 matching.
-/// \param index Lexicographics number of level 2 matching.
+/// \param index Lexicographic number of level 2 matching.
 
 C2NF::C2NF(
   CMatching& L2Matching, const size_t index):

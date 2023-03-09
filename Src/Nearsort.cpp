@@ -44,7 +44,8 @@ bool CNearsort::evennearsorts(){
     bNearSorts = stillnearsorts(i);
     i = m_pGrayCode->next();
   }while(bNearSorts && i <= m_nWidth); 
-
+  
+  m_pGrayCode->initialize(); 
   return bNearSorts;
 } //evennearsorts
 

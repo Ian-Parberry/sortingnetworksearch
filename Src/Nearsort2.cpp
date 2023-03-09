@@ -45,6 +45,8 @@ bool CNearsort2::evennearsorts2(){
     i = m_pGrayCode->next();
     bNearSorts = bNearSorts && (i>m_nWidth || stillnearsorts2(i));
   } //while
+  
+  m_pGrayCode->initialize(); 
 
   return bNearSorts;
 } //evennearsorts2

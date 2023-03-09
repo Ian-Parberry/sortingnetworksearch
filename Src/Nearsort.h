@@ -53,7 +53,7 @@ class CNearsort: public CAutocomplete{
     void SetToS(); ///< Set top of stack.
 
   public:
-    CNearsort(CMatching& L2Matching, const size_t index); ///< Constructor.
+    CNearsort(CMatching&, const size_t); ///< Constructor.
 }; //CNearsort
 
 #endif //__Nearsort_h__
