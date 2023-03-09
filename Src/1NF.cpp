@@ -72,12 +72,23 @@ bool C1NF::evensorts(){
   size_t i = 0;  //index of bit to flip
   bool bSorts = true; //assume it sorts until we find otherwise
 
-  while(bSorts && i<=m_nWidth){ //bail if it doesn't sort, or we've tried all binary inputs
+  std::vector<size_t> debug;
+  static size_t count;
+
+  while(bSorts && i <= m_nWidth){ //bail if it doesn't sort, or we've tried all binary inputs
     i = m_pGrayCode->next(); //next bit to flip in Gray code order
-    bSorts = bSorts && (i>m_nWidth || stillsorts(i)); //check whether it still sorts when this bit is flipped
+    printf("%zu, ",i);
+    debug.push_back(i);
+    bSorts = bSorts && (i > m_nWidth || stillsorts(i)); //check whether it still sorts when this bit is flipped
   } //while
+
+  if(/*bSorts &&*/ count == 5)
+    printf("***\n");
+
+  count++;
+
   return bSorts;
-} //sorts
+} //evensorts
 
 /// Check whether sorting network sorts all inputs. Works for both odd and even
 /// number of channels. The difference between this and `CSortingNetwork::sorts()`

@@ -80,5 +80,6 @@ size_t CTernaryGrayCode2::next(){
 } //next
 
 void CTernaryGrayCode2::initialize(){ 
+  CTernaryGrayCode::initialize();
   m_nIndex = 0;
 } //initialize

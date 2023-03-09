@@ -130,24 +130,27 @@ void Search(CThreadManager* pThreadManager, const size_t nDepth){
 
   //insert search tasks to task queue
 
-  for(auto matching: L2Matchings){ //for each level2 matching
-    CSearchable* pSearch = nullptr; //for the searchable sorting network
+//  for(auto matching: L2Matchings){ //for each level2 matching
+//    CSearchable* pSearch = nullptr; //for the searchable sorting network
+//
+//    switch(nDepth){ //choose optimization depending on depth
+//      case 2: pSearch = new C2NF(matching, i++); break;
+//      case 3: pSearch = new CAutocomplete(matching, i++); break;
+//      case 4: pSearch = new CNearsort(matching, i++); break;
+//      default: 
+//#ifdef USE_NEARSORT2
+//        pSearch = new CNearsort2(matching, i++); 
+//#else
+//        pSearch = new CNearsort(matching, i++); 
+//#endif
+//        break;
+//    } //switch
+//
+//    pThreadManager->Insert(new CTask(pSearch)); //insert search task
+//  } //for
 
-    switch(nDepth){ //choose optimization depending on depth
-      case 2: pSearch = new C2NF(matching, i++); break;
-      case 3: pSearch = new CAutocomplete(matching, i++); break;
-      case 4: pSearch = new CNearsort(matching, i++); break;
-      default: 
-#ifdef USE_NEARSORT2
-        pSearch = new CNearsort2(matching, i++); 
-#else
-        pSearch = new CNearsort(matching, i++); 
-#endif
-        break;
-    } //switch
-
-    pThreadManager->Insert(new CTask(pSearch)); //insert search task
-  } //for
+  CSearchable* pSearch = new CNearsort(L2Matchings[1], i++);
+  pThreadManager->Insert(new CTask(pSearch)); //insert search task
 
   //perform multi-threaded backtracking search
 
