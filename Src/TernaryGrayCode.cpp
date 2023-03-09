@@ -67,16 +67,21 @@ CTernaryGrayCode2::CTernaryGrayCode2(){
   CTernaryGrayCode::initialize();
 
   size_t n = CTernaryGrayCode::next();
+
   while(n <= m_nWidth){
     m_stdDelta.push_back(n); 
     n = CTernaryGrayCode::next();
   } //while
+  
+    m_stdDelta.push_back(m_nWidth + 3); 
 } //constructor
 
 size_t CTernaryGrayCode2::next(){
-  if(m_nIndex < m_stdDelta.size())
-    return m_stdDelta[m_nIndex++];
-  else return m_nWidth + 3;
+  size_t j = m_stdDelta[m_nIndex++]; 
+  m_nBit[j] ^= 1;
+  m_nZeros += 1 - 2*m_nBit[j]; 
+
+  return j;
 } //next
 
 void CTernaryGrayCode2::initialize(){ 
