@@ -44,18 +44,18 @@ void CTernaryGrayCode::initialize(){
 /// Out of range means we're finished.
 
 size_t CTernaryGrayCode::next(){
-  size_t i = m_nStack[0]; 
+  const size_t i = m_nStack[0]; 
   m_nStack[0] = 1;
-  size_t j = 2*i - m_nBit[2*i - m_nDirection[i]];
+
+  const size_t j = 2*i - m_nBit[2*i - m_nDirection[i]];
+  m_nZeros += m_nBit[j]? 1: -1; 
   m_nBit[j] ^= 1;
 
   if(m_nBit[2*i] == m_nBit[2*i - 1]){
     m_nDirection[i] ^= 1;
-    m_nStack[i-1] = m_nStack[i];
+    m_nStack[i - 1] = m_nStack[i];
     m_nStack[i] = i + 1;
   } //if
-
-  m_nZeros += 1 - 2*m_nBit[j]; 
 
   return j;
 } //next
@@ -73,13 +73,13 @@ CTernaryGrayCode2::CTernaryGrayCode2(){
     n = CTernaryGrayCode::next();
   } //while
   
-    m_stdDelta.push_back(m_nWidth + 3); 
+  m_stdDelta.push_back(m_nWidth + 3); 
 } //constructor
 
 size_t CTernaryGrayCode2::next(){
   size_t j = m_stdDelta[m_nIndex++]; 
   m_nBit[j] ^= 1;
-  m_nZeros += 1 - 2*m_nBit[j]; 
+  m_nZeros += m_nBit[j]? -1: 1;  
 
   return j;
 } //next
