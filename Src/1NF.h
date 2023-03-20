@@ -1,5 +1,5 @@
 /// \file 1NF.h
-/// \brief Interface for the first normal form sorting network C1NF.
+/// \brief Interface for the first normal form sorting network `C1NF`.
 
 // MIT License
 //

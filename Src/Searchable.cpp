@@ -1,5 +1,5 @@
 /// \file SearchableSortingNetwork.cpp
-/// \brief Code for the searchable sorting network class CSearchable.
+/// \brief Code for the searchable sorting network class `CSearchable`.
 
 // MIT License
 //

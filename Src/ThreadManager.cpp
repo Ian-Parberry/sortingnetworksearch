@@ -1,5 +1,5 @@
 /// \file ThreadManager.cpp
-/// \brief Code for the class CThreadManager.
+/// \brief Code for the thread manager `CThreadManager`
 
 // MIT License
 //

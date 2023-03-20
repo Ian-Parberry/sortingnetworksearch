@@ -30,14 +30,10 @@ class CSettings{
   protected:
     static size_t m_nWidth; ///< Comparator network width.
     static size_t m_nDepth; ///< Comparator network depth.
-    
-    static bool m_bFastGrayCode; ///< Fast Gray code flag.
 
   public:
     static void SetWidth(const size_t); ///< Set width.
     static void SetDepth(const size_t); ///< Set depth.
-
-    static void SetFastGrayCode(const bool); ///< Set fast Gray code.
 }; //CSettings
 
 #endif

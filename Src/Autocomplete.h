@@ -1,5 +1,5 @@
 /// \file Autocomplete.h
-/// \brief Interface for the fast searchable sorting network CAutocomplete.
+/// \brief Interface for the fast searchable sorting network `CAutocomplete`.
 
 // MIT License
 //

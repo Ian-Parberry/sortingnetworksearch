@@ -1,5 +1,5 @@
 /// \file SortingNetwork.cpp
-/// \brief Code for the sorting network CSortingNetwork.
+/// \brief Code for the sorting network `CSortingNetwork`.
 
 // MIT License
 //
@@ -80,8 +80,7 @@ size_t CSortingNetwork::flipinput(size_t j, const size_t firstlayer, const size_
 /// \return true if it still sorts when channel is flipped.
 
 bool CSortingNetwork::stillsorts(const size_t delta){
-  return flipinput(delta - 1, 0, m_nDepth - 1) == 
-    m_pGrayCode->m_nZeros + m_pGrayCode->m_nBit[delta] - 1;
+  return flipinput(delta - 1, 0, m_nDepth - 1) == m_pGrayCode->GetTarget(delta);
 } //stillsorts
 
 /// Check whether sorting network sorts all inputs.

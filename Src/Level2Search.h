@@ -1,5 +1,5 @@
 /// \file Level2Search.h
-/// \brief Interface for the Level 2 search CLevel2Search.
+/// \brief Interface for the Level 2 search `CLevel2Search`.
 
 // MIT License
 //

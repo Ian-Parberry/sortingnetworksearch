@@ -1,5 +1,5 @@
 /// \file Matching.h
-/// \brief Interface for the matching CMatching.
+/// \brief Interface for the matching `CMatching`.
 
 // MIT License
 //

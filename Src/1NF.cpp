@@ -1,5 +1,5 @@
 /// \file SortingNetwork1NF.cpp
-/// \brief Code for the first normal form sorting network C1NF.
+/// \brief Code for the first normal form sorting network `C1NF`.
 
 // MIT License
 //
@@ -33,7 +33,7 @@
 /// 2 and 3, 4 and 5, etc.
 
 C1NF::C1NF(){
-  m_pGrayCode = m_bFastGrayCode? new CTernaryGrayCode2: new CTernaryGrayCode;
+  m_pGrayCode = new CTernaryGrayCode;
 
   const size_t n = evenfloor(m_nWidth); 
 
@@ -58,7 +58,7 @@ void C1NF::initSortingTest(){
 
 bool C1NF::stillsorts(const size_t delta){
   return flipinput(delta - 1, 1, m_nDepth - 1) ==
-    m_pGrayCode->m_nZeros + m_pGrayCode->m_nBit[delta] - 1;
+    m_pGrayCode->GetTarget(delta);
 } //stillsorts
 
 /// Check whether sorting network sorts all inputs. Works for even number of
@@ -99,7 +99,7 @@ bool C1NF::sorts(){
     for(int j=0; j<m_nDepth; j++) //set all values on last channel to one
       m_nValue[j][m_nWidth - 1] = 1;
 
-    m_pGrayCode->m_nZeros = m_nWidth - 1; //correct the count of zeros
+    m_pGrayCode->SetNumZeros(m_nWidth - 1); //correct the count of zeros
 
     if(!evensorts())return false; //test inputs ending with one
   } //if

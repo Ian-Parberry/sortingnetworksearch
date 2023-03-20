@@ -1,5 +1,5 @@
 /// \file Task.h
-/// \brief Header for the class CTask.
+/// \brief Header for the task class `CTask`.
 
 // MIT License
 //

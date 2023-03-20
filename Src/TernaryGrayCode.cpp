@@ -1,5 +1,5 @@
 /// \file TernaryGrayCode.cpp
-/// \brief Code for the ternary reflected Gray code generator CTernaryGrayCode.
+/// \brief Code for the ternary reflected Gray code generator `CTernaryGrayCode`.
 
 // MIT License
 //
@@ -24,9 +24,6 @@
 // IN THE SOFTWARE.
 
 #include "TernaryGrayCode.h"
-
-//////////////////////////////////////////////////////////////////////////////
-//CTernaryGrayCode functions
 
 /// Reset Gray code generator to the first word in Gray code order, the
 /// all-zero word.
@@ -59,32 +56,3 @@ size_t CTernaryGrayCode::next(){
 
   return j;
 } //next
-
-//////////////////////////////////////////////////////////////////////////////
-//CTernaryGrayCode2 functions
-
-CTernaryGrayCode2::CTernaryGrayCode2(){
-  CTernaryGrayCode::initialize();
-
-  size_t n = CTernaryGrayCode::next();
-
-  while(n <= m_nWidth){
-    m_stdDelta.push_back(n); 
-    n = CTernaryGrayCode::next();
-  } //while
-  
-  m_stdDelta.push_back(m_nWidth + 3); 
-} //constructor
-
-size_t CTernaryGrayCode2::next(){
-  size_t j = m_stdDelta[m_nIndex++]; 
-  m_nBit[j] ^= 1;
-  m_nZeros += m_nBit[j]? -1: 1;  
-
-  return j;
-} //next
-
-void CTernaryGrayCode2::initialize(){ 
-  CTernaryGrayCode::initialize();
-  m_nIndex = 0;
-} //initialize

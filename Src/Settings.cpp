@@ -1,5 +1,5 @@
 /// \file Settings.cpp
-/// \brief Code for CSetttings.
+/// \brief Code for the shared settings class `CSettings`.
 
 // MIT License
 //
@@ -28,8 +28,6 @@
 size_t CSettings::m_nWidth = 9;
 size_t CSettings::m_nDepth = 6;
 
-bool CSettings::m_bFastGrayCode = false;
-
 /// Set the width.
 /// \param w Width.
 
@@ -44,9 +42,3 @@ void CSettings::SetDepth(const size_t d){
   m_nDepth = d;
 } //SetDepth
 
-/// Set the fast Gray code generator flag.
-/// \param b Flag value.
- 
-void CSettings::SetFastGrayCode(const bool b){
-  m_bFastGrayCode = b;
-} //SetFastGrayCode

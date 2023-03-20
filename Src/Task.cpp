@@ -1,5 +1,5 @@
 /// \file Task.cpp
-/// \brief Code for the class CTask.
+/// \brief Code for the task class `CTask`.
 
 // MIT License
 //

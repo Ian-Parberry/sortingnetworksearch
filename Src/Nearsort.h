@@ -1,5 +1,6 @@
-/// \file VeryFastSearchableSortingNetwork.h
-/// \brief Interface for the sorting network CNearsort.
+/// \file Nearsort.h
+/// \brief Interface for the searchable sorting network with the nearsort
+/// heuristic `CNearsort`.
 
 // MIT License
 //

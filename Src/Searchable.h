@@ -1,5 +1,5 @@
 /// \file Searchable.h
-/// \brief Interface for the searchable sorting network CSearchable.
+/// \brief Interface for the searchable sorting network `CSearchable`.
 
 // MIT License
 //

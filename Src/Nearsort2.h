@@ -1,5 +1,6 @@
 /// \file Nearsort.h
-/// \brief Interface for the sorting network class CNearsort2.
+/// \brief Interface for the searchable sorting network with the nearsort2 
+/// heuristic `CNearsort2`.
 
 // MIT License
 //

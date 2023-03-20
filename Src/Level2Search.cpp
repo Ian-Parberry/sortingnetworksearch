@@ -1,5 +1,5 @@
 /// \file Level2Search.cpp
-/// \brief Code for the Level 2 search CLevel2Search.
+/// \brief Code for the Level 2 search `CLevel2Search`.
 
 // MIT License
 //

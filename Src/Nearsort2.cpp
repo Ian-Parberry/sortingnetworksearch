@@ -1,5 +1,6 @@
 /// \file Nearsort2.cpp
-/// \brief Code for CNearsort2.
+/// \brief Code for the searchable sorting network with the nearsort2
+/// heuristic `CNearsort2`.
 
 // MIT License
 //
@@ -76,7 +77,7 @@ bool CNearsort2::nearsorts2(){
     for(int j=1; j<m_nDepth; j++)
       m_nValue[j][m_nWidth - 1] = 1;
 
-    m_pGrayCode->m_nZeros = m_nWidth - 1;
+    m_pGrayCode->SetNumZeros(m_nWidth - 1);
 
     if(!evennearsorts2())
       return false;
@@ -92,7 +93,7 @@ bool CNearsort2::nearsorts2(){
 
 bool CNearsort2::stillnearsorts2(const size_t delta){ 
   const size_t j = flipinput(delta - 1U, 1, m_nDepth - 4);
-  const size_t k = m_pGrayCode->m_nZeros + m_pGrayCode->m_nBit[delta] - 1; //target channel
+  const size_t k = m_pGrayCode->GetTarget(delta); //target channel
   
   if(j == k)return true; //self
 

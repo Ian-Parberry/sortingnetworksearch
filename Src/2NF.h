@@ -1,5 +1,5 @@
 /// \file 2NF.h
-/// \brief Interface for the searchable second normal form sorting network C2NF.
+/// \brief Interface for the searchable second normal form sorting network `C2NF`.
 
 // MIT License
 //

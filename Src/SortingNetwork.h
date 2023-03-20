@@ -1,5 +1,5 @@
 /// \file SortingNetwork.h 
-/// \brief Interface for the sorting network CSortingNetwork.
+/// \brief Interface for the sorting network `CSortingNetwork`.
 
 // MIT License
 //

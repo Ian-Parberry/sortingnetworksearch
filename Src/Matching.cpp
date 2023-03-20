@@ -1,5 +1,5 @@
 /// \file Matching.cpp
-/// \brief Code for the perfect matching CMatching.
+/// \brief Code for the matching `CMatching`.
 
 // MIT License
 //

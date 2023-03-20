@@ -1,5 +1,5 @@
 /// \file Autocomplete.cpp
-/// \brief Code for the fast searchable sorting network CAutocomplete.
+/// \brief Code for the fast searchable sorting network `CAutocomplete`.
 
 // MIT License
 //
@@ -45,7 +45,7 @@ bool CAutocomplete::stillsorts(const size_t delta){
   size_t j = flipinput(delta - 1, 1, m_nDepth - 2);
 
   //Build last layer, if necessary. Changed channel is currently j.
-  size_t k = m_pGrayCode->m_nZeros + m_pGrayCode->m_nBit[delta] - 1; //destination channel
+  size_t k = m_pGrayCode->GetTarget(delta); //destination channel
   
   if(j == k)
     return true; //success
@@ -106,7 +106,8 @@ bool CAutocomplete::sorts(){
 
     for(int j=0; j<m_nDepth; j++) //set all values on last channel to one
       m_nValue[j][m_nWidth - 1] = 1;
-    m_pGrayCode->m_nZeros = m_nWidth - 1; //correct the count of zeros
+
+    m_pGrayCode->SetNumZeros(m_nWidth - 1); //correct the count of zeros
 
     if(!evensorts())return false; //test inputs ending with one
   } //if

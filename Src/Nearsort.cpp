@@ -1,5 +1,6 @@
-/// \file VeryFastSearchableSortingNetwork.cpp
-/// \brief Code for the sorting network CNearsort.
+/// \file Nearsort.cpp
+/// \brief Code for the searchable sorting network with the nearsort 
+/// heuristic `CNearsort`.
 
 // MIT License
 //
@@ -76,7 +77,7 @@ bool CNearsort::nearsorts(){
     for(int j=1; j<m_nDepth; j++)
       m_nValue[j][m_nWidth - 1] = 1;
 
-    m_pGrayCode->m_nZeros = m_nWidth - 1;
+    m_pGrayCode->SetNumZeros(m_nWidth - 1);
 
     if(!evennearsorts())
       return false;
@@ -92,8 +93,7 @@ bool CNearsort::nearsorts(){
 
 bool CNearsort::stillnearsorts(const size_t delta){ 
   size_t j = flipinput(delta - 1, 1, m_nDepth - 3); //source channel into level d-2
-  const size_t k = m_pGrayCode->m_nZeros +
-    m_pGrayCode->m_nBit[delta] - 1; //target channel out of level d-1
+  const size_t k = m_pGrayCode->GetTarget(delta); //target channel out of level d-1
   
   if(j == k)return true; //self
 

@@ -1,5 +1,10 @@
 ﻿///\file main.cpp
-/// \brief Main code for computing all second level candidates.
+/// \brief Main.
+/// 
+/// Prompt the user for width (number of inputs) and depth, then spawn a
+/// multi-threaded backtracking search for sorting networks of the given
+/// width and depth. The user is also prompted to choose whether the new
+/// search hauristic nearsort2 is to the used.
 
 // MIT License
 //
@@ -118,18 +123,13 @@ void ReadParams(size_t& n, size_t& d){
 /// \brief Read optimization settings.
 /// 
 /// Read the optimization settings.
-/// \param bFastGrayCode [out] true to use ternary Gray code table.
 /// \param bNearsort2 [out] true to use nearsort2 heuristic (if appropriate).
+/// \param d [out] Depth.
 
-void ReadParams(bool& bFastGrayCode, bool& bNearsort2, const size_t d){
-  std::string strLine;
-
-  std::cout << "Use fast Gray code table? [yn]" << std::endl << "> ";
-  std::getline(std::cin, strLine);
-  bFastGrayCode = strLine[0] == 'y' || strLine[0] == 'Y';
-    
+void ReadParams(bool& bNearsort2, const size_t d){
   if(d >= 5){ //deep enough for nearsort2 heuristic
     std::cout << "Use nearsort2 heuristic? [yn]" << std::endl << "> ";
+    std::string strLine;
     std::getline(std::cin, strLine);
     bNearsort2 = strLine[0] == 'y' || strLine[0] == 'Y';
   } //if
@@ -209,8 +209,7 @@ int main(){
 
   bool bFastGrayCode = false; //use fast Gray code flag
   bool bNearsort2 = false; //use nearsort2 flag
-  ReadParams(bFastGrayCode, bNearsort2, nDepth); //read from stdin
-  CSettings::SetFastGrayCode(bFastGrayCode); //distribute flag to all classes
+  ReadParams(bNearsort2, nDepth); //read from stdin
 
   CTimer* pTimer = new CTimer; //timer for elapsed and CPU time
   

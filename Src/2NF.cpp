@@ -1,5 +1,5 @@
 /// \file SearchableSortingNetwork2NF.cpp
-/// \brief Code for the searchable second normal form sorting network C2NF.
+/// \brief Code for the searchable second normal form sorting network `C2NF`.
 
 // MIT License
 //

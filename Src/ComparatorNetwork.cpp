@@ -1,5 +1,5 @@
 /// \file ComparatorNetwork.cpp
-/// \brief Code for the comparator network CComparatorNetwork.
+/// \brief Code for the comparator network `CComparatorNetwork`.
 
 // MIT License
 //

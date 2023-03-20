@@ -1,5 +1,5 @@
 /// \file ComparatorNetwork.h
-/// \brief Interface for the comparator network CComparatorNetwork.
+/// \brief Interface for the comparator network `CComparatorNetwork`.
 
 // MIT License
 //
