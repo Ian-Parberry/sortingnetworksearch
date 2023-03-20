@@ -56,7 +56,7 @@ bool CNearsort::evennearsorts(){
 
 bool CNearsort::nearsorts(){
   m_pGrayCode->initialize();  
-  initValues(1, m_nDepth - 3);
+  InitValues(1, m_nDepth - 3);
 
   for(int i=0; i<m_nWidth; i++){
     for(int j=0; j<m_nWidth; j++)
@@ -72,7 +72,7 @@ bool CNearsort::nearsorts(){
 
   if(odd(m_nWidth)){     
     m_pGrayCode->initialize();  
-    initValues(1, m_nDepth - 3);
+    InitValues(1, m_nDepth - 3);
 
     for(int j=1; j<m_nDepth; j++)
       m_nValue[j][m_nWidth - 1] = 1;

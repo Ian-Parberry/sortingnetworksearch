@@ -30,8 +30,11 @@
 #define MAXDEPTH 7 ///< Maximum depth.
 
 #define odd(n) ((n) & 1) ///< Oddness test.
+#define xor(i, j) (((i) && (j)) || !((i) || (j))) ///< Exclusive-or.
+
 #define oddfloor(n) (odd(n)?(n):((n)-1)) ///< If even, round down to make odd.
 #define evenfloor(n) (odd(n)?(n)-1:((n))) ///< If odd, round down to make even.
+
 #define evenceil(n) (odd(n)?((n)+1):(n)) ///< If odd, round up to make even.
 
 #endif //__Defines_h__

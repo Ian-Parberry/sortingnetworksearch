@@ -58,7 +58,7 @@ bool CNearsort2::evennearsorts2(){
 
 bool CNearsort2::nearsorts2(){
   m_pGrayCode->initialize();  
-  initValues(1, m_nDepth - 4);
+  InitValues(1, m_nDepth - 4);
 
   for(int i=0; i<m_nWidth; i++){
     for(int j=0; j<m_nWidth; j++)
@@ -72,7 +72,7 @@ bool CNearsort2::nearsorts2(){
 
   if(m_nWidth & 1){ //odd number of inputs, handle the last one independently   
     m_pGrayCode->initialize();  
-    initValues(1, m_nDepth - 4);
+    InitValues(1, m_nDepth - 4);
 
     for(int j=1; j<m_nDepth; j++)
       m_nValue[j][m_nWidth - 1] = 1;

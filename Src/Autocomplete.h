@@ -37,7 +37,7 @@ class CAutocomplete: public C2NF{
   protected:  
     void SetToS(); ///< Set top of stack.
     bool stillsorts(const size_t); ///< Does it still sort when a bit is changed?
-    void initSortingTest(); ///< Initialize the sorting test. 
+    void initialize(); ///< Initialize the sorting test. 
     void initLastLevel(); ///< Initialize the last level of the comparator network.
     bool sorts(); ///< Does it sort?
 

@@ -1,5 +1,58 @@
 /**
 \mainpage Sorting Network Search
 
+\anchor section1
+# 1. Introduction
+
+This sorting network backtracking tool, 
+the source code of which is 
+written and maintained by
+[Ian Parberry](https://ianparberry.com), can
+be used to search for sorting networks with a small number of inputs.
+Any sorting network found will be saved in the text format used by the
+sorting network viewer [https://github.com/Ian-Parberry/sortingnetworkviewer](https://github.com/Ian-Parberry/sortingnetworkviewer),
+which can then be used to display them in a window and
+export the image to a file in bitmap or vector graphic formats.
+
+This code implements the algorithm from
+
+> I. Parberry, "A computer assisted optimal depth lower bound for nine-input sorting networks", Proceedings of Supercomputing '89, pp. 152-161, 1989; and _Mathematical Systems Theory_, Vol. 24, pp. 101-116, 1991.
+
+A free PDF version can be found at
+[https://ianparberry.com/pubs/9-input.pdf](https://ianparberry.com/pubs/9-input.pdf).
+It will henceforth be referred to in this documentation as
+[the paper](https://ianparberry.com/pubs/9-input.pdf).
+
+---
+
+\anchor section2
+# 2. Code Overview
+
+## 2.1 Multithreading
+
+This code uses the `thread++` library from
+[https://github.com/Ian-Parberry/threadplusplus](https://github.com/Ian-Parberry/threadplusplus).
+Please download and compile `thread++` before proceeding.
+
+## 2.2 Backtracking
+
+\anchor fig1
+\image html hierarchy.png "Fig. 1: Annotated inheritance diagram." width=65% 
+
+
+\anchor section3
+# 3. Experimental Results
+
+Proving that there are no
+9-input sorting networks of depth 6 took 
+1.75 seconds elapsed time consisting of 48 seconds CPU time over 35 threads.
+Proving that there are no
+11-input sorting networks of depth 7 using the new nearsort2 heuristic took
+22 min, 13 sec elapsed time consisting of 11 hr, 36 min CPU time over 35 threads.
+All experiments were run on an
+Intel&reg; Core&trade; i9-7980XE CPU @ 2.60GHz
+running Windows 11.
+
+
 **/
  

@@ -31,7 +31,7 @@ MathJax.Hub.Config({
   <td id="projectalign">
    <div id="projectname">Sorting Network Search
    </div>
-   <div id="projectbrief">Backtracking Search for Small Sorting Networks</div>
+   <div id="projectbrief">Backtracking for Small Sorting Networks</div>
   </td>
  </tr>
  </tbody>
@@ -106,37 +106,37 @@ $(function() {
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;<a class="code" href="_task_8h.html">Task.h</a>&quot;</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;Nearsort.h&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;Nearsort2.h&quot;</span></div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_c_task.html#adb2785cfb4a6a4cc6309259baf73ddda">   35</a></span><a class="code hl_function" href="class_c_task.html#adb2785cfb4a6a4cc6309259baf73ddda">CTask::CTask</a>(<a class="code hl_class" href="class_c_nearsort.html">CNearsort</a>* p): </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_c_task.html#a048c0632c77fde6b7eb4965ec3d8c66d">   35</a></span><a class="code hl_function" href="class_c_task.html#a048c0632c77fde6b7eb4965ec3d8c66d">CTask::CTask</a>(<a class="code hl_class" href="class_c_searchable.html">CSearchable</a>* p): </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  CBaseTask(), m_pSearch(p){</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>} <span class="comment">//constructor</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="class_c_task.html#abea2e5d18250f29911eba2186d2b126c">   41</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_c_task.html#abea2e5d18250f29911eba2186d2b126c">CTask::Perform</a>(){</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordflow">if</span>(<a class="code hl_variable" href="class_c_task.html#ac08a4d118de433050f4a43dce21c5d20">m_pSearch</a>)</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_variable" href="class_c_task.html#ac08a4d118de433050f4a43dce21c5d20">m_pSearch</a>-&gt;<a class="code hl_function" href="class_c2_n_f.html#a8f3516e6dd859a2772e6a8bc375721fa">Backtrack</a>();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordflow">if</span>(<a class="code hl_variable" href="class_c_task.html#abb4ade0d2643c7e0a97e516db87851c1">m_pSearch</a>)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_variable" href="class_c_task.html#abb4ade0d2643c7e0a97e516db87851c1">m_pSearch</a>-&gt;<a class="code hl_function" href="class_c_searchable.html#a36bc353559a126f7ff668c1def7ea196">Backtrack</a>();</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>} <span class="comment">//Perform</span></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_c_task.html#aee8414bb9f4cfa9c4232e9e51be0f337">   50</a></span><span class="keyword">const</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="class_c_task.html#aee8414bb9f4cfa9c4232e9e51be0f337">CTask::GetCount</a>()<span class="keyword"> const</span>{</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="keywordflow">if</span>(<a class="code hl_variable" href="class_c_task.html#ac08a4d118de433050f4a43dce21c5d20">m_pSearch</a>)</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="class_c_task.html#ac08a4d118de433050f4a43dce21c5d20">m_pSearch</a>-&gt;<a class="code hl_function" href="class_c_searchable.html#afd0a7d9fd65e5670c1308aa880cd6916">GetCount</a>();</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordflow">else</span> <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>} <span class="comment">//GetCount</span></div>
-<div class="ttc" id="a_task_8h_html"><div class="ttname"><a href="_task_8h.html">Task.h</a></div><div class="ttdoc">Header for the class CTask.</div></div>
-<div class="ttc" id="aclass_c2_n_f_html_a8f3516e6dd859a2772e6a8bc375721fa"><div class="ttname"><a href="class_c2_n_f.html#a8f3516e6dd859a2772e6a8bc375721fa">C2NF::Backtrack</a></div><div class="ttdeci">void Backtrack()</div><div class="ttdoc">Backtracking search.</div><div class="ttdef"><b>Definition:</b> <a href="2_n_f_8cpp_source.html#l00052">2NF.cpp:52</a></div></div>
-<div class="ttc" id="aclass_c_nearsort_html"><div class="ttname"><a href="class_c_nearsort.html">CNearsort</a></div><div class="ttdoc">Searchable sorting network with nearsort.</div><div class="ttdef"><b>Definition:</b> <a href="_nearsort_8h_source.html#l00037">Nearsort.h:37</a></div></div>
-<div class="ttc" id="aclass_c_searchable_html_afd0a7d9fd65e5670c1308aa880cd6916"><div class="ttname"><a href="class_c_searchable.html#afd0a7d9fd65e5670c1308aa880cd6916">CSearchable::GetCount</a></div><div class="ttdeci">const size_t GetCount() const</div><div class="ttdoc">Get count.</div><div class="ttdef"><b>Definition:</b> <a href="_searchable_8cpp_source.html#l00175">Searchable.cpp:175</a></div></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_c_task.html#aee8414bb9f4cfa9c4232e9e51be0f337">   49</a></span><span class="keyword">const</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="class_c_task.html#aee8414bb9f4cfa9c4232e9e51be0f337">CTask::GetCount</a>()<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordflow">if</span>(<a class="code hl_variable" href="class_c_task.html#abb4ade0d2643c7e0a97e516db87851c1">m_pSearch</a>)</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="class_c_task.html#abb4ade0d2643c7e0a97e516db87851c1">m_pSearch</a>-&gt;<a class="code hl_function" href="class_c_searchable.html#afd0a7d9fd65e5670c1308aa880cd6916">GetCount</a>();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keywordflow">else</span> <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>} <span class="comment">//GetCount</span></div>
+<div class="ttc" id="a_task_8h_html"><div class="ttname"><a href="_task_8h.html">Task.h</a></div><div class="ttdoc">Header for the task class CTask.</div></div>
+<div class="ttc" id="aclass_c_searchable_html"><div class="ttname"><a href="class_c_searchable.html">CSearchable</a></div><div class="ttdoc">Searchable sorting network.</div><div class="ttdef"><b>Definition:</b> <a href="_searchable_8h_source.html#l00039">Searchable.h:39</a></div></div>
+<div class="ttc" id="aclass_c_searchable_html_a36bc353559a126f7ff668c1def7ea196"><div class="ttname"><a href="class_c_searchable.html#a36bc353559a126f7ff668c1def7ea196">CSearchable::Backtrack</a></div><div class="ttdeci">virtual void Backtrack()</div><div class="ttdoc">Backtracking search.</div><div class="ttdef"><b>Definition:</b> <a href="_searchable_8cpp_source.html#l00084">Searchable.cpp:84</a></div></div>
+<div class="ttc" id="aclass_c_searchable_html_afd0a7d9fd65e5670c1308aa880cd6916"><div class="ttname"><a href="class_c_searchable.html#afd0a7d9fd65e5670c1308aa880cd6916">CSearchable::GetCount</a></div><div class="ttdeci">const size_t GetCount() const</div><div class="ttdoc">Get count.</div><div class="ttdef"><b>Definition:</b> <a href="_searchable_8cpp_source.html#l00162">Searchable.cpp:162</a></div></div>
+<div class="ttc" id="aclass_c_task_html_a048c0632c77fde6b7eb4965ec3d8c66d"><div class="ttname"><a href="class_c_task.html#a048c0632c77fde6b7eb4965ec3d8c66d">CTask::CTask</a></div><div class="ttdeci">CTask(CSearchable *)</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> <a href="_task_8cpp_source.html#l00035">Task.cpp:35</a></div></div>
+<div class="ttc" id="aclass_c_task_html_abb4ade0d2643c7e0a97e516db87851c1"><div class="ttname"><a href="class_c_task.html#abb4ade0d2643c7e0a97e516db87851c1">CTask::m_pSearch</a></div><div class="ttdeci">CSearchable * m_pSearch</div><div class="ttdoc">Searchable sorting network.</div><div class="ttdef"><b>Definition:</b> <a href="_task_8h_source.html#l00040">Task.h:40</a></div></div>
 <div class="ttc" id="aclass_c_task_html_abea2e5d18250f29911eba2186d2b126c"><div class="ttname"><a href="class_c_task.html#abea2e5d18250f29911eba2186d2b126c">CTask::Perform</a></div><div class="ttdeci">virtual void Perform()</div><div class="ttdoc">Perform the task.</div><div class="ttdef"><b>Definition:</b> <a href="_task_8cpp_source.html#l00041">Task.cpp:41</a></div></div>
-<div class="ttc" id="aclass_c_task_html_ac08a4d118de433050f4a43dce21c5d20"><div class="ttname"><a href="class_c_task.html#ac08a4d118de433050f4a43dce21c5d20">CTask::m_pSearch</a></div><div class="ttdeci">CNearsort * m_pSearch</div><div class="ttdoc">Searchable sorting network.</div><div class="ttdef"><b>Definition:</b> <a href="_task_8h_source.html#l00040">Task.h:40</a></div></div>
-<div class="ttc" id="aclass_c_task_html_adb2785cfb4a6a4cc6309259baf73ddda"><div class="ttname"><a href="class_c_task.html#adb2785cfb4a6a4cc6309259baf73ddda">CTask::CTask</a></div><div class="ttdeci">CTask(CNearsort *)</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> <a href="_task_8cpp_source.html#l00035">Task.cpp:35</a></div></div>
-<div class="ttc" id="aclass_c_task_html_aee8414bb9f4cfa9c4232e9e51be0f337"><div class="ttname"><a href="class_c_task.html#aee8414bb9f4cfa9c4232e9e51be0f337">CTask::GetCount</a></div><div class="ttdeci">const size_t GetCount() const</div><div class="ttdoc">Get count.</div><div class="ttdef"><b>Definition:</b> <a href="_task_8cpp_source.html#l00050">Task.cpp:50</a></div></div>
+<div class="ttc" id="aclass_c_task_html_aee8414bb9f4cfa9c4232e9e51be0f337"><div class="ttname"><a href="class_c_task.html#aee8414bb9f4cfa9c4232e9e51be0f337">CTask::GetCount</a></div><div class="ttdeci">const size_t GetCount() const</div><div class="ttdoc">Get count.</div><div class="ttdef"><b>Definition:</b> <a href="_task_8cpp_source.html#l00049">Task.cpp:49</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 14 2023 17:52:04 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Mon Mar 20 2023 15:57:48 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>

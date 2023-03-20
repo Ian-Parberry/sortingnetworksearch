@@ -47,10 +47,10 @@ C1NF::C1NF(){
 /// word for input be all zeros, and the values on every channel at every level
 /// be zero.
 
-void C1NF::initSortingTest(){ 
+void C1NF::initialize(){ 
   m_pGrayCode->initialize(); //initialize the Gray code to all zeros.
-  initValues(1, m_nDepth - 1); //initialize the network values to all zeros.
-} //initSortingTest
+  InitValues(1, m_nDepth - 1); //initialize the network values to all zeros.
+} //initialize
 
 /// Check that sorting network sorts when the current input has channel flipped.
 /// \param delta Index of channel to flip.
@@ -64,7 +64,7 @@ bool C1NF::stillsorts(const size_t delta){
 /// Check whether sorting network sorts all inputs. Works for even number of
 /// channels, and for odd number of channels it doesn't change the last input.
 /// The difference between this and `CSortingNetwork::sorts()` is that this 
-/// version does not call `initSortingTest()`, which means that the value on any
+/// version does not call `initialize()`, which means that the value on any
 /// hypothetical last even-numbered channel will not be changed.
 /// \return true iff it sorts
 
@@ -89,12 +89,12 @@ bool C1NF::evensorts(){
 bool C1NF::sorts(){ 
   //first handle the case where n is even, and the case where n is odd
   //and fails to sort an input that ends with a zero
-  initSortingTest(); //set all channels to zero
+  initialize(); //set all channels to zero
   if(!evensorts())return false;  //test inputs ending in zero
 
   //if odd number of inputs, check input that end with a one 
   if(odd(m_nWidth)){   
-    initSortingTest(); //set all channels to zero
+    initialize(); //set all channels to zero
 
     for(int j=0; j<m_nDepth; j++) //set all values on last channel to one
       m_nValue[j][m_nWidth - 1] = 1;

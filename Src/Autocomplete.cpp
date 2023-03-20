@@ -68,13 +68,13 @@ bool CAutocomplete::stillsorts(const size_t delta){
 
 /// Initialize the network for the sorting test, that is, make the Gray code
 /// word for input be all zeros, and the values on every channel at every level
-/// be zero. Yhis differs from `C1NF::initSortingTest()` in that
+/// be zero. Yhis differs from `C1NF::initialize()` in that
 /// it doesn't initialize values in the first and last levels.
 
-void CAutocomplete::initSortingTest(){   
+void CAutocomplete::initialize(){   
   m_pGrayCode->initialize(); //initialize the Gray code to all zeros.
-  initValues(1, m_nDepth - 2); //initialize the network values to all zeros.
-} //initSortingTest
+  InitValues(1, m_nDepth - 2); //initialize the network values to all zeros.
+} //initialize
 
 /// Initializes the testable representation of the last level of the sorting 
 /// network to be empty, that is, containing no comparators.
@@ -97,12 +97,12 @@ bool CAutocomplete::sorts(){
   //first handle the case where n is even, and the case where n is odd
   //and fails to sort an input that ends with a zero
 
-  initSortingTest(); //set all channels to zero
+  initialize(); //set all channels to zero
   if(!evensorts())return false;  //test inputs ending in zero
 
   //if odd number of inputs, check input that end with a one 
   if(odd(m_nWidth)){   
-    initSortingTest(); //set all channels to zero
+    initialize(); //set all channels to zero
 
     for(int j=0; j<m_nDepth; j++) //set all values on last channel to one
       m_nValue[j][m_nWidth - 1] = 1;

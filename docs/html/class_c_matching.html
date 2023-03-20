@@ -31,7 +31,7 @@ MathJax.Hub.Config({
   <td id="projectalign">
    <div id="projectname">Sorting Network Search
    </div>
-   <div id="projectbrief">Backtracking Search for Small Sorting Networks</div>
+   <div id="projectbrief">Backtracking for Small Sorting Networks</div>
   </td>
  </tr>
  </tbody>
@@ -73,6 +73,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="class_c_matching-members.html">List of all members</a>  </div>
@@ -84,6 +85,15 @@ $(function() {
  <a href="class_c_matching.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_matching_8h_source.html">Matching.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for CMatching:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_c_matching.png" usemap="#CMatching_map" alt=""/>
+  <map id="CMatching_map" name="CMatching_map">
+<area href="class_c_settings.html" alt="CSettings" shape="rect" coords="0,0,73,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -115,28 +125,54 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac5d185fc369ca7e7af28fbae16bf86f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cast to a string.  <a href="class_c_matching.html#ac5d185fc369ca7e7af28fbae16bf86f9">More...</a><br /></td></tr>
 <tr class="separator:ac5d185fc369ca7e7af28fbae16bf86f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:afe4fa6da4bc74687cd146c240d935fa2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_matching.html#afe4fa6da4bc74687cd146c240d935fa2">SwapPair</a> (int[], size_t, size_t)</td></tr>
+<tr class="memdesc:afe4fa6da4bc74687cd146c240d935fa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap pair.  <a href="class_c_matching.html#afe4fa6da4bc74687cd146c240d935fa2">More...</a><br /></td></tr>
+<tr class="separator:afe4fa6da4bc74687cd146c240d935fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a72181599929623c235d147639f4cf56e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_matching.html#a72181599929623c235d147639f4cf56e">m_nMatching</a> [<a class="el" href="_defines_8h.html#a00fed2e9d3c484a1212e2b74c9eb4894">INPUTS</a>+1] = {0}</td></tr>
-<tr class="memdesc:a72181599929623c235d147639f4cf56e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matching.  <a href="class_c_matching.html#a72181599929623c235d147639f4cf56e">More...</a><br /></td></tr>
-<tr class="separator:a72181599929623c235d147639f4cf56e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8fe34c5e7bfbf32026987c32bace0b5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_matching.html#ae8fe34c5e7bfbf32026987c32bace0b5">m_nMap</a> [<a class="el" href="_defines_8h.html#a00fed2e9d3c484a1212e2b74c9eb4894">INPUTS</a>+1] = {0}</td></tr>
-<tr class="memdesc:ae8fe34c5e7bfbf32026987c32bace0b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matching index map.  <a href="class_c_matching.html#ae8fe34c5e7bfbf32026987c32bace0b5">More...</a><br /></td></tr>
-<tr class="separator:ae8fe34c5e7bfbf32026987c32bace0b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85c49a13322086a426ba974e4c315e74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_matching.html#a85c49a13322086a426ba974e4c315e74">m_nStack</a> [<a class="el" href="_defines_8h.html#a00fed2e9d3c484a1212e2b74c9eb4894">INPUTS</a>+1] = {0}</td></tr>
-<tr class="memdesc:a85c49a13322086a426ba974e4c315e74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stack to remove recursion from permutation.  <a href="class_c_matching.html#a85c49a13322086a426ba974e4c315e74">More...</a><br /></td></tr>
-<tr class="separator:a85c49a13322086a426ba974e4c315e74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbfc8ee41aef9156b246d47a05c37e7d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_matching.html#adbfc8ee41aef9156b246d47a05c37e7d">m_nMatching</a> [<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>+1] = {0}</td></tr>
+<tr class="memdesc:adbfc8ee41aef9156b246d47a05c37e7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matching.  <a href="class_c_matching.html#adbfc8ee41aef9156b246d47a05c37e7d">More...</a><br /></td></tr>
+<tr class="separator:adbfc8ee41aef9156b246d47a05c37e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1e0a971268d275d7b659f15842cc040"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_matching.html#ae1e0a971268d275d7b659f15842cc040">m_nCopy</a> [<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>+1] = {0}</td></tr>
+<tr class="memdesc:ae1e0a971268d275d7b659f15842cc040"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer copy of matching.  <a href="class_c_matching.html#ae1e0a971268d275d7b659f15842cc040">More...</a><br /></td></tr>
+<tr class="separator:ae1e0a971268d275d7b659f15842cc040"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab22716a670a9e0dd054a9002fcb23740"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_matching.html#ab22716a670a9e0dd054a9002fcb23740">m_nMap</a> [<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>+1] = {0}</td></tr>
+<tr class="memdesc:ab22716a670a9e0dd054a9002fcb23740"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matching index map.  <a href="class_c_matching.html#ab22716a670a9e0dd054a9002fcb23740">More...</a><br /></td></tr>
+<tr class="separator:ab22716a670a9e0dd054a9002fcb23740"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c0835d2f2fb700633bc78fbb0ed8592"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_matching.html#a2c0835d2f2fb700633bc78fbb0ed8592">m_nStack</a> [<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>+1] = {0}</td></tr>
+<tr class="memdesc:a2c0835d2f2fb700633bc78fbb0ed8592"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stack to remove recursion from permutation.  <a href="class_c_matching.html#a2c0835d2f2fb700633bc78fbb0ed8592">More...</a><br /></td></tr>
+<tr class="separator:a2c0835d2f2fb700633bc78fbb0ed8592"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a64b4f45526ff8823405f9da6eaaa1ab3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_matching.html#a64b4f45526ff8823405f9da6eaaa1ab3">operator&lt;</a> (const <a class="el" href="class_c_matching.html">CMatching</a> &amp;k1, const <a class="el" href="class_c_matching.html">CMatching</a> &amp;k2)</td></tr>
 <tr class="memdesc:a64b4f45526ff8823405f9da6eaaa1ab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Less than.  <a href="class_c_matching.html#a64b4f45526ff8823405f9da6eaaa1ab3">More...</a><br /></td></tr>
 <tr class="separator:a64b4f45526ff8823405f9da6eaaa1ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_static_methods_class_c_settings"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_c_settings')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="class_c_settings.html">CSettings</a></td></tr>
+<tr class="memitem:a63a94d6ecf194c9c4c652b505065cd23 inherit pub_static_methods_class_c_settings"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_settings.html#a63a94d6ecf194c9c4c652b505065cd23">SetWidth</a> (const size_t)</td></tr>
+<tr class="memdesc:a63a94d6ecf194c9c4c652b505065cd23 inherit pub_static_methods_class_c_settings"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set width.  <a href="class_c_settings.html#a63a94d6ecf194c9c4c652b505065cd23">More...</a><br /></td></tr>
+<tr class="separator:a63a94d6ecf194c9c4c652b505065cd23 inherit pub_static_methods_class_c_settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1fbf37eb3e64e5868f96600fc8ec75d inherit pub_static_methods_class_c_settings"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_settings.html#aa1fbf37eb3e64e5868f96600fc8ec75d">SetDepth</a> (const size_t)</td></tr>
+<tr class="memdesc:aa1fbf37eb3e64e5868f96600fc8ec75d inherit pub_static_methods_class_c_settings"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set depth.  <a href="class_c_settings.html#aa1fbf37eb3e64e5868f96600fc8ec75d">More...</a><br /></td></tr>
+<tr class="separator:aa1fbf37eb3e64e5868f96600fc8ec75d inherit pub_static_methods_class_c_settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_static_attribs_class_c_settings"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_class_c_settings')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="class_c_settings.html">CSettings</a></td></tr>
+<tr class="memitem:a31cfba1245694e88c6b1258df6938d0d inherit pro_static_attribs_class_c_settings"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_settings.html#a31cfba1245694e88c6b1258df6938d0d">m_nWidth</a> = 9</td></tr>
+<tr class="memdesc:a31cfba1245694e88c6b1258df6938d0d inherit pro_static_attribs_class_c_settings"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparator network width.  <a href="class_c_settings.html#a31cfba1245694e88c6b1258df6938d0d">More...</a><br /></td></tr>
+<tr class="separator:a31cfba1245694e88c6b1258df6938d0d inherit pro_static_attribs_class_c_settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bdd1a60968afb5aded68f59c5a06f62 inherit pro_static_attribs_class_c_settings"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_settings.html#a6bdd1a60968afb5aded68f59c5a06f62">m_nDepth</a> = 6</td></tr>
+<tr class="memdesc:a6bdd1a60968afb5aded68f59c5a06f62 inherit pro_static_attribs_class_c_settings"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparator network depth.  <a href="class_c_settings.html#a6bdd1a60968afb5aded68f59c5a06f62">More...</a><br /></td></tr>
+<tr class="separator:a6bdd1a60968afb5aded68f59c5a06f62 inherit pro_static_attribs_class_c_settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p ><a class="el" href="class_c_matching.html" title="Perfect matching.">CMatching</a> represents a perfect matching on n vertices... well, as perfect as it can be if n is odd. </p>
 
-<p class="definition">Definition at line <a class="el" href="_matching_8h_source.html#l00038">38</a> of file <a class="el" href="_matching_8h_source.html">Matching.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_matching_8h_source.html#l00039">39</a> of file <a class="el" href="_matching_8h_source.html">Matching.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2990b2f5f69aa37cc203296f39120ae5" name="a2990b2f5f69aa37cc203296f39120ae5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2990b2f5f69aa37cc203296f39120ae5">&#9670;&nbsp;</a></span>CMatching() <span class="overload">[1/2]</span></h2>
@@ -262,7 +298,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 <p >Type cast to a string consisting of space-separated values from <code>m_nMatching</code>. </p><dl class="section return"><dt>Returns</dt><dd>String describing this matching. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_matching_8cpp_source.html#l00167">167</a> of file <a class="el" href="_matching_8cpp_source.html">Matching.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_matching_8cpp_source.html#l00166">166</a> of file <a class="el" href="_matching_8cpp_source.html">Matching.cpp</a>.</p>
 
 </div>
 </div>
@@ -289,7 +325,7 @@ Friends</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Copy of m. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_matching_8cpp_source.html#l00188">188</a> of file <a class="el" href="_matching_8cpp_source.html">Matching.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_matching_8cpp_source.html#l00187">187</a> of file <a class="el" href="_matching_8cpp_source.html">Matching.cpp</a>.</p>
 
 </div>
 </div>
@@ -316,7 +352,7 @@ Friends</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to the indexed element of the matching. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_matching_8cpp_source.html#l00180">180</a> of file <a class="el" href="_matching_8cpp_source.html">Matching.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_matching_8cpp_source.html#l00179">179</a> of file <a class="el" href="_matching_8cpp_source.html">Matching.cpp</a>.</p>
 
 </div>
 </div>
@@ -353,7 +389,59 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_matching_8cpp_source.html#l00145">145</a> of file <a class="el" href="_matching_8cpp_source.html">Matching.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_matching_8cpp_source.html#l00144">144</a> of file <a class="el" href="_matching_8cpp_source.html">Matching.cpp</a>.</p>
+
+</div>
+</div>
+<a id="afe4fa6da4bc74687cd146c240d935fa2" name="afe4fa6da4bc74687cd146c240d935fa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe4fa6da4bc74687cd146c240d935fa2">&#9670;&nbsp;</a></span>SwapPair()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CMatching::SwapPair </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>m</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>j</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Swap a pair of entries in an array. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>An array. </td></tr>
+    <tr><td class="paramname">i</td><td>The first index. </td></tr>
+    <tr><td class="paramname">j</td><td>The second index. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_matching_8cpp_source.html#l00097">97</a> of file <a class="el" href="_matching_8cpp_source.html">Matching.cpp</a>.</p>
 
 </div>
 </div>
@@ -400,13 +488,13 @@ Friends</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the first matching is less than the second matching. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_matching_8cpp_source.html#l00206">206</a> of file <a class="el" href="_matching_8cpp_source.html">Matching.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_matching_8cpp_source.html#l00205">205</a> of file <a class="el" href="_matching_8cpp_source.html">Matching.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ae8fe34c5e7bfbf32026987c32bace0b5" name="ae8fe34c5e7bfbf32026987c32bace0b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8fe34c5e7bfbf32026987c32bace0b5">&#9670;&nbsp;</a></span>m_nMap</h2>
+<a id="ae1e0a971268d275d7b659f15842cc040" name="ae1e0a971268d275d7b659f15842cc040"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1e0a971268d275d7b659f15842cc040">&#9670;&nbsp;</a></span>m_nCopy</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -415,55 +503,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">size_t CMatching::m_nMap[<a class="el" href="_defines_8h.html#a00fed2e9d3c484a1212e2b74c9eb4894">INPUTS</a>+1] = {0}</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_matching_8h_source.html#l00041">41</a> of file <a class="el" href="_matching_8h_source.html">Matching.h</a>.</p>
-
-</div>
-</div>
-<a id="a72181599929623c235d147639f4cf56e" name="a72181599929623c235d147639f4cf56e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72181599929623c235d147639f4cf56e">&#9670;&nbsp;</a></span>m_nMatching</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t CMatching::m_nMatching[<a class="el" href="_defines_8h.html#a00fed2e9d3c484a1212e2b74c9eb4894">INPUTS</a>+1] = {0}</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_matching_8h_source.html#l00040">40</a> of file <a class="el" href="_matching_8h_source.html">Matching.h</a>.</p>
-
-</div>
-</div>
-<a id="a85c49a13322086a426ba974e4c315e74" name="a85c49a13322086a426ba974e4c315e74"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a85c49a13322086a426ba974e4c315e74">&#9670;&nbsp;</a></span>m_nStack</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int CMatching::m_nStack[<a class="el" href="_defines_8h.html#a00fed2e9d3c484a1212e2b74c9eb4894">INPUTS</a>+1] = {0}</td>
+          <td class="memname">int CMatching::m_nCopy[<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>+1] = {0}</td>
         </tr>
       </table>
   </td>
@@ -477,10 +517,82 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="ab22716a670a9e0dd054a9002fcb23740" name="ab22716a670a9e0dd054a9002fcb23740"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab22716a670a9e0dd054a9002fcb23740">&#9670;&nbsp;</a></span>m_nMap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t CMatching::m_nMap[<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>+1] = {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_matching_8h_source.html#l00043">43</a> of file <a class="el" href="_matching_8h_source.html">Matching.h</a>.</p>
+
+</div>
+</div>
+<a id="adbfc8ee41aef9156b246d47a05c37e7d" name="adbfc8ee41aef9156b246d47a05c37e7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbfc8ee41aef9156b246d47a05c37e7d">&#9670;&nbsp;</a></span>m_nMatching</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t CMatching::m_nMatching[<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>+1] = {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_matching_8h_source.html#l00041">41</a> of file <a class="el" href="_matching_8h_source.html">Matching.h</a>.</p>
+
+</div>
+</div>
+<a id="a2c0835d2f2fb700633bc78fbb0ed8592" name="a2c0835d2f2fb700633bc78fbb0ed8592"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c0835d2f2fb700633bc78fbb0ed8592">&#9670;&nbsp;</a></span>m_nStack</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CMatching::m_nStack[<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>+1] = {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_matching_8h_source.html#l00044">44</a> of file <a class="el" href="_matching_8h_source.html">Matching.h</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 14 2023 17:52:04 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Mon Mar 20 2023 15:57:48 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>

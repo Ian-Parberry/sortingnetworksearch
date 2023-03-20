@@ -31,7 +31,7 @@ MathJax.Hub.Config({
   <td id="projectalign">
    <div id="projectname">Sorting Network Search
    </div>
-   <div id="projectbrief">Backtracking Search for Small Sorting Networks</div>
+   <div id="projectbrief">Backtracking for Small Sorting Networks</div>
   </td>
  </tr>
  </tbody>
@@ -81,11 +81,12 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Main code for computing all second level candidates.  
+<p>Main.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
-<code>#include &quot;Nearsort.h&quot;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
+<code>#include &quot;Nearsort2.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="_thread_manager_8h_source.html">ThreadManager.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_task_8h_source.html">Task.h</a>&quot;</code><br />
 <code>#include &quot;Timer.h&quot;</code><br />
@@ -94,10 +95,98 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a3a2c662e5249592e3a10dff1493d0312"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8cpp.html#a3a2c662e5249592e3a10dff1493d0312">getn</a> (const std::string &amp;strBanner)</td></tr>
+<tr class="memdesc:a3a2c662e5249592e3a10dff1493d0312"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <code>size_t</code> from input.  <a href="_main_8cpp.html#a3a2c662e5249592e3a10dff1493d0312">More...</a><br /></td></tr>
+<tr class="separator:a3a2c662e5249592e3a10dff1493d0312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd2f13072542a7c52268f0137bac6732"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8cpp.html#abd2f13072542a7c52268f0137bac6732">CheckParams</a> (const size_t n, const size_t d)</td></tr>
+<tr class="memdesc:abd2f13072542a7c52268f0137bac6732"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check that depth is reasonable for width.  <a href="_main_8cpp.html#abd2f13072542a7c52268f0137bac6732">More...</a><br /></td></tr>
+<tr class="separator:abd2f13072542a7c52268f0137bac6732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0700f7509a97e542da8cfad4955a989"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8cpp.html#ac0700f7509a97e542da8cfad4955a989">ReadParams</a> (size_t &amp;n, size_t &amp;d)</td></tr>
+<tr class="memdesc:ac0700f7509a97e542da8cfad4955a989"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read parameters for search.  <a href="_main_8cpp.html#ac0700f7509a97e542da8cfad4955a989">More...</a><br /></td></tr>
+<tr class="separator:ac0700f7509a97e542da8cfad4955a989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc510939870dbb0e5b294d9072abac64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8cpp.html#acc510939870dbb0e5b294d9072abac64">ReadParams</a> (bool &amp;bNearsort2, const size_t d)</td></tr>
+<tr class="memdesc:acc510939870dbb0e5b294d9072abac64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read optimization settings.  <a href="_main_8cpp.html#acc510939870dbb0e5b294d9072abac64">More...</a><br /></td></tr>
+<tr class="separator:acc510939870dbb0e5b294d9072abac64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06f10c1d5b3731f1432000d7287726c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8cpp.html#a06f10c1d5b3731f1432000d7287726c7">SaveSummary</a> (const std::string s)</td></tr>
+<tr class="memdesc:a06f10c1d5b3731f1432000d7287726c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save summary string.  <a href="_main_8cpp.html#a06f10c1d5b3731f1432000d7287726c7">More...</a><br /></td></tr>
+<tr class="separator:a06f10c1d5b3731f1432000d7287726c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a485049b9ff28ac293f0930e3778a2c4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8cpp.html#a485049b9ff28ac293f0930e3778a2c4a">Search</a> (<a class="el" href="class_c_thread_manager.html">CThreadManager</a> *p, const size_t nDepth, const bool bNearsort2)</td></tr>
+<tr class="memdesc:a485049b9ff28ac293f0930e3778a2c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multi-threaded search.  <a href="_main_8cpp.html#a485049b9ff28ac293f0930e3778a2c4a">More...</a><br /></td></tr>
+<tr class="separator:a485049b9ff28ac293f0930e3778a2c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main.  <a href="_main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">More...</a><br /></td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >Prompt the user for width (number of inputs) and depth, then spawn a multi-threaded backtracking search for sorting networks of the given width and depth. The user is also prompted to choose whether the new search hauristic nearsort2 is to the used. </p>
+
+<p class="definition">Definition in file <a class="el" href="_main_8cpp_source.html">Main.cpp</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="abd2f13072542a7c52268f0137bac6732" name="abd2f13072542a7c52268f0137bac6732"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd2f13072542a7c52268f0137bac6732">&#9670;&nbsp;</a></span>CheckParams()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CheckParams </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>d</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Check that depth is reasonable for width, that is, either equal to or one less than the smallest known depth. An error message is printed to stdout if it is not. This function assumes that \(n \leq 12\). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>Width. </td></tr>
+    <tr><td class="paramname">d</td><td>Depth. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if depth is reasonable for width, defaults to false if width is too large.. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_main_8cpp_source.html#l00065">65</a> of file <a class="el" href="_main_8cpp_source.html">Main.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a3a2c662e5249592e3a10dff1493d0312" name="a3a2c662e5249592e3a10dff1493d0312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a2c662e5249592e3a10dff1493d0312">&#9670;&nbsp;</a></span>getn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t getn </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>strBanner</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Print a banner and read a value of type <code>size_t</code>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">strBanner</td><td>Banner to print before reading. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>size_t</code> value from input. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_main_8cpp_source.html#l00047">47</a> of file <a class="el" href="_main_8cpp_source.html">Main.cpp</a>.</p>
+
+</div>
+</div>
 <a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&nbsp;</a></span>main()</h2>
 
@@ -112,16 +201,160 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Create a thread manager and a timer. Insert tasks into the thread manager. Start the timer. Report current data and time, and the number of available threads. Spawn the threads and wait for them to terminate. Use the timer to report current time, elapsed time, and CPU time, then have the thread manager process the results. </p><dl class="section return"><dt>Returns</dt><dd>0 (What could possibly go wrong?) </dd></dl>
+<p >Get the sorting network width and depth from the user. Conduct the search and process the results. </p><dl class="section return"><dt>Returns</dt><dd>0 (What could possibly go wrong?) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_main_8cpp_source.html#l00042">42</a> of file <a class="el" href="_main_8cpp_source.html">Main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_main_8cpp_source.html#l00203">203</a> of file <a class="el" href="_main_8cpp_source.html">Main.cpp</a>.</p>
+
+</div>
+</div>
+<a id="acc510939870dbb0e5b294d9072abac64" name="acc510939870dbb0e5b294d9072abac64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc510939870dbb0e5b294d9072abac64">&#9670;&nbsp;</a></span>ReadParams() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReadParams </td>
+          <td>(</td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>bNearsort2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>d</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Read the optimization settings. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bNearsort2</td><td>[out] true to use nearsort2 heuristic (if appropriate). </td></tr>
+    <tr><td class="paramname">d</td><td>[out] Depth. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_main_8cpp_source.html#l00129">129</a> of file <a class="el" href="_main_8cpp_source.html">Main.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ac0700f7509a97e542da8cfad4955a989" name="ac0700f7509a97e542da8cfad4955a989"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0700f7509a97e542da8cfad4955a989">&#9670;&nbsp;</a></span>ReadParams() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReadParams </td>
+          <td>(</td>
+          <td class="paramtype">size_t &amp;&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t &amp;&#160;</td>
+          <td class="paramname"><em>d</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Read the sorting network width and depth. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>[out] Width. </td></tr>
+    <tr><td class="paramname">d</td><td>[out] Depth. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_main_8cpp_source.html#l00100">100</a> of file <a class="el" href="_main_8cpp_source.html">Main.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a06f10c1d5b3731f1432000d7287726c7" name="a06f10c1d5b3731f1432000d7287726c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06f10c1d5b3731f1432000d7287726c7">&#9670;&nbsp;</a></span>SaveSummary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SaveSummary </td>
+          <td>(</td>
+          <td class="paramtype">const std::string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Append a summary string to the log file <code>log.txt</code> and print it to the console. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Summary string. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_main_8cpp_source.html#l00144">144</a> of file <a class="el" href="_main_8cpp_source.html">Main.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a485049b9ff28ac293f0930e3778a2c4a" name="a485049b9ff28ac293f0930e3778a2c4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a485049b9ff28ac293f0930e3778a2c4a">&#9670;&nbsp;</a></span>Search()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Search </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_c_thread_manager.html">CThreadManager</a> *&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>nDepth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>bNearsort2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Conduct multi-threaded sorting network search. First search for all level 2 candidates, then pass each one as a task to the thread manager. Get the thread manager to spawn the search threads, wait until they terminate, then process the results. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>Pointer to thread manager. </td></tr>
+    <tr><td class="paramname">nDepth</td><td>Sorting network depth. </td></tr>
+    <tr><td class="paramname">bNearsort2</td><td>true to use nearsort2 heuristic (if appropriate). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_main_8cpp_source.html#l00164">164</a> of file <a class="el" href="_main_8cpp_source.html">Main.cpp</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 14 2023 17:52:04 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Mon Mar 20 2023 15:57:48 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>

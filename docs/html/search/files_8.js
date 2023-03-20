@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['searchable_2eh_0',['Searchable.h',['../_searchable_8h.html',1,'']]],
-  ['sortingnetwork_2ecpp_1',['SortingNetwork.cpp',['../_sorting_network_8cpp.html',1,'']]],
-  ['sortingnetwork_2eh_2',['SortingNetwork.h',['../_sorting_network_8h.html',1,'']]]
+  ['nearsort_2ecpp_0',['Nearsort.cpp',['../_nearsort_8cpp.html',1,'']]],
+  ['nearsort_2eh_1',['Nearsort.h',['../_nearsort_8h.html',1,'']]],
+  ['nearsort2_2ecpp_2',['Nearsort2.cpp',['../_nearsort2_8cpp.html',1,'']]]
 ];

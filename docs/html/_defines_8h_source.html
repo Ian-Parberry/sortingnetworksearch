@@ -31,7 +31,7 @@ MathJax.Hub.Config({
   <td id="projectalign">
    <div id="projectname">Sorting Network Search
    </div>
-   <div id="projectbrief">Backtracking Search for Small Sorting Networks</div>
+   <div id="projectbrief">Backtracking for Small Sorting Networks</div>
   </td>
  </tr>
  </tbody>
@@ -105,33 +105,22 @@ $(function() {
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#ifndef __Defines_h__</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#define __Defines_h__</span></div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// Optimal depth of sorting networks:</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">//  2 inputs, depth 1</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">//  3 inputs, depth 3</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">//  4 inputs, depth 3</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">//  5 inputs, depth 5</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">//  6 inputs, depth 5</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">//  7 inputs, depth 6</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">//  8 inputs, depth 6</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">//  9 inputs, depth 7</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">// 10 inputs, depth 7</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">// 11 inputs, depth 8</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">// 12 inputs, depth 8</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="_defines_8h.html#a00fed2e9d3c484a1212e2b74c9eb4894">   42</a></span><span class="preprocessor">#define INPUTS 9 </span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="_defines_8h.html#a50267d552ca6f788254032e40046b770">   43</a></span><span class="preprocessor">#define DEPTH 6 </span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="_defines_8h.html#a3f792769d6b7be48d0fe5fe9cda5ed9a">   45</a></span><span class="preprocessor">#define COUNTONLY true </span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="_defines_8h.html#afaa371c11d0b2c4fa5f3c0f1aa86e2f9">   47</a></span><span class="preprocessor">#define odd(n) ((n) &amp; 1) </span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="_defines_8h.html#ae92e0f4ca1070caa288b1f714dca43da">   48</a></span><span class="preprocessor">#define oddfloor(n) (odd(n)?(n):((n)-1)) </span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="_defines_8h.html#a018bdc072d3f5b2c216af9390f7de1f3">   49</a></span><span class="preprocessor">#define evenceil(n) (odd(n)?((n)+1):(n)) </span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#endif </span><span class="comment">//__Defines_h__</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">   29</a></span><span class="preprocessor">#define MAXINPUTS 12 </span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="_defines_8h.html#a0a852ddde438845110943cb3e2a0beea">   30</a></span><span class="preprocessor">#define MAXDEPTH 7 </span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="_defines_8h.html#afaa371c11d0b2c4fa5f3c0f1aa86e2f9">   32</a></span><span class="preprocessor">#define odd(n) ((n) &amp; 1) </span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="_defines_8h.html#ad6091a8f7698703dde47ee034f8d42e9">   33</a></span><span class="preprocessor">#define xor(i, j) (((i) &amp;&amp; (j)) || !((i) || (j))) </span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="_defines_8h.html#ae92e0f4ca1070caa288b1f714dca43da">   35</a></span><span class="preprocessor">#define oddfloor(n) (odd(n)?(n):((n)-1)) </span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="_defines_8h.html#afa8ee10f1a37da0fb4be40fc027f4fe4">   36</a></span><span class="preprocessor">#define evenfloor(n) (odd(n)?(n)-1:((n))) </span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="_defines_8h.html#a018bdc072d3f5b2c216af9390f7de1f3">   38</a></span><span class="preprocessor">#define evenceil(n) (odd(n)?((n)+1):(n)) </span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif </span><span class="comment">//__Defines_h__</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 14 2023 17:52:04 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Mon Mar 20 2023 15:57:48 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>

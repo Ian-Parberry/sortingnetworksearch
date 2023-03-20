@@ -36,7 +36,7 @@
 
 class C1NF: public CSortingNetwork{
   protected: 
-    void initSortingTest(); ///< Initialize the sorting test.
+    void initialize(); ///< Initialize the sorting test.
     bool sorts(); ///< Does it sort all inputs?
     bool stillsorts(const size_t); ///< Does it still sort when a bit is changed?
     bool evensorts(); ///< Does it sort if there are an odd number of inputs and we fix the value on the last channel?

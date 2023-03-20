@@ -31,7 +31,7 @@ MathJax.Hub.Config({
   <td id="projectalign">
    <div id="projectname">Sorting Network Search
    </div>
-   <div id="projectbrief">Backtracking Search for Small Sorting Networks</div>
+   <div id="projectbrief">Backtracking for Small Sorting Networks</div>
   </td>
  </tr>
  </tbody>
@@ -88,58 +88,29 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a00fed2e9d3c484a1212e2b74c9eb4894"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_defines_8h.html#a00fed2e9d3c484a1212e2b74c9eb4894">INPUTS</a>&#160;&#160;&#160;9</td></tr>
-<tr class="memdesc:a00fed2e9d3c484a1212e2b74c9eb4894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of inputs.  <a href="_defines_8h.html#a00fed2e9d3c484a1212e2b74c9eb4894">More...</a><br /></td></tr>
-<tr class="separator:a00fed2e9d3c484a1212e2b74c9eb4894"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50267d552ca6f788254032e40046b770"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_defines_8h.html#a50267d552ca6f788254032e40046b770">DEPTH</a>&#160;&#160;&#160;6</td></tr>
-<tr class="memdesc:a50267d552ca6f788254032e40046b770"><td class="mdescLeft">&#160;</td><td class="mdescRight">Depth.  <a href="_defines_8h.html#a50267d552ca6f788254032e40046b770">More...</a><br /></td></tr>
-<tr class="separator:a50267d552ca6f788254032e40046b770"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f792769d6b7be48d0fe5fe9cda5ed9a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_defines_8h.html#a3f792769d6b7be48d0fe5fe9cda5ed9a">COUNTONLY</a>&#160;&#160;&#160;true</td></tr>
-<tr class="memdesc:a3f792769d6b7be48d0fe5fe9cda5ed9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">True to count but not output sorting networks.  <a href="_defines_8h.html#a3f792769d6b7be48d0fe5fe9cda5ed9a">More...</a><br /></td></tr>
-<tr class="separator:a3f792769d6b7be48d0fe5fe9cda5ed9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42133f07fba6d47df909e181d3c93d8a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>&#160;&#160;&#160;12</td></tr>
+<tr class="memdesc:a42133f07fba6d47df909e181d3c93d8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum width, that is, number of inputs.  <a href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">More...</a><br /></td></tr>
+<tr class="separator:a42133f07fba6d47df909e181d3c93d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a852ddde438845110943cb3e2a0beea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_defines_8h.html#a0a852ddde438845110943cb3e2a0beea">MAXDEPTH</a>&#160;&#160;&#160;7</td></tr>
+<tr class="memdesc:a0a852ddde438845110943cb3e2a0beea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum depth.  <a href="_defines_8h.html#a0a852ddde438845110943cb3e2a0beea">More...</a><br /></td></tr>
+<tr class="separator:a0a852ddde438845110943cb3e2a0beea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afaa371c11d0b2c4fa5f3c0f1aa86e2f9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_defines_8h.html#afaa371c11d0b2c4fa5f3c0f1aa86e2f9">odd</a>(n)&#160;&#160;&#160;((n) &amp; 1)</td></tr>
 <tr class="memdesc:afaa371c11d0b2c4fa5f3c0f1aa86e2f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Oddness test.  <a href="_defines_8h.html#afaa371c11d0b2c4fa5f3c0f1aa86e2f9">More...</a><br /></td></tr>
 <tr class="separator:afaa371c11d0b2c4fa5f3c0f1aa86e2f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6091a8f7698703dde47ee034f8d42e9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_defines_8h.html#ad6091a8f7698703dde47ee034f8d42e9">xor</a>(i,  j)&#160;&#160;&#160;(((i) &amp;&amp; (j)) || !((i) || (j)))</td></tr>
+<tr class="memdesc:ad6091a8f7698703dde47ee034f8d42e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exclusive-or.  <a href="_defines_8h.html#ad6091a8f7698703dde47ee034f8d42e9">More...</a><br /></td></tr>
+<tr class="separator:ad6091a8f7698703dde47ee034f8d42e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae92e0f4ca1070caa288b1f714dca43da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_defines_8h.html#ae92e0f4ca1070caa288b1f714dca43da">oddfloor</a>(n)&#160;&#160;&#160;(<a class="el" href="_defines_8h.html#afaa371c11d0b2c4fa5f3c0f1aa86e2f9">odd</a>(n)?(n):((n)-1))</td></tr>
 <tr class="memdesc:ae92e0f4ca1070caa288b1f714dca43da"><td class="mdescLeft">&#160;</td><td class="mdescRight">If even, round down to make odd.  <a href="_defines_8h.html#ae92e0f4ca1070caa288b1f714dca43da">More...</a><br /></td></tr>
 <tr class="separator:ae92e0f4ca1070caa288b1f714dca43da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa8ee10f1a37da0fb4be40fc027f4fe4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_defines_8h.html#afa8ee10f1a37da0fb4be40fc027f4fe4">evenfloor</a>(n)&#160;&#160;&#160;(<a class="el" href="_defines_8h.html#afaa371c11d0b2c4fa5f3c0f1aa86e2f9">odd</a>(n)?(n)-1:((n)))</td></tr>
+<tr class="memdesc:afa8ee10f1a37da0fb4be40fc027f4fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">If odd, round down to make even.  <a href="_defines_8h.html#afa8ee10f1a37da0fb4be40fc027f4fe4">More...</a><br /></td></tr>
+<tr class="separator:afa8ee10f1a37da0fb4be40fc027f4fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a018bdc072d3f5b2c216af9390f7de1f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_defines_8h.html#a018bdc072d3f5b2c216af9390f7de1f3">evenceil</a>(n)&#160;&#160;&#160;(<a class="el" href="_defines_8h.html#afaa371c11d0b2c4fa5f3c0f1aa86e2f9">odd</a>(n)?((n)+1):(n))</td></tr>
 <tr class="memdesc:a018bdc072d3f5b2c216af9390f7de1f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">If odd, round up to make even.  <a href="_defines_8h.html#a018bdc072d3f5b2c216af9390f7de1f3">More...</a><br /></td></tr>
 <tr class="separator:a018bdc072d3f5b2c216af9390f7de1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a3f792769d6b7be48d0fe5fe9cda5ed9a" name="a3f792769d6b7be48d0fe5fe9cda5ed9a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f792769d6b7be48d0fe5fe9cda5ed9a">&#9670;&nbsp;</a></span>COUNTONLY</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define COUNTONLY&#160;&#160;&#160;true</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_defines_8h_source.html#l00045">45</a> of file <a class="el" href="_defines_8h_source.html">Defines.h</a>.</p>
-
-</div>
-</div>
-<a id="a50267d552ca6f788254032e40046b770" name="a50267d552ca6f788254032e40046b770"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50267d552ca6f788254032e40046b770">&#9670;&nbsp;</a></span>DEPTH</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DEPTH&#160;&#160;&#160;6</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_defines_8h_source.html#l00043">43</a> of file <a class="el" href="_defines_8h_source.html">Defines.h</a>.</p>
-
-</div>
-</div>
 <a id="a018bdc072d3f5b2c216af9390f7de1f3" name="a018bdc072d3f5b2c216af9390f7de1f3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a018bdc072d3f5b2c216af9390f7de1f3">&#9670;&nbsp;</a></span>evenceil</h2>
 
@@ -156,23 +127,59 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_defines_8h_source.html#l00049">49</a> of file <a class="el" href="_defines_8h_source.html">Defines.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_defines_8h_source.html#l00038">38</a> of file <a class="el" href="_defines_8h_source.html">Defines.h</a>.</p>
 
 </div>
 </div>
-<a id="a00fed2e9d3c484a1212e2b74c9eb4894" name="a00fed2e9d3c484a1212e2b74c9eb4894"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00fed2e9d3c484a1212e2b74c9eb4894">&#9670;&nbsp;</a></span>INPUTS</h2>
+<a id="afa8ee10f1a37da0fb4be40fc027f4fe4" name="afa8ee10f1a37da0fb4be40fc027f4fe4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa8ee10f1a37da0fb4be40fc027f4fe4">&#9670;&nbsp;</a></span>evenfloor</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define INPUTS&#160;&#160;&#160;9</td>
+          <td class="memname">#define evenfloor</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">n</td><td>)</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="_defines_8h.html#afaa371c11d0b2c4fa5f3c0f1aa86e2f9">odd</a>(n)?(n)-1:((n)))</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_defines_8h_source.html#l00042">42</a> of file <a class="el" href="_defines_8h_source.html">Defines.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_defines_8h_source.html#l00036">36</a> of file <a class="el" href="_defines_8h_source.html">Defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a0a852ddde438845110943cb3e2a0beea" name="a0a852ddde438845110943cb3e2a0beea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a852ddde438845110943cb3e2a0beea">&#9670;&nbsp;</a></span>MAXDEPTH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAXDEPTH&#160;&#160;&#160;7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_defines_8h_source.html#l00030">30</a> of file <a class="el" href="_defines_8h_source.html">Defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a42133f07fba6d47df909e181d3c93d8a" name="a42133f07fba6d47df909e181d3c93d8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42133f07fba6d47df909e181d3c93d8a">&#9670;&nbsp;</a></span>MAXINPUTS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAXINPUTS&#160;&#160;&#160;12</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_defines_8h_source.html#l00029">29</a> of file <a class="el" href="_defines_8h_source.html">Defines.h</a>.</p>
 
 </div>
 </div>
@@ -192,7 +199,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_defines_8h_source.html#l00047">47</a> of file <a class="el" href="_defines_8h_source.html">Defines.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_defines_8h_source.html#l00032">32</a> of file <a class="el" href="_defines_8h_source.html">Defines.h</a>.</p>
 
 </div>
 </div>
@@ -212,14 +219,44 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_defines_8h_source.html#l00048">48</a> of file <a class="el" href="_defines_8h_source.html">Defines.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_defines_8h_source.html#l00035">35</a> of file <a class="el" href="_defines_8h_source.html">Defines.h</a>.</p>
+
+</div>
+</div>
+<a id="ad6091a8f7698703dde47ee034f8d42e9" name="ad6091a8f7698703dde47ee034f8d42e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6091a8f7698703dde47ee034f8d42e9">&#9670;&nbsp;</a></span>xor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define xor</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">i, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">j&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(((i) &amp;&amp; (j)) || !((i) || (j)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_defines_8h_source.html#l00033">33</a> of file <a class="el" href="_defines_8h_source.html">Defines.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 14 2023 17:52:04 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Mon Mar 20 2023 15:57:48 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>

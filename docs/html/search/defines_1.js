@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['depth_0',['DEPTH',['../_defines_8h.html#a50267d552ca6f788254032e40046b770',1,'Defines.h']]]
+  ['maxdepth_0',['MAXDEPTH',['../_defines_8h.html#a0a852ddde438845110943cb3e2a0beea',1,'Defines.h']]],
+  ['maxinputs_1',['MAXINPUTS',['../_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a',1,'Defines.h']]]
 ];

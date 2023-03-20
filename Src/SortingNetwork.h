@@ -45,11 +45,11 @@ class CSortingNetwork: public CComparatorNetwork{
     CBinaryGrayCode *m_pGrayCode = nullptr; ///< Gray code generator.
     size_t m_nValue[MAXDEPTH][MAXINPUTS] = {0}; ///< Values at each level when sorting.
 
-    virtual void initSortingTest(); ///< Initialize the sorting test.
+    virtual void initialize(); ///< Initialize the sorting test.
     virtual bool stillsorts(const size_t delta); ///< Does it still sort when a bit is changed?
 
     size_t flipinput(size_t, const size_t, const size_t); ///< Recompute network values when a bit is changed.
-    void initValues(const size_t, const size_t); ///< Initialize the network values to the all zero input.
+    void InitValues(const size_t, const size_t); ///< Initialize the network values to the all zero input.
     virtual bool sorts(); ///< Does it sort?
 
   public:

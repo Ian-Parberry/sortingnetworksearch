@@ -29,7 +29,7 @@
 
 CSearchable::CSearchable(): C1NF(){
   m_nNumMatchings = 1;
-  for(int i = int(m_nWidth + (m_nWidth&1)) - 1; i>1; i-=2)
+  for(size_t i = oddfloor(m_nWidth); i>1; i-=2)
     m_nNumMatchings *= i;
 } //constructor
 
@@ -74,7 +74,7 @@ void CSearchable::Search(){
 
   while(unfinished){ //until we're finished
     Process(); //process the corrent comparator network, that is, see if it sorts
-    unfinished = nextComparatorNetwork(); //get the next comparator network, we're finished if this function says so  
+    unfinished = NextComparatorNetwork(); //get the next comparator network, we're finished if this function says so  
   } //while
 } //Search
 
@@ -130,18 +130,17 @@ void CSearchable::InitMatchingRepresentations(size_t level){
     m_nMatch[level][m_nWidth - 1] = m_nWidth - 1;
 } //InitMatchingRepresentations
 
-/// Change to next comparator network.
-/// This implementation uses a stack in the standard way to remove 
-/// the need for recursion.
+/// Change to next comparator network. This implementation uses a stack in the
+/// standard way to remove the need for recursion.
 /// \return false if there are no more comparator networks.
 
-bool CSearchable::nextComparatorNetwork(){
+bool CSearchable::NextComparatorNetwork(){
   SetToS(); //set top of stack
 
   m_nStack[m_nToS]++;
-  if(m_nMatching[m_nToS].Next()){
+
+  if(m_nMatching[m_nToS].Next())
     SynchMatchingRepresentations(m_nToS);
-  }
 
   while((m_nToS >= m_nTop) && (m_nStack[m_nToS] == m_nNumMatchings)){
     InitMatchingRepresentations(m_nToS);
@@ -150,16 +149,15 @@ bool CSearchable::nextComparatorNetwork(){
       m_nStack[m_nToS]++;
 
       if(m_nStack[m_nToS] < m_nNumMatchings && m_nMatching[m_nToS].Next())
-          SynchMatchingRepresentations(m_nToS);
+        SynchMatchingRepresentations(m_nToS);
     } //if
   } //while
 
   return m_nToS >= m_nTop; //there are no more if we blow the top of the stack
-} //nextComparatorNetwork
+} //NextComparatorNetwork
 
-/// Reader function for the count, that is, the number of sorting networks
-/// found.
-/// \return The count.
+/// Reader function for the number of sorting networks found.
+/// \return The number of sorting networks found.
 
 const size_t CSearchable::GetCount() const{
   return m_nCount;

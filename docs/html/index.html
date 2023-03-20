@@ -31,7 +31,7 @@ MathJax.Hub.Config({
   <td id="projectalign">
    <div id="projectname">Sorting Network Search
    </div>
-   <div id="projectbrief">Backtracking Search for Small Sorting Networks</div>
+   <div id="projectbrief">Backtracking for Small Sorting Networks</div>
   </td>
  </tr>
  </tbody>
@@ -74,11 +74,29 @@ $(function() {
   <div class="headertitle"><div class="title">Sorting Network Search </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"></div></div><!-- PageDoc -->
+<div class="textblock"><p ><a class="anchor" id="section1"></a></p><h1>1. Introduction</h1>
+<p >This sorting network backtracking tool, the source code of which is written and maintained by <a href="https://ianparberry.com">Ian Parberry</a>, can be used to search for sorting networks with a small number of inputs. Any sorting network found will be saved in the text format used by the sorting network viewer <a href="https://github.com/Ian-Parberry/sortingnetworkviewer">https://github.com/Ian-Parberry/sortingnetworkviewer</a>, which can then be used to display them in a window and export the image to a file in bitmap or vector graphic formats.</p>
+<p >This code implements the algorithm from</p>
+<blockquote class="doxtable">
+<p >&zwj;I. Parberry, "A computer assisted optimal depth lower bound for nine-input sorting networks", Proceedings of Supercomputing '89, pp. 152-161, 1989; and <em>Mathematical Systems Theory</em>, Vol. 24, pp. 101-116, 1991. </p>
+</blockquote>
+<p>A free PDF version can be found at <a href="https://ianparberry.com/pubs/9-input.pdf">https://ianparberry.com/pubs/9-input.pdf</a>. It will henceforth be referred to in this documentation as <a href="https://ianparberry.com/pubs/9-input.pdf">the paper</a>.</p>
+<hr  />
+<p ><a class="anchor" id="section2"></a></p><h1>2. Code Overview</h1>
+<h2>2.1 Multithreading</h2>
+<p >This code uses the <code>thread++</code> library from <a href="https://github.com/Ian-Parberry/threadplusplus">https://github.com/Ian-Parberry/threadplusplus</a>. Please download and compile <code>thread++</code> before proceeding.</p>
+<h2>2.2 Backtracking</h2>
+<p ><a class="anchor" id="fig1"></a></p><div class="image">
+<img src="hierarchy.png" alt="" width="65%"/>
+<div class="caption">
+Fig. 1: Annotated inheritance diagram.</div></div>
+<p ><a class="anchor" id="section3"></a></p><h1>3. Experimental Results</h1>
+<p >Proving that there are no 9-input sorting networks of depth 6 took 1.75 seconds elapsed time consisting of 48 seconds CPU time over 35 threads. Proving that there are no 11-input sorting networks of depth 7 using the new nearsort2 heuristic took 22 min, 13 sec elapsed time consisting of 11 hr, 36 min CPU time over 35 threads. All experiments were run on an Intel&reg; Core&trade; i9-7980XE CPU @ 2.60GHz running Windows 11. </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 14 2023 17:52:04 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Mon Mar 20 2023 15:57:48 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>

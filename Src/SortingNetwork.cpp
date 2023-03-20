@@ -38,37 +38,35 @@ CSortingNetwork::~CSortingNetwork(){
 } //destructor
 
 /// Set the values on every channel between two levels to zero.
-/// \param firstlayer First level to set to zero.
-/// \param lastlayer Last level to set to zero.
+/// \param first First level to set to zero.
+/// \param last Last level to set to zero.
 
-void CSortingNetwork::initValues(const size_t firstlayer, const size_t lastlayer){
-  for(size_t i=firstlayer; i<=lastlayer; i++) //for each layer in range
+void CSortingNetwork::InitValues(const size_t first, const size_t last){
+  for(size_t i=first; i<=last; i++) //for each level in range
     for(size_t j=0; j<m_nWidth; j++) //for each channel
-      m_nValue[i][j] = 0; //set the value on this channel at that layer to zero
-} //initValues
+      m_nValue[i][j] = 0; //set the value on this channel at that level to zero
+} //InitValues
 
 /// Initialize the network for the sorting test, that is, make the
 /// Gray code word for input be all zeros, and the values on every channel at
 /// every level be zero.
 
-void CSortingNetwork::initSortingTest(){ 
+void CSortingNetwork::initialize(){ 
   m_pGrayCode->initialize(); //initialize the Gray code to all zeros.
-  initValues(0, m_nDepth - 1); //initialize the network values to all zeros.
-} //initSortingTest
+  InitValues(0, m_nDepth - 1); //initialize the network values to all zeros.
+} //initialize
 
 /// Flip value and propagate down the comparator network.
 /// \param j Flip value in this channel.
-/// \param firstlayer Flip value at this layer.
-/// \param lastlayer Propagate change down to this layer.
-/// \return Channel whose value is flipped after the last layer.
+/// \param first Flip value starting at this level.
+/// \param last Propagate change down to this level.
+/// \return Channel whose value is flipped after the last level.
 
-size_t CSortingNetwork::flipinput(size_t j, const size_t firstlayer, const size_t lastlayer){
-  for(size_t i=firstlayer; i<=lastlayer; i++){ //for each layer in range
+size_t CSortingNetwork::flipinput(size_t j, const size_t first, const size_t last){
+  for(size_t i=first; i<=last; i++){ //for each layer in range
     m_nValue[i][j] ^= 1; //flip the value on channel j at that level
-
-    size_t k = m_nMatch[i][j]; //find the channel to which it is joined via a comparator, if any
-    
-    if((m_nValue[i][k] && j>k) || !(m_nValue[i][k] || j>k))
+    const size_t k = m_nMatch[i][j]; //channel joined via a comparator  
+    if(xor(m_nValue[i][k], j > k))
       j = k;
   } //for
 
@@ -89,10 +87,12 @@ bool CSortingNetwork::stillsorts(const size_t delta){
 bool CSortingNetwork::sorts(){ 
   size_t i = 0; //index of bit to flip
   bool bSorts = true; //assume it sorts until we find otherwise
-  initSortingTest(); //intialize input and values in comparator network to zero
-  while(bSorts && i<=m_nWidth){ //bail if it doesn't sort, or we've tried all binary inputs
+  initialize(); //intialize input and values in comparator network to zero
+
+  while(bSorts && i <= m_nWidth){ //bail if it doesn't sort, or we've tried all binary inputs
     i = m_pGrayCode->next(); //next bit to flip in Gray code order
-    bSorts = bSorts && (i>m_nWidth || stillsorts(i)); //check whether it still sorts when this bit is flipped
+    bSorts = bSorts && (i > m_nWidth || stillsorts(i)); //check whether it still sorts when this bit is flipped
   } //while
+
   return bSorts;
 } //sorts

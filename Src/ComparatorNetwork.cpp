@@ -23,6 +23,9 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
+#include <iostream>
+#include <fstream>
+
 #include "ComparatorNetwork.h"
 
 /// Initialize the matching array to represent a comparator network with no
@@ -55,24 +58,23 @@ size_t CComparatorNetwork::RemoveRepeatedComparators(){
 } //RemoveRepeatedComparators
 
 /// Save comparator network to a text file.
-/// \param fname File name.
+/// \param fname File name string.
 
 void CComparatorNetwork::save(const std::string& fname){
-  FILE* output = nullptr;
-  fopen_s(&output, fname.c_str(), "wt");
+  std::ofstream output(fname); //output file stream
 
-  if(output){    
+  if(output.is_open()){ //file opened correctly
     for(size_t i=0; i<m_nDepth; i++){ //for each level
       for(size_t j=0; j<m_nWidth; j++){ //for each channel
-        size_t k = m_nMatch[i][j]; //comparator between channel j and k at level i
+        size_t k = m_nMatch[i][j]; //comparator between channels j, k at level i
         
-        if(!m_bRedundant[i][j] && k > j)
-          fprintf_s(output, "%zu %zu ", j, k);
-      } //for each channel
+        if(!m_bRedundant[i][j] && k > j) //not redundant and not already printed
+          output << j << " " << k << " "; //print comparator
+      } //for
 
-      fprintf_s(output, "\n");
+      output << std::endl; //end of line
     } //for
 
-    fclose(output);
+    output.close(); //end of file
   } //if
 } //save
