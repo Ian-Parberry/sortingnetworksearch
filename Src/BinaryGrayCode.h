@@ -42,16 +42,12 @@
 
 class CBinaryGrayCode: public CSettings{
   protected:
-    size_t m_nZeros = 0; ///< Number of zeros in the code word.
     size_t m_nBit[MAXINPUTS + 3] = {0}; ///< Current code word.
     size_t m_nStack[MAXINPUTS + 3] = {0}; ///< Stack to remove recursion.
 
   public:
     virtual void initialize(); ///< Get first code word.
     virtual size_t next(); ///< Get next code word.
-
-    const size_t GetTarget(const size_t) const; ///< Get target channel.
-    void SetNumZeros(const size_t); ///< Set the count of the number of zeros.
 }; //CBinaryGrayCode
 
 #endif //__BinaryGrayCode_h__
