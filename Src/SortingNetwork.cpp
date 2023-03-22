@@ -102,8 +102,8 @@ const size_t CSortingNetwork::GetTarget(const size_t delta, const size_t j) cons
 /// \return true if it still sorts when channel is flipped.
 
 bool CSortingNetwork::stillsorts(const size_t delta){
-  const size_t nTarget = GetTarget(delta - 1, 0); //target before flipping
-  return flipinput(delta - 1, 0, m_nDepth - 1) == nTarget;
+  const size_t nTarget = GetTarget(delta, 0); //target before flipping
+  return flipinput(delta, 0, m_nDepth - 1) == nTarget;
 } //stillsorts
 
 /// Check whether sorting network sorts all inputs.
@@ -114,9 +114,9 @@ bool CSortingNetwork::sorts(){
   bool bSorts = true; //assume it sorts until we find otherwise
   initialize(); //intialize input and values in comparator network to zero
 
-  while(bSorts && i <= m_nWidth){ //bail if it doesn't sort, or we've tried all binary inputs
+  while(bSorts && i < m_nWidth){ //bail if it doesn't sort, or we've tried all binary inputs
     i = m_pGrayCode->next(); //next bit to flip in Gray code order
-    bSorts = bSorts && (i > m_nWidth || stillsorts(i)); //check whether it still sorts when this bit is flipped
+    bSorts = bSorts && (i >= m_nWidth || stillsorts(i)); //check whether it still sorts when this bit is flipped
   } //while
 
   return bSorts;

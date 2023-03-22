@@ -33,7 +33,7 @@
 /// 2 and 3, 4 and 5, etc.
 
 C1NF::C1NF(){
-  m_pGrayCode = new CTernaryGrayCode2;
+  m_pGrayCode = new CTernaryGrayCode;
 
   const size_t n = evenfloor(m_nWidth); 
 
@@ -58,8 +58,8 @@ void C1NF::initialize(){
 /// \return true if it still sorts when channel is flipped.
 
 bool C1NF::stillsorts(const size_t delta){
-  const size_t nTarget = GetTarget(delta - 1, 1); //target before flipping
-  return flipinput(delta - 1, 1, m_nDepth - 1) == nTarget;
+  const size_t nTarget = GetTarget(delta, 1); //target before flipping
+  return flipinput(delta, 1, m_nDepth - 1) == nTarget;
 } //stillsorts
 
 /// Check whether sorting network sorts all inputs. Works for even number of
@@ -73,9 +73,9 @@ bool C1NF::evensorts(){
   size_t i = 0;  //index of bit to flip
   bool bSorts = true; //assume it sorts until we find otherwise
 
-  while(bSorts && i <= m_nWidth){ //bail if it doesn't sort, or we've tried all binary inputs
+  while(bSorts && i < m_nWidth){ //bail if it doesn't sort, or we've tried all binary inputs
     i = m_pGrayCode->next(); //next bit to flip in Gray code order
-    bSorts = bSorts && (i > m_nWidth || stillsorts(i)); //check whether it still sorts when this bit is flipped
+    bSorts = bSorts && (i >= m_nWidth || stillsorts(i)); //check whether it still sorts when this bit is flipped
   } //while
 
   return bSorts;

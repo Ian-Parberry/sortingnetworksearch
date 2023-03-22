@@ -37,7 +37,7 @@ void CBinaryGrayCode::initialize(){
 
 /// Get the next binary word in binary reflected Gray code order, which will
 /// differ from the previous one in exactly one bit.
-/// \return Index of the bit that has changed, in the range 1..n. 
+/// \return Index of the bit that has changed. 
 /// Out of range means we're finished.
 
 size_t CBinaryGrayCode::next(){
@@ -48,5 +48,5 @@ size_t CBinaryGrayCode::next(){
   m_nStack[i - 1] = m_nStack[i];
   m_nStack[i] = i + 1;
 
-  return i; //return bit changed
+  return i - 1; //return bit changed
 } //next

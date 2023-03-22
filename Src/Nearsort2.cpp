@@ -42,7 +42,7 @@ bool CNearsort2::evennearsorts2(){
   size_t i = 0;
   bool bNearSorts = true;
 
-  while(bNearSorts && i<=m_nWidth){
+  while(bNearSorts && i<m_nWidth){
     i = m_pGrayCode->next();
     bNearSorts = bNearSorts && (i>m_nWidth || stillnearsorts2(i));
   } //while
@@ -92,8 +92,8 @@ bool CNearsort2::nearsorts2(){
 /// \return true if it still nearsorts2 when channel is flipped.
 
 bool CNearsort2::stillnearsorts2(const size_t delta){
-  size_t k = GetTarget(delta - 1, 1); //destination channel  
-  const size_t j = flipinput(delta - 1, 1, m_nDepth - 4);
+  size_t k = GetTarget(delta, 1); //destination channel  
+  const size_t j = flipinput(delta, 1, m_nDepth - 4);
   
   if(j == k)return true; //self
 

@@ -37,8 +37,7 @@ void CTernaryGrayCode::initialize(){
 
 /// Get the next binary word in ternary reflected Gray code order, which will
 /// differ from the previous one in exactly one bit.
-/// \return Index of the bit that has changed, in the range 1..m_nWidth. 
-/// Out of range means we're finished.
+/// \return Index of changed bit. Out of range means we're finished.
 
 size_t CTernaryGrayCode::next(){
   const size_t i = m_nStack[0]; 
@@ -53,5 +52,5 @@ size_t CTernaryGrayCode::next(){
     m_nStack[i] = i + 1;
   } //if
 
-  return j;
+  return j - 1;
 } //next

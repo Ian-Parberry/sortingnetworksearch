@@ -56,19 +56,4 @@ class CTernaryGrayCode: public CBinaryGrayCode{
     size_t next(); ///< Get next code word.
 }; //CTernaryGrayCode
 
-/// \brief Ternary reflected Gray code generator using a table.
-
-class CTernaryGrayCode2: public CTernaryGrayCode{
-  protected:
-    std::vector<size_t> m_stdDelta; ///< Change table.
-    size_t m_nIndex = 0; ///< Current index.
-    
-
-  public:
-    CTernaryGrayCode2(); ///< Constructor.
-
-    void initialize(); ///< Get first code word.
-    size_t next(); ///< Get next code word.
-}; //CTernaryGrayCode2
-
 #endif //__TernaryGrayCode_h__

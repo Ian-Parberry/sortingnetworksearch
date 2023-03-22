@@ -42,8 +42,8 @@ CAutocomplete::CAutocomplete(CMatching& L2Matching, const size_t index):
 /// \return true if it still sorts when channel is flipped.
 
 bool CAutocomplete::stillsorts(const size_t delta){
-  size_t k = GetTarget(delta - 1, 1); //destination channel
-  size_t j = flipinput(delta - 1, 1, m_nDepth - 2);
+  size_t k = GetTarget(delta, 1); //destination channel
+  size_t j = flipinput(delta, 1, m_nDepth - 2);
 
   //Build last layer, if necessary. Changed channel is currently j.
   

@@ -44,9 +44,10 @@ bool CNearsort::evennearsorts(){
   do{
     bNearSorts = stillnearsorts(i);
     i = m_pGrayCode->next();
-  }while(bNearSorts && i <= m_nWidth); 
-  
-  m_pGrayCode->initialize(); 
+  }while(bNearSorts && i < m_nWidth); 
+
+  m_pGrayCode->initialize();
+ 
   return bNearSorts;
 } //evennearsorts
 
@@ -92,8 +93,8 @@ bool CNearsort::nearsorts(){
 /// \return true if it still nearsorts when channel is flipped.
 
 bool CNearsort::stillnearsorts(const size_t delta){
-  size_t k = GetTarget(delta - 1, 1); //destination channel 
-  size_t j = flipinput(delta - 1, 1, m_nDepth - 3); //source channel into level d-2
+  size_t k = GetTarget(delta, 1); //destination channel 
+  size_t j = flipinput(delta, 1, m_nDepth - 3); //source channel into level d-2
   
   if(j == k)return true; //self
 
