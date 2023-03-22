@@ -42,10 +42,10 @@ CAutocomplete::CAutocomplete(CMatching& L2Matching, const size_t index):
 /// \return true if it still sorts when channel is flipped.
 
 bool CAutocomplete::stillsorts(const size_t delta){
+  size_t k = GetTarget(delta - 1, 1); //destination channel
   size_t j = flipinput(delta - 1, 1, m_nDepth - 2);
 
   //Build last layer, if necessary. Changed channel is currently j.
-  size_t k = m_pGrayCode->GetTarget(delta); //destination channel
   
   if(j == k)
     return true; //success
@@ -74,6 +74,7 @@ bool CAutocomplete::stillsorts(const size_t delta){
 void CAutocomplete::initialize(){   
   m_pGrayCode->initialize(); //initialize the Gray code to all zeros.
   InitValues(1, m_nDepth - 2); //initialize the network values to all zeros.
+  m_nZeros = m_nWidth; //all zeros
 } //initialize
 
 /// Initializes the testable representation of the last level of the sorting 
@@ -107,7 +108,7 @@ bool CAutocomplete::sorts(){
     for(int j=0; j<m_nDepth; j++) //set all values on last channel to one
       m_nValue[j][m_nWidth - 1] = 1;
 
-    m_pGrayCode->SetNumZeros(m_nWidth - 1); //correct the count of zeros
+    m_nZeros = m_nWidth - 1; //correct the count of zeros
 
     if(!evensorts())return false; //test inputs ending with one
   } //if

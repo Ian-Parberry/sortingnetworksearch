@@ -45,7 +45,6 @@ size_t CTernaryGrayCode::next(){
   m_nStack[0] = 1;
 
   const size_t j = 2*i - m_nBit[2*i - m_nDirection[i]];
-  m_nZeros += m_nBit[j]? 1: -1; 
   m_nBit[j] ^= 1;
 
   if(m_nBit[2*i] == m_nBit[2*i - 1]){
@@ -55,4 +54,36 @@ size_t CTernaryGrayCode::next(){
   } //if
 
   return j;
+} //next
+
+//////////////////////////////////////////////////////////////////////////////
+//CTernaryGrayCode2 functions
+
+/// Initialize `CTernaryGrayCode` and fill the delta table `m_stdDelta` with the
+/// indexes of the channels whose values are flipped in the order in which they
+/// are flipped.
+
+CTernaryGrayCode2::CTernaryGrayCode2(){
+  CTernaryGrayCode::initialize(); //set to all zeros
+  size_t j = CTernaryGrayCode::next(); //skip to the next that's not all zeros
+
+  while(j <= m_nWidth){
+    m_stdDelta.push_back(j); 
+    j = CTernaryGrayCode::next();
+  } //while
+  
+  m_stdDelta.push_back(m_nWidth + 3); //sentinel
+} //constructor
+
+/// Initialize `CTernaryGrayCode` and set the current index to zero.
+
+void CTernaryGrayCode2::initialize(){ 
+  CTernaryGrayCode::initialize();
+  m_nIndex = 0;
+} //initialize
+
+/// Get the next value from the table and increment the current index.
+
+size_t CTernaryGrayCode2::next(){
+  return m_stdDelta[m_nIndex++];
 } //next

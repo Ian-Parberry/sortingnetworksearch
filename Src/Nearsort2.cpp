@@ -59,6 +59,7 @@ bool CNearsort2::evennearsorts2(){
 bool CNearsort2::nearsorts2(){
   m_pGrayCode->initialize();  
   InitValues(1, m_nDepth - 4);
+  m_nZeros = m_nWidth; //all zeros
 
   for(int i=0; i<m_nWidth; i++){
     for(int j=0; j<m_nWidth; j++)
@@ -73,11 +74,10 @@ bool CNearsort2::nearsorts2(){
   if(m_nWidth & 1){ //odd number of inputs, handle the last one independently   
     m_pGrayCode->initialize();  
     InitValues(1, m_nDepth - 4);
+    m_nZeros = m_nWidth - 1;
 
     for(int j=1; j<m_nDepth; j++)
       m_nValue[j][m_nWidth - 1] = 1;
-
-    m_pGrayCode->SetNumZeros(m_nWidth - 1);
 
     if(!evennearsorts2())
       return false;
@@ -91,9 +91,9 @@ bool CNearsort2::nearsorts2(){
 /// \param delta Index of channel to flip.
 /// \return true if it still nearsorts2 when channel is flipped.
 
-bool CNearsort2::stillnearsorts2(const size_t delta){ 
-  const size_t j = flipinput(delta - 1U, 1, m_nDepth - 4);
-  const size_t k = m_pGrayCode->GetTarget(delta); //target channel
+bool CNearsort2::stillnearsorts2(const size_t delta){
+  size_t k = GetTarget(delta - 1, 1); //destination channel  
+  const size_t j = flipinput(delta - 1, 1, m_nDepth - 4);
   
   if(j == k)return true; //self
 

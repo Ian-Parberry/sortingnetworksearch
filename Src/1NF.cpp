@@ -33,7 +33,7 @@
 /// 2 and 3, 4 and 5, etc.
 
 C1NF::C1NF(){
-  m_pGrayCode = new CTernaryGrayCode;
+  m_pGrayCode = new CTernaryGrayCode2;
 
   const size_t n = evenfloor(m_nWidth); 
 
@@ -50,6 +50,7 @@ C1NF::C1NF(){
 void C1NF::initialize(){ 
   m_pGrayCode->initialize(); //initialize the Gray code to all zeros.
   InitValues(1, m_nDepth - 1); //initialize the network values to all zeros.
+  m_nZeros = m_nWidth; //all zeros
 } //initialize
 
 /// Check that sorting network sorts when the current input has channel flipped.
@@ -57,8 +58,8 @@ void C1NF::initialize(){
 /// \return true if it still sorts when channel is flipped.
 
 bool C1NF::stillsorts(const size_t delta){
-  return flipinput(delta - 1, 1, m_nDepth - 1) ==
-    m_pGrayCode->GetTarget(delta);
+  const size_t nTarget = GetTarget(delta - 1, 1); //target before flipping
+  return flipinput(delta - 1, 1, m_nDepth - 1) == nTarget;
 } //stillsorts
 
 /// Check whether sorting network sorts all inputs. Works for even number of
@@ -99,7 +100,7 @@ bool C1NF::sorts(){
     for(int j=0; j<m_nDepth; j++) //set all values on last channel to one
       m_nValue[j][m_nWidth - 1] = 1;
 
-    m_pGrayCode->SetNumZeros(m_nWidth - 1); //correct the count of zeros
+    m_nZeros = m_nWidth - 1; //correct the count of zeros
 
     if(!evensorts())return false; //test inputs ending with one
   } //if

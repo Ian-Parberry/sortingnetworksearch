@@ -54,6 +54,7 @@ void CSortingNetwork::InitValues(const size_t first, const size_t last){
 void CSortingNetwork::initialize(){ 
   m_pGrayCode->initialize(); //initialize the Gray code to all zeros.
   InitValues(0, m_nDepth - 1); //initialize the network values to all zeros.
+  m_nZeros = m_nWidth - 1; //all zeros
 } //initialize
 
 /// Flip value and propagate down the comparator network.
@@ -63,8 +64,11 @@ void CSortingNetwork::initialize(){
 /// \return Channel whose value is flipped after the last level.
 
 size_t CSortingNetwork::flipinput(size_t j, const size_t first, const size_t last){
+  const size_t nBit = m_nValue[first][j] ^ 1;
+  m_nZeros += nBit? -1: 1; //if nBit has flipped to 1, one less zero, else one more
+  
   for(size_t i=first; i<=last; i++){ //for each layer in range
-    m_nValue[i][j] ^= 1; //flip the value on channel j at that level
+    m_nValue[i][j] = nBit; //flip the value on channel j at that level
     const size_t k = m_nMatch[i][j]; //channel joined via a comparator  
     if(xor(m_nValue[i][k], j > k))
       j = k;
@@ -73,12 +77,33 @@ size_t CSortingNetwork::flipinput(size_t j, const size_t first, const size_t las
   return j;
 } //flipinput
 
+/// Get target output channel when the value on an input channel is flipped.
+/// Assumes that local variable `m_nZeros` is set to the number of zeros in
+/// the input before this value is flipped, and that the value in 
+/// `m_nValue` has not been flipped yet (that is, `flipinput()`has
+/// not been called on that channel yet). If a 1 is to be flipped to a 0, then
+/// it should output at channel `m_nZeros`. If a 0 is to be flipped to a 1,
+/// then it should output at channel `m_nZeros - 1`.
+/// \param delta Index of input channel whose value is to be flipped.
+/// \param j Input level.
+/// \return Index of output channel whose value is flipped.
+
+const size_t CSortingNetwork::GetTarget(const size_t delta, const size_t j) const{
+  size_t nTarget = m_nZeros;
+
+  if(m_nValue[j][delta] == 0) //a zero to be flipped to a 1
+    nTarget--;
+
+  return nTarget;
+} //GetTarget
+
 /// Check whether sorting network sorts when the current input has channel flipped.
 /// \param delta Index of channel to flip.
 /// \return true if it still sorts when channel is flipped.
 
 bool CSortingNetwork::stillsorts(const size_t delta){
-  return flipinput(delta - 1, 0, m_nDepth - 1) == m_pGrayCode->GetTarget(delta);
+  const size_t nTarget = GetTarget(delta - 1, 0); //target before flipping
+  return flipinput(delta - 1, 0, m_nDepth - 1) == nTarget;
 } //stillsorts
 
 /// Check whether sorting network sorts all inputs.
