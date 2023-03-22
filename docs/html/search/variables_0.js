@@ -22,7 +22,7 @@ var searchData=
   ['m_5fntos_19',['m_nToS',['../class_c_searchable.html#ace82cea8ce62dfdae48b63d25d7faa47',1,'CSearchable']]],
   ['m_5fnvalue_20',['m_nValue',['../class_c_sorting_network.html#aeb5db596dbad2a03dcccc53d6bb5ddd9',1,'CSortingNetwork']]],
   ['m_5fnwidth_21',['m_nWidth',['../class_c_settings.html#a31cfba1245694e88c6b1258df6938d0d',1,'CSettings']]],
-  ['m_5fnzeros_22',['m_nZeros',['../class_c_binary_gray_code.html#a140ff5ac8096418f03f663ccbdc9b8d6',1,'CBinaryGrayCode']]],
+  ['m_5fnzeros_22',['m_nZeros',['../class_c_sorting_network.html#a9cf6c47d3eeb3c4b82e6c8fd1c125fb2',1,'CSortingNetwork']]],
   ['m_5fpgraycode_23',['m_pGrayCode',['../class_c_sorting_network.html#af0567a604ce853c071878c8e0b6be293',1,'CSortingNetwork']]],
   ['m_5fplevel2_24',['m_pLevel2',['../class_c2_n_f.html#a3020838b97a57474a12c7a0b0b5f1ff4',1,'C2NF']]],
   ['m_5fpsearch_25',['m_pSearch',['../class_c_task.html#abb4ade0d2643c7e0a97e516db87851c1',1,'CTask']]],

@@ -1,0 +1,37 @@
+\label{index_section1}%
+\Hypertarget{index_section1}%
+\hypertarget{index_autotoc_md0}{}\doxysection{1. Introduction}\label{index_autotoc_md0}
+This sorting network backtracking tool, the source code of which is written and maintained by \href{https://ianparberry.com}{\texttt{ Ian Parberry}}, can be used to search for sorting networks with a small number of inputs. Any sorting network found will be saved in the text format used by the sorting network viewer \href{https://github.com/Ian-Parberry/sortingnetworkviewer}{\texttt{ https\+://github.\+com/\+Ian-\/\+Parberry/sortingnetworkviewer}}, which can then be used to display them in a window and export the image to a file in bitmap or vector graphic formats.
+
+This code implements the algorithm from
+
+\begin{quote}
+I. Parberry, \char`\"{}\+A computer assisted optimal depth lower bound for nine-\/input sorting networks\char`\"{}, Proceedings of Supercomputing \textquotesingle{}89, pp. 152-\/161, 1989; and {\itshape Mathematical Systems Theory}, Vol. 24, pp. 101-\/116, 1991. \end{quote}
+A free PDF version can be found at \href{https://ianparberry.com/pubs/9-input.pdf}{\texttt{ https\+://ianparberry.\+com/pubs/9-\/input.\+pdf}}. It will henceforth be referred to in this documentation as \href{https://ianparberry.com/pubs/9-input.pdf}{\texttt{ the paper}}.
+
+\DoxyHorRuler{0}
+
+
+\label{index_section2}%
+\Hypertarget{index_section2}%
+\hypertarget{index_autotoc_md2}{}\doxysection{2. Code Overview}\label{index_autotoc_md2}
+\label{index_fig1}%
+\Hypertarget{index_fig1}%
+\hypertarget{index_autotoc_md3}{}\doxysubsection{2.\+1 Multithreading}\label{index_autotoc_md3}
+This code uses the {\ttfamily thread++} library from \href{https://github.com/Ian-Parberry/threadplusplus}{\texttt{ https\+://github.\+com/\+Ian-\/\+Parberry/threadplusplus}}. Please download and compile {\ttfamily thread++} before proceeding.\hypertarget{index_autotoc_md4}{}\doxysubsection{2.\+2 Backtracking}\label{index_autotoc_md4}
+\label{index_fig2}%
+\Hypertarget{index_fig2}%
+
+
+\label{index_fig3}%
+\Hypertarget{index_fig3}%
+
+
+\label{index_fig4}%
+\Hypertarget{index_fig4}%
+
+
+\label{index_section3}%
+\Hypertarget{index_section3}%
+\hypertarget{index_autotoc_md5}{}\doxysection{3. Experimental Results}\label{index_autotoc_md5}
+Proving that there are no 9-\/input sorting networks of depth 6 took 1.\+75 seconds elapsed time consisting of 48 seconds CPU time over 35 threads. Proving that there are no 11-\/input sorting networks of depth 7 using the new nearsort2 heuristic took 22 min, 13 sec elapsed time consisting of 11 hr, 36 min CPU time over 35 threads. All experiments were run on an Intel\textregistered{} Core\texttrademark{} i9-\/7980\+XE CPU @ 2.\+60\+GHz running Windows 11. 

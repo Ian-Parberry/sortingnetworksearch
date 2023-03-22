@@ -102,18 +102,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9535dc91cdbb0a7c2e53b6eed7bab7ba"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_binary_gray_code.html#a9535dc91cdbb0a7c2e53b6eed7bab7ba">next</a> ()</td></tr>
 <tr class="memdesc:a9535dc91cdbb0a7c2e53b6eed7bab7ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next code word.  <a href="class_c_binary_gray_code.html#a9535dc91cdbb0a7c2e53b6eed7bab7ba">More...</a><br /></td></tr>
 <tr class="separator:a9535dc91cdbb0a7c2e53b6eed7bab7ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0af5e4632fe7ae7be83fc4a927a697ae"><td class="memItemLeft" align="right" valign="top">const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_binary_gray_code.html#a0af5e4632fe7ae7be83fc4a927a697ae">GetTarget</a> (const size_t) const</td></tr>
-<tr class="memdesc:a0af5e4632fe7ae7be83fc4a927a697ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get target channel.  <a href="class_c_binary_gray_code.html#a0af5e4632fe7ae7be83fc4a927a697ae">More...</a><br /></td></tr>
-<tr class="separator:a0af5e4632fe7ae7be83fc4a927a697ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a032ae546878d30f4cfcd600305b5b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_binary_gray_code.html#a5a032ae546878d30f4cfcd600305b5b5">SetNumZeros</a> (const size_t)</td></tr>
-<tr class="memdesc:a5a032ae546878d30f4cfcd600305b5b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the count of the number of zeros.  <a href="class_c_binary_gray_code.html#a5a032ae546878d30f4cfcd600305b5b5">More...</a><br /></td></tr>
-<tr class="separator:a5a032ae546878d30f4cfcd600305b5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a140ff5ac8096418f03f663ccbdc9b8d6"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_binary_gray_code.html#a140ff5ac8096418f03f663ccbdc9b8d6">m_nZeros</a> = 0</td></tr>
-<tr class="memdesc:a140ff5ac8096418f03f663ccbdc9b8d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of zeros in the code word.  <a href="class_c_binary_gray_code.html#a140ff5ac8096418f03f663ccbdc9b8d6">More...</a><br /></td></tr>
-<tr class="separator:a140ff5ac8096418f03f663ccbdc9b8d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0878cd35309c9bc7ff816c95cc9f1fad"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_binary_gray_code.html#a0878cd35309c9bc7ff816c95cc9f1fad">m_nBit</a> [<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>+3] = {0}</td></tr>
 <tr class="memdesc:a0878cd35309c9bc7ff816c95cc9f1fad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current code word.  <a href="class_c_binary_gray_code.html#a0878cd35309c9bc7ff816c95cc9f1fad">More...</a><br /></td></tr>
 <tr class="separator:a0878cd35309c9bc7ff816c95cc9f1fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,33 +138,6 @@ Reflected Gray Code and its applications", <em>Communications of the ACM</em>, V
 
 <p class="definition">Definition at line <a class="el" href="_binary_gray_code_8h_source.html#l00043">43</a> of file <a class="el" href="_binary_gray_code_8h_source.html">BinaryGrayCode.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0af5e4632fe7ae7be83fc4a927a697ae" name="a0af5e4632fe7ae7be83fc4a927a697ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0af5e4632fe7ae7be83fc4a927a697ae">&#9670;&nbsp;</a></span>GetTarget()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const size_t CBinaryGrayCode::GetTarget </td>
-          <td>(</td>
-          <td class="paramtype">const size_t&#160;</td>
-          <td class="paramname"><em>delta</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Get the target channel when a single bit of the input is changed. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">delta</td><td>Index of input bit to be changed. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The corresponding output channel for the changed bit. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8cpp_source.html#l00077">77</a> of file <a class="el" href="_binary_gray_code_8cpp_source.html">BinaryGrayCode.cpp</a>.</p>
-
-</div>
-</div>
 <a id="a82d1e801391de84d47f9fe70ba5223e0" name="a82d1e801391de84d47f9fe70ba5223e0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a82d1e801391de84d47f9fe70ba5223e0">&#9670;&nbsp;</a></span>initialize()</h2>
 
@@ -226,37 +190,11 @@ Reflected Gray Code and its applications", <em>Communications of the ACM</em>, V
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Get the next binary word in binary reflected Gray code order, which will differ from the previous one in exactly one bit. </p><dl class="section return"><dt>Returns</dt><dd>Index of the bit that has changed, in the range 1..n. Out of range means we're finished. </dd></dl>
+<p >Get the next binary word in binary reflected Gray code order, which will differ from the previous one in exactly one bit. </p><dl class="section return"><dt>Returns</dt><dd>Index of the bit that has changed. Out of range means we're finished. </dd></dl>
 
 <p>Reimplemented in <a class="el" href="class_c_ternary_gray_code.html#aa7ccadfed20e2079f9b235b968091e04">CTernaryGrayCode</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8cpp_source.html#l00045">45</a> of file <a class="el" href="_binary_gray_code_8cpp_source.html">BinaryGrayCode.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a5a032ae546878d30f4cfcd600305b5b5" name="a5a032ae546878d30f4cfcd600305b5b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a032ae546878d30f4cfcd600305b5b5">&#9670;&nbsp;</a></span>SetNumZeros()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CBinaryGrayCode::SetNumZeros </td>
-          <td>(</td>
-          <td class="paramtype">const size_t&#160;</td>
-          <td class="paramname"><em>count</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Set the count of the number of zeros. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">count</td><td>New number of zeros. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8cpp_source.html#l00084">84</a> of file <a class="el" href="_binary_gray_code_8cpp_source.html">BinaryGrayCode.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8cpp_source.html#l00043">43</a> of file <a class="el" href="_binary_gray_code_8cpp_source.html">BinaryGrayCode.cpp</a>.</p>
 
 </div>
 </div>
@@ -281,7 +219,7 @@ Reflected Gray Code and its applications", <em>Communications of the ACM</em>, V
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8h_source.html#l00046">46</a> of file <a class="el" href="_binary_gray_code_8h_source.html">BinaryGrayCode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8h_source.html#l00045">45</a> of file <a class="el" href="_binary_gray_code_8h_source.html">BinaryGrayCode.h</a>.</p>
 
 </div>
 </div>
@@ -305,38 +243,14 @@ Reflected Gray Code and its applications", <em>Communications of the ACM</em>, V
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8h_source.html#l00047">47</a> of file <a class="el" href="_binary_gray_code_8h_source.html">BinaryGrayCode.h</a>.</p>
-
-</div>
-</div>
-<a id="a140ff5ac8096418f03f663ccbdc9b8d6" name="a140ff5ac8096418f03f663ccbdc9b8d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a140ff5ac8096418f03f663ccbdc9b8d6">&#9670;&nbsp;</a></span>m_nZeros</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t CBinaryGrayCode::m_nZeros = 0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8h_source.html#l00045">45</a> of file <a class="el" href="_binary_gray_code_8h_source.html">BinaryGrayCode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8h_source.html#l00046">46</a> of file <a class="el" href="_binary_gray_code_8h_source.html">BinaryGrayCode.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 20 2023 15:57:48 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Wed Mar 22 2023 15:43:11 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>

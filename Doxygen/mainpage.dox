@@ -28,6 +28,10 @@ It will henceforth be referred to in this documentation as
 \anchor section2
 # 2. Code Overview
 
+
+\anchor fig1
+\image html numbering.png "Fig. 1: A 6-input sorting network of depth 5." width=30% 
+
 ## 2.1 Multithreading
 
 This code uses the `thread++` library from
@@ -36,9 +40,14 @@ Please download and compile `thread++` before proceeding.
 
 ## 2.2 Backtracking
 
-\anchor fig1
-\image html hierarchy.png "Fig. 1: Annotated inheritance diagram." width=65% 
+\anchor fig2
+\image html hierarchy.png "Fig. 2: Annotated inheritance diagram." width=65% 
 
+\anchor fig3
+\image html matchings.png "Fig. 3: The matchings representation." width=20% 
+
+\anchor fig4
+\image html matchings.png "Fig. 4: The map representation." width=20% 
 
 \anchor section3
 # 3. Experimental Results
