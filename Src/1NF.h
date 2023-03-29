@@ -30,16 +30,25 @@
 
 /// \brief Sorting network in first normal form.
 ///
-/// A first normal form sorting network has comparators in the first
-/// level between channels 0-1, 2-3, 4-5, etc. This simplifies the sorting
+/// A _first normal form_ sorting network has comparators in the first
+/// level between channels 0-1, 2-3, 4-5, etc. If there exists an \f$n\f$-input
+/// sorting network of depth \f$d\f$, then there exists an \f$n\f$-input
+/// sorting network of depth \f$d\f$ that is in first normal form (see
+/// [the paper](https://ianparberry.com/pubs/9-input.pdf)). Restricting
+/// the search to sorting networks in first normal form therefore does us no
+/// harm, and it speeds up the search by not having to iterate through all
+/// possibilities for the first level, and it speeds up the sorting
 /// test since we need only test ternary Gray code strings instead of binary.
+/// These are generated using an instance of `CTernaryGrayCode` instead of
+/// an instance of `CBinaryGrayCode`. 
 
 class C1NF: public CSortingNetwork{
   protected: 
-    void initialize(); ///< Initialize the sorting test.
-    bool sorts(); ///< Does it sort all inputs?
-    bool stillsorts(const size_t); ///< Does it still sort when a bit is changed?
-    bool evensorts(); ///< Does it sort if there are an odd number of inputs and we fix the value on the last channel?
+    void Initialize(); ///< Initialize the sorting test.
+    bool Sorts(); ///< Does it sort all inputs?
+
+    bool StillSorts(const size_t); ///< Does it still sort when a bit is changed?
+    bool EvenSorts(); ///< Does it sort if there are an odd number of inputs and we fix the value on the last channel?
 
   public:
     C1NF(); ///< Constructor.

@@ -60,13 +60,13 @@ size_t CComparatorNetwork::RemoveRepeatedComparators(){
 /// Save comparator network to a text file.
 /// \param fname File name string.
 
-void CComparatorNetwork::save(const std::string& fname){
+void CComparatorNetwork::Save(const std::string& fname){
   std::ofstream output(fname); //output file stream
 
   if(output.is_open()){ //file opened correctly
     for(size_t i=0; i<m_nDepth; i++){ //for each level
       for(size_t j=0; j<m_nWidth; j++){ //for each channel
-        size_t k = m_nMatch[i][j]; //comparator between channels j, k at level i
+        const size_t k = m_nMatch[i][j]; //comparator between channels j, k at level i
         
         if(!m_bRedundant[i][j] && k > j) //not redundant and not already printed
           output << j << " " << k << " "; //print comparator
@@ -77,4 +77,4 @@ void CComparatorNetwork::save(const std::string& fname){
 
     output.close(); //end of file
   } //if
-} //save
+} //Save

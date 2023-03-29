@@ -28,7 +28,7 @@
 /// Reset Gray code generator to the first word in Gray code order, which is
 /// the all-zero word.
 
-void CBinaryGrayCode::initialize(){ 
+void CBinaryGrayCode::Initialize(){ 
   for(size_t i=0; i<=m_nWidth+2; i++){
     m_nBit[i] = 0; //all zeros
     m_nStack[i] = i + 1; //recursion stack initial conditions
@@ -40,7 +40,7 @@ void CBinaryGrayCode::initialize(){
 /// \return Index of the bit that has changed. 
 /// Out of range means we're finished.
 
-size_t CBinaryGrayCode::next(){
+size_t CBinaryGrayCode::Next(){
   const size_t i = m_nStack[0]; //bit to change
 
   m_nStack[0] = 1; 
@@ -49,4 +49,4 @@ size_t CBinaryGrayCode::next(){
   m_nStack[i] = i + 1;
 
   return i - 1; //return bit changed
-} //next
+} //Next

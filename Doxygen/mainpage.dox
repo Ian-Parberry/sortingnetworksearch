@@ -16,7 +16,8 @@ export the image to a file in bitmap or vector graphic formats.
 
 This code implements the algorithm from
 
-> I. Parberry, "A computer assisted optimal depth lower bound for nine-input sorting networks", Proceedings of Supercomputing '89, pp. 152-161, 1989; and _Mathematical Systems Theory_, Vol. 24, pp. 101-116, 1991.
+> I. Parberry, "A computer assisted optimal depth lower bound for nine-input sorting networks", Proceedings of Supercomputing '89, pp. 152-161, 1989.
+> I. Parberry, "A computer assisted optimal depth lower bound for nine-input sorting networks",  _Mathematical Systems Theory_, Vol. 24, pp. 101-116, 1991.
 
 A free PDF version can be found at
 [https://ianparberry.com/pubs/9-input.pdf](https://ianparberry.com/pubs/9-input.pdf).
@@ -29,25 +30,140 @@ It will henceforth be referred to in this documentation as
 # 2. Code Overview
 
 
-\anchor fig1
-\image html numbering.png "Fig. 1: A 6-input sorting network of depth 5." width=30% 
+\anchor section2_1
+## 2.1 Shared Settings
 
-## 2.1 Multithreading
+`CSettings`, shares settings `m_nWidth` (the number of inputs,
+or _width_ of the sorting networks to be searched for) and `m_nDepth` (the number of levels,
+or depth of the sorting networks to be searched for). It is a singleton class that enables us to
+share these values quickly and transparently by using it as a base class.
+The maximum width and depth are constrained by sensible maximum values in `Defines.h`.
+
+\anchor section2_2
+## 2.2 Sorting Network Classes
+
+\anchor fig1
+\image html hierarchy.png "Fig. 1: Annotated inheritance diagram." width=70% 
+
+Sorting networks are represented by members of a collection of derived classes
+as shown in \ref fig1 "Fig. 1".
+`CComparatorNetwork` represents a comparator network, that is, a network of comparators.
+It is derived from `CSettings`.
+Since the search will iterate through all matchings at all levels, there is a
+danger of including _repeat comparators_ that are duplicates of comparators in the
+previous level. `CComparatorNetwork` contains code that removes repeat comparators,
+and also code for saving a comparator network to a text file in the format used by
+the [sorting network viewer](https://github.com/Ian-Parberry/sortingnetworkviewer).
+
+`CSortingNetwork` represents a sorting network, that is, a comparator
+network that sorts all inputs. It is derived from `CComparatorNetwork`.
+The main new function here is `CSortingNetwork::Sorts()`, which returns `true` if the
+base comparator network sorts all inputs. This function uses the Zero-One Principle
+and a binary Gray code generator `CBinaryGrayCode` to generate the test inputs.
+The main functions here are `CBinaryGrayCode::Initialize()` to initialize to
+the first (all zero) binary string, and `CBinaryGrayCode::Next()` to generate
+the next binary string (which differs from the previous one in exactly one bit,
+the index of which is returned).
+
+`C1NF` represents a _first normal form_ sorting network, which has comparators in the first
+level between channels 0-1, 2-3, 4-5, etc. It is derived from `CSortingNetwork` and has
+similar functionality, the most important modification being that `C1NF::Sorts()`,
+which overrides the virtual function `CSortingNetwork::Sorts()`,
+skips the first level and uses an instance of `CTernaryGrayCode` instead of `CBinaryGrayCode`
+to generate the inputs into the second level.
+Restricting our search to sorting networks in first normal form does no harm since
+every sorting network can be put into first normal form by permuting the channels and
+untwisting the comparators (see [the paper](https://ianparberry.com/pubs/9-input.pdf)).
+
+`CSearchable` represents a searchable first normal form sorting network.
+It is derived from `C1NF`. The main function here is `CSearchable::Backtrack`,
+which iterates through all first normal form comparator networks
+of width `CSettings::m_nWidth` and depth `CSettings::m_nDepth`, and outputs
+those that sort all inputs. Functions `FirstComparatorNetwork()` and
+`NextComparatorNetwork()` are used to iterate through all levels from
+the second level down. These are then tested using the virtual function `Sorts()`
+which for `CSearchable` means `C1NF::Sorts()`, although this may be overridden in
+classes derived from it. Iteration over a given level is handled by a new 
+matching generation algorithm
+derived from a permutation generation algorithm (see [the paper](https://ianparberry.com/pubs/9-input.pdf)), which for efficiency and
+clarity uses a second representation of a level in class `CMatching`.
+`CMatching::Initialize()` generates the first matching and `CMatching::Next()`
+generates the next. The map array `CComparatorNetwork::m_nMatch`
+is kept in step by calling `CSearchable::SynchMatchingRepresentations()` after each
+new matching is generated.
+
+`C2NF` represents a searchable _second normal form_ sorting network.
+It is derived from `CSearchable` and has similar functionality. However, its
+second level is provided as a parameter. 
+An instance of `C2NF` (or a class derived from it) will be given to a separate
+thread to test whether it can be built out into a sorting network.
+
+`CAutocomplete` represents a searchable second normal form sorting network that
+constructs its last level (the one immediately before the outputs)
+instead of iterating through all possibilities.
+It is derived from `C2NF`. The last level is constructed using reachability,
+aborting if it is impossible to achieved in one level of comparators.
+Function `CAutocomplete::StillSorts()` is where this happens,
+overriding the much simpler two-line `C1NF::StillSorts`.
+See [the paper](https://ianparberry.com/pubs/9-input.pdf) for more details.
+
+`CNearsort` represents a searchable second normal form sorting network that
+constructs its last level and prunes out at any second-from-last level that
+fails a reachability heuristic called _nearsort_.
+It is derived from `CAutocomplete`.
+If a comparator network is rejected at the second-from-last level by the nearsort heuristic,
+then it is guaranteed that there is no last level that completes a sorting network.
+See [the paper](https://ianparberry.com/pubs/9-input.pdf) for more details.
+
+`CNearsort2` represents a searchable second normal form sorting network with nearsort that
+constructs its last level and prunes out at any third-from-last level that
+fails a reachability heuristic called _nearsort2_.
+It is derived from `CNearsort`.
+If a comparator network is rejected at the third-from-last level by the nearsort2 heuristic,
+then it is guaranteed that there are no last two levels that complete a sorting network.
+The nearsort2 heuristic was invented after the publication of
+[the paper](https://ianparberry.com/pubs/9-input.pdf),
+however, it is the obvious extension of nearsort.
+
+\anchor section2_3
+## 2.3 Multithreading
 
 This code uses the `thread++` library from
 [https://github.com/Ian-Parberry/threadplusplus](https://github.com/Ian-Parberry/threadplusplus).
-Please download and compile `thread++` before proceeding.
+We use a class `CTask` derived from `CBaseTask` in `thread++`, adding
+a pointer to an instance of `CSearchable` (or one of its derived classes)
+and an override `CTask::Perform()` for `CBaseTask::Perform()`
+that calls the virtual function `CSearchable::Backtrack()` or the appropriate overriding function.
+We also use a thread manager class `CThreadManager` derived from `CBaseThreadManager` in `thread++`.
+This provides a function `CThreadManager::ProcessTask()` that processes a task
+(an instance of `CTask`)
+by adding to a global count the number of sorting networks found from searching
+the instance of `CSearchable` pointed to by the task.
+Therefore, when all threads have terminated, `CThreadManager::m_nCount` contains the
+number of sorting networks found.
 
-## 2.2 Backtracking
+\anchor section2_4
+## 2.4 Tying It All Together
 
-\anchor fig2
-\image html hierarchy.png "Fig. 2: Annotated inheritance diagram." width=65% 
+Function `main()` prompts the user for the width and depth of the sorting networks
+(subject to the maxima in `Defines.h`) and whether the new nearsort2 heuristic
+is to be used. It then creates a thread manager 
+(an instance of `CThreadManager`)
+and passes it to function `Search()`.
+This function uses an instance of  `CLevel2Search` to generate an `std::vector<CMatching>`
+of candidate matchings for the second level unique up to permutation of pairs of channels.
+See [the paper](https://ianparberry.com/pubs/9-input.pdf) for more details. 
+For each second-level candidate an instance of
+`C2NF`, `CAutocomplete`,  `CNearsort`, or `CNearsort2` is created, wrapped up into an
+instance of `CTask` and inserted into the thread manager's task queue.
+`Search()` then uses the thread manager to spawn the threads, with until the
+threads have terminated, then call its function `CBaseThreadManager::Process()`
+to process the results (which calls `CThreadManager::ProcessTask()` for every processed task).
+The number of sorting networks found (which will have been output by the threads)
+is retrieved from the thread manager by calling 
+the reader function `CThreadManager::GetCount()`.
 
-\anchor fig3
-\image html matchings.png "Fig. 3: The matchings representation." width=20% 
-
-\anchor fig4
-\image html matchings.png "Fig. 4: The map representation." width=20% 
+---
 
 \anchor section3
 # 3. Experimental Results
@@ -57,7 +173,8 @@ Proving that there are no
 1.75 seconds elapsed time consisting of 48 seconds CPU time over 35 threads.
 Proving that there are no
 11-input sorting networks of depth 7 using the new nearsort2 heuristic took
-22 min, 13 sec elapsed time consisting of 11 hr, 36 min CPU time over 35 threads.
+2 days, 19 hr, 21 min sec elapsed time consisting of 
+88 days, 14 hr, 25 min CPU time over 35 threads.
 All experiments were run on an
 Intel&reg; Core&trade; i9-7980XE CPU @ 2.60GHz
 running Windows 11.

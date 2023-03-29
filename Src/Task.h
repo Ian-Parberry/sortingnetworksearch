@@ -33,7 +33,7 @@ class CSearchable;
 /// \brief Task.
 ///
 /// This task descriptor, derived from `CBaseTask`, overrides the 
-/// `CBaseTask::Process()` function.
+/// `CBaseTask::Perform()` function.
 
 class CTask: public CBaseTask{
   private:

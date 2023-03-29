@@ -36,10 +36,10 @@
 class CAutocomplete: public C2NF{
   protected:  
     void SetToS(); ///< Set top of stack.
-    bool stillsorts(const size_t); ///< Does it still sort when a bit is changed?
-    void initialize(); ///< Initialize the sorting test. 
+    bool StillSorts(const size_t); ///< Does it still sort when a bit is changed?
+    void Initialize(); ///< Initialize the sorting test. 
     void initLastLevel(); ///< Initialize the last level of the comparator network.
-    bool sorts(); ///< Does it sort?
+    bool Sorts(); ///< Does it sort?
 
   public:
     CAutocomplete(CMatching&, const size_t); ///< Constructor.

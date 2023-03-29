@@ -34,11 +34,14 @@
 /// \brief Sorting network
 ///
 /// `CSortingNetwork` combines a comparator network with a binary Gray
-/// code generator to test whether the comparator network sorts based on the 
-/// Zero-One Principle ,which says that a comparator network is a sorting 
-/// network if and only if it sorts all inputs made up of only zeros and ones. 
-/// See Knuth Volume 3 for the details. Using a Gray code generator instead of 
-/// a standard binary string generator speeds up the test.
+/// code generator `CBinaryGrayCode` to test whether the comparator network
+/// sorts based on the Zero-One Principle, which says that a comparator network
+/// is a sorting network if and only if it sorts all inputs made up of only 
+/// zeros and ones. See Knuth Volume 3 for the details. Using a Gray code 
+/// generator instead of a standard binary string generator simplifies and
+/// speeds up the test. The main function of interest here is
+/// `CSortingNetwork::Sorts()` which returns `true` if the base comparator
+/// network sorts all inputs.
 
 class CSortingNetwork: public CComparatorNetwork{
   protected: 
@@ -46,12 +49,13 @@ class CSortingNetwork: public CComparatorNetwork{
     size_t m_nValue[MAXDEPTH][MAXINPUTS] = {0}; ///< Values at each level when sorting.
     size_t m_nZeros = 0; ///< Number of zeros in the input.
 
-    virtual void initialize(); ///< Initialize the sorting test.
-    virtual bool stillsorts(const size_t); ///< Does it still sort when a bit is changed?
-    virtual bool sorts(); ///< Does it sort?
+    virtual void Initialize(); ///< Initialize the sorting test.
+    virtual bool Sorts(); ///< Does it sort?
+
+    virtual bool StillSorts(const size_t); ///< Does it still sort when a bit is changed?
 
     const size_t GetTarget(const size_t, const size_t) const; ///< Get output channel.
-    size_t flipinput(size_t, const size_t, const size_t); ///< Recompute network values when a bit is changed.
+    size_t FlipInput(size_t, const size_t, const size_t); ///< Recompute network values when a bit is changed.
     void InitValues(const size_t, const size_t); ///< Initialize the network values to the all zero input.
 
   public:

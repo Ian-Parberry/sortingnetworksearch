@@ -31,8 +31,8 @@
 
 /// \brief Binary reflected Gray code generator.
 ///
-/// A binary Gray code generates all strings of \f$n\f$ bits in such a way that
-/// each string differs from the previous one in exactly one bit.
+/// A binary Gray code generates all strings of a fixed number of bits in such
+/// a way that each string differs from the previous one in exactly one bit.
 /// This class implements a nonrecursive version of the binary reflected Gray
 /// code generation algorithm from the following paper:
 ///
@@ -46,8 +46,8 @@ class CBinaryGrayCode: public CSettings{
     size_t m_nStack[MAXINPUTS + 3] = {0}; ///< Stack to remove recursion.
 
   public:
-    virtual void initialize(); ///< Get first code word.
-    virtual size_t next(); ///< Get next code word.
+    virtual void Initialize(); ///< Get first code word.
+    virtual size_t Next(); ///< Get next code word.
 }; //CBinaryGrayCode
 
 #endif //__BinaryGrayCode_h__

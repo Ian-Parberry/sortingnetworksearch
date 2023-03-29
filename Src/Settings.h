@@ -26,6 +26,14 @@
 #ifndef __Settings_h__
 #define __Settings_h__
 
+/// \brief The common variables class.
+///
+/// A singleton class that encapsulates things that are common to
+/// different components. Making it a singleton class means that we can avoid
+/// passing its member variables around as parameters, which makes the code 
+/// minisculely faster, and more importantly, makes the code more readable by
+/// reducing function clutter.
+
 class CSettings{
   protected:
     static size_t m_nWidth; ///< Comparator network width.

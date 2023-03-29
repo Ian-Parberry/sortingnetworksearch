@@ -28,8 +28,8 @@
 /// Reset Gray code generator to the first word in Gray code order, the
 /// all-zero word.
 
-void CTernaryGrayCode::initialize(){ 
-  CBinaryGrayCode::initialize(); //reset as for the binary version
+void CTernaryGrayCode::Initialize(){ 
+  CBinaryGrayCode::Initialize(); //reset as for the binary version
   
   for(size_t i=0; i<=m_nWidth+2; i++) //reset the direction array too
     m_nDirection[i] = 0;
@@ -39,7 +39,7 @@ void CTernaryGrayCode::initialize(){
 /// differ from the previous one in exactly one bit.
 /// \return Index of changed bit. Out of range means we're finished.
 
-size_t CTernaryGrayCode::next(){
+size_t CTernaryGrayCode::Next(){
   const size_t i = m_nStack[0]; 
   m_nStack[0] = 1;
 
@@ -53,4 +53,4 @@ size_t CTernaryGrayCode::next(){
   } //if
 
   return j - 1;
-} //next
+} //Next

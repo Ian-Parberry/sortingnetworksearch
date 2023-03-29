@@ -36,9 +36,9 @@
 
 class CNearsort2: public CNearsort{
   protected: 
-    bool stillnearsorts2(const size_t delta); ///< Does it still nearsort with this input change?
-    bool evennearsorts2(); ///< Does it nearly sort, even number of inputs?
-    bool nearsorts2(); ///< Does it nearly sort?
+    bool StillNearsorts2(const size_t delta); ///< Does it still nearsort with this input change?
+    bool EvenNearsorts2(); ///< Does it nearly sort, even number of inputs?
+    bool Nearsorts2(); ///< Does it nearly sort?
 
     void Process(); ///< Process a candidate comparator network.
     void SetToS(); ///< Set top of stack.

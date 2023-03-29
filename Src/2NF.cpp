@@ -30,8 +30,7 @@
 /// \param L2Matching Level 2 matching.
 /// \param index Lexicographic number of level 2 matching.
 
-C2NF::C2NF(
-  CMatching& L2Matching, const size_t index):
+C2NF::C2NF(CMatching& L2Matching, const size_t index): 
   CSearchable(),
   m_nSecondLevelIndex(index)
 {
@@ -39,7 +38,7 @@ C2NF::C2NF(
   InitMatchingRepresentations(0); //the level 1 matching is the identity
 
   for(int j=0; j<m_nWidth; j++)
-    m_nMatching[1][j] = L2Matching[j]; //install candidate
+    m_nMatching[1][j] = L2Matching[j]; //install second level candidate
 } //constructor
 
 /// Initialize and then start a backtracking search for all sorting networks
@@ -69,5 +68,5 @@ void C2NF::SaveGeneratedSortingNetwork(){
     "s" + std::to_string(size) +
     "n" + std::to_string(m_nCount) + ".txt"; 
 
-  save(filename); //save to file with that name
+  Save(filename); //save to file with that name
 } //SaveGeneratedSortingNetwork

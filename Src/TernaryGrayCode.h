@@ -37,23 +37,15 @@
 /// that it is made up of the following bit pairs: 00 01 11, with an additional 
 /// single bit if \f$n\f$ is odd, and each string differs from the previous one
 /// in exactly one bit. This class implements a nonrecursive version of the
-/// algorithm from the papers
-///
-/// > I. Parberry, "A computer assisted optimal depth lower bound for
-/// > nine-input sorting networks", Proceedings of Supercomputing '89, 
-/// > pp. 152-161, Reno, Nevada, 1989.
-/// >
-/// > I. Parberry, A computer assisted optimal depth lower bound for
-/// > nine-input sorting networks". _Mathematical Systems Theory_, Vol. 24,
-/// > pp. 101-116, 1991.
+/// algorithm from [the paper](https://ianparberry.com/pubs/9-input.pdf).
 
 class CTernaryGrayCode: public CBinaryGrayCode{
   protected:
     int m_nDirection[MAXINPUTS + 3]; ///< Direction of ternary change.
 
   public:
-    void initialize(); ///< Get first code word.
-    size_t next(); ///< Get next code word.
+    void Initialize(); ///< Get first code word.
+    size_t Next(); ///< Get next code word.
 }; //CTernaryGrayCode
 
 #endif //__TernaryGrayCode_h__

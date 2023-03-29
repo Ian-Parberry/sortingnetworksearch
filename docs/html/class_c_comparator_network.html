@@ -90,7 +90,7 @@ Inheritance diagram for CComparatorNetwork:</div>
  <div class="center">
   <img src="class_c_comparator_network.png" usemap="#CComparatorNetwork_map" alt=""/>
   <map id="CComparatorNetwork_map" name="CComparatorNetwork_map">
-<area href="class_c_settings.html" alt="CSettings" shape="rect" coords="0,0,133,24"/>
+<area href="class_c_settings.html" title="The common variables class." alt="CSettings" shape="rect" coords="0,0,133,24"/>
 <area href="class_c_sorting_network.html" title="Sorting network." alt="CSortingNetwork" shape="rect" coords="0,112,133,136"/>
 <area href="class_c1_n_f.html" title="Sorting network in first normal form." alt="C1NF" shape="rect" coords="0,168,133,192"/>
 <area href="class_c_searchable.html" title="Searchable sorting network." alt="CSearchable" shape="rect" coords="0,224,133,248"/>
@@ -106,9 +106,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a83e5d430bb865234904bcf322c36cb10"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_comparator_network.html#a83e5d430bb865234904bcf322c36cb10">CComparatorNetwork</a> ()</td></tr>
 <tr class="memdesc:a83e5d430bb865234904bcf322c36cb10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="class_c_comparator_network.html#a83e5d430bb865234904bcf322c36cb10">More...</a><br /></td></tr>
 <tr class="separator:a83e5d430bb865234904bcf322c36cb10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bf011ac08aa154b6e9a9022d962d871"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_comparator_network.html#a4bf011ac08aa154b6e9a9022d962d871">save</a> (const std::string &amp;)</td></tr>
-<tr class="memdesc:a4bf011ac08aa154b6e9a9022d962d871"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file.  <a href="class_c_comparator_network.html#a4bf011ac08aa154b6e9a9022d962d871">More...</a><br /></td></tr>
-<tr class="separator:a4bf011ac08aa154b6e9a9022d962d871"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c2fcdc664956c16b4ab98d0eb483a69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_comparator_network.html#a9c2fcdc664956c16b4ab98d0eb483a69">Save</a> (const std::string &amp;)</td></tr>
+<tr class="memdesc:a9c2fcdc664956c16b4ab98d0eb483a69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file.  <a href="class_c_comparator_network.html#a9c2fcdc664956c16b4ab98d0eb483a69">More...</a><br /></td></tr>
+<tr class="separator:a9c2fcdc664956c16b4ab98d0eb483a69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -143,9 +143,13 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a6bdd1a60968afb5aded68f59c5a06f62 inherit pro_static_attribs_class_c_settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A comparator network, each level of which is represented by a matching stored in an array <code>m_nMatch</code>. There is a comparator between channels <code>j</code> and <code>k</code> at level <code>i</code> iff <code>m_nMatch[i][j] == k &amp;&amp; m_nMatch[i][k] == j</code>. This will allow for fast verification of whether a comparator network is a sorting network. Note that this is different from the implementation in <code><a class="el" href="class_c_matching.html" title="Perfect matching.">CMatching</a></code>, which is optimized for search rather than verification. </p>
+<div class="textblock"><p >A comparator network, each level of which is represented by a matching stored in an array <code>m_nMatch</code>. There is a comparator between channels <code>j</code> and <code>k</code> at level <code>i-1</code> iff <code>m_nMatch[i][j] == k</code> and <code>m_nMatch[i][k] == j</code>. Intuitively, <code>m_nMatch[i][j]</code> is the channel that channel <code>j</code> is matched to via a comparator in level <code>i-1</code>. This is called the <em>map</em> representation. </p><div class="image">
+<img src="map2.png" alt="" width="47%"/>
+<div class="caption">
+A sorting network (left) and its map representation (right).</div></div>
+<p> For example, in the above diagram at left there is a comparator between channels 0 and 1 at level 1, and in the table at right <code>m_nMatch[0][0] == 1</code> and <code>m_nMatch[0][1] == 0</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_comparator_network_8h_source.html#l00043">43</a> of file <a class="el" href="_comparator_network_8h_source.html">ComparatorNetwork.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_comparator_network_8h_source.html#l00046">46</a> of file <a class="el" href="_comparator_network_8h_source.html">ComparatorNetwork.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a83e5d430bb865234904bcf322c36cb10" name="a83e5d430bb865234904bcf322c36cb10"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a83e5d430bb865234904bcf322c36cb10">&#9670;&nbsp;</a></span>CComparatorNetwork()</h2>
@@ -196,14 +200,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a4bf011ac08aa154b6e9a9022d962d871" name="a4bf011ac08aa154b6e9a9022d962d871"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4bf011ac08aa154b6e9a9022d962d871">&#9670;&nbsp;</a></span>save()</h2>
+<a id="a9c2fcdc664956c16b4ab98d0eb483a69" name="a9c2fcdc664956c16b4ab98d0eb483a69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c2fcdc664956c16b4ab98d0eb483a69">&#9670;&nbsp;</a></span>Save()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CComparatorNetwork::save </td>
+          <td class="memname">void CComparatorNetwork::Save </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>fname</em></td><td>)</td>
@@ -243,7 +247,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_comparator_network_8h_source.html#l00046">46</a> of file <a class="el" href="_comparator_network_8h_source.html">ComparatorNetwork.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_comparator_network_8h_source.html#l00049">49</a> of file <a class="el" href="_comparator_network_8h_source.html">ComparatorNetwork.h</a>.</p>
 
 </div>
 </div>
@@ -267,14 +271,14 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_comparator_network_8h_source.html#l00045">45</a> of file <a class="el" href="_comparator_network_8h_source.html">ComparatorNetwork.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_comparator_network_8h_source.html#l00048">48</a> of file <a class="el" href="_comparator_network_8h_source.html">ComparatorNetwork.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 22 2023 15:43:11 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Wed Mar 29 2023 16:03:01 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>

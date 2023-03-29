@@ -51,8 +51,8 @@ void CSortingNetwork::InitValues(const size_t first, const size_t last){
 /// Gray code word for input be all zeros, and the values on every channel at
 /// every level be zero.
 
-void CSortingNetwork::initialize(){ 
-  m_pGrayCode->initialize(); //initialize the Gray code to all zeros.
+void CSortingNetwork::Initialize(){ 
+  m_pGrayCode->Initialize(); //initialize the Gray code to all zeros.
   InitValues(0, m_nDepth - 1); //initialize the network values to all zeros.
   m_nZeros = m_nWidth - 1; //all zeros
 } //initialize
@@ -63,7 +63,7 @@ void CSortingNetwork::initialize(){
 /// \param last Propagate change down to this level.
 /// \return Channel whose value is flipped after the last level.
 
-size_t CSortingNetwork::flipinput(size_t j, const size_t first, const size_t last){
+size_t CSortingNetwork::FlipInput(size_t j, const size_t first, const size_t last){
   const size_t nBit = m_nValue[first][j] ^ 1;
   m_nZeros += nBit? -1: 1; //if nBit has flipped to 1, one less zero, else one more
   
@@ -75,12 +75,12 @@ size_t CSortingNetwork::flipinput(size_t j, const size_t first, const size_t las
   } //for
 
   return j;
-} //flipinput
+} //FlipInput
 
 /// Get target output channel when the value on an input channel is flipped.
 /// Assumes that local variable `m_nZeros` is set to the number of zeros in
 /// the input before this value is flipped, and that the value in 
-/// `m_nValue` has not been flipped yet (that is, `flipinput()`has
+/// `m_nValue` has not been flipped yet (that is, `FlipInput()`has
 /// not been called on that channel yet). If a 1 is to be flipped to a 0, then
 /// it should output at channel `m_nZeros`. If a 0 is to be flipped to a 1,
 /// then it should output at channel `m_nZeros - 1`.
@@ -101,23 +101,23 @@ const size_t CSortingNetwork::GetTarget(const size_t delta, const size_t j) cons
 /// \param delta Index of channel to flip.
 /// \return true if it still sorts when channel is flipped.
 
-bool CSortingNetwork::stillsorts(const size_t delta){
+bool CSortingNetwork::StillSorts(const size_t delta){
   const size_t nTarget = GetTarget(delta, 0); //target before flipping
-  return flipinput(delta, 0, m_nDepth - 1) == nTarget;
-} //stillsorts
+  return FlipInput(delta, 0, m_nDepth - 1) == nTarget;
+} //StillSorts
 
 /// Check whether sorting network sorts all inputs.
 /// \return true if it sorts.
 
-bool CSortingNetwork::sorts(){ 
+bool CSortingNetwork::Sorts(){ 
   size_t i = 0; //index of bit to flip
   bool bSorts = true; //assume it sorts until we find otherwise
-  initialize(); //intialize input and values in comparator network to zero
+  Initialize(); //intialize input and values in comparator network to zero
 
   while(bSorts && i < m_nWidth){ //bail if it doesn't sort, or we've tried all binary inputs
-    i = m_pGrayCode->next(); //next bit to flip in Gray code order
-    bSorts = bSorts && (i >= m_nWidth || stillsorts(i)); //check whether it still sorts when this bit is flipped
+    i = m_pGrayCode->Next(); //next bit to flip in Gray code order
+    bSorts = bSorts && (i >= m_nWidth || StillSorts(i)); //check whether it still sorts when this bit is flipped
   } //while
 
   return bSorts;
-} //sorts
+} //Sorts

@@ -41,9 +41,9 @@ CAutocomplete::CAutocomplete(CMatching& L2Matching, const size_t index):
 /// \param delta Index of channel to flip.
 /// \return true if it still sorts when channel is flipped.
 
-bool CAutocomplete::stillsorts(const size_t delta){
+bool CAutocomplete::StillSorts(const size_t delta){
   size_t k = GetTarget(delta, 1); //destination channel
-  size_t j = flipinput(delta, 1, m_nDepth - 2);
+  size_t j = FlipInput(delta, 1, m_nDepth - 2);
 
   //Build last layer, if necessary. Changed channel is currently j.
   
@@ -64,15 +64,15 @@ bool CAutocomplete::stillsorts(const size_t delta){
 
     else return false; //can't put a comparator in, so fail
   } //else
-} //stillsorts
+} //StillSorts
 
 /// Initialize the network for the sorting test, that is, make the Gray code
 /// word for input be all zeros, and the values on every channel at every level
-/// be zero. Yhis differs from `C1NF::initialize()` in that
+/// be zero. Yhis differs from `C1NF::Initialize()` in that
 /// it doesn't initialize values in the first and last levels.
 
-void CAutocomplete::initialize(){   
-  m_pGrayCode->initialize(); //initialize the Gray code to all zeros.
+void CAutocomplete::Initialize(){   
+  m_pGrayCode->Initialize(); //initialize the Gray code to all zeros.
   InitValues(1, m_nDepth - 2); //initialize the network values to all zeros.
   m_nZeros = m_nWidth; //all zeros
 } //initialize
@@ -86,31 +86,30 @@ void CAutocomplete::initLastLevel(){
 } //initLastLevel
 
 /// Check whether sorting network sorts all inputs.
-/// Works for both odd and even n.
-/// The difference between this and CSortingNetwork::sorts() is that
+/// The difference between this and `CSortingNetwork::Sorts()` is that
 /// this version has to handle any hypothetical last even-numbered channel 
 /// separately, testing it first with value zero then with value 1.
 /// \return true iff it sorts
 
-bool CAutocomplete::sorts(){ 
+bool CAutocomplete::Sorts(){ 
   initLastLevel(); //set last level to be empty, will be constructed on-the-fly
 
   //first handle the case where n is even, and the case where n is odd
   //and fails to sort an input that ends with a zero
 
-  initialize(); //set all channels to zero
-  if(!evensorts())return false;  //test inputs ending in zero
+  Initialize(); //set all channels to zero
+  if(!EvenSorts())return false;  //test inputs ending in zero
 
   //if odd number of inputs, check input that end with a one 
   if(odd(m_nWidth)){   
-    initialize(); //set all channels to zero
+    Initialize(); //set all channels to zero
 
     for(int j=0; j<m_nDepth; j++) //set all values on last channel to one
       m_nValue[j][m_nWidth - 1] = 1;
 
     m_nZeros = m_nWidth - 1; //correct the count of zeros
 
-    if(!evensorts())return false; //test inputs ending with one
+    if(!EvenSorts())return false; //test inputs ending with one
   } //if
 
   return true; //Oh, we made it this far? Then I must be a sorting network. Hurray!

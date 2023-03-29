@@ -46,9 +46,9 @@ class CNearsort: public CAutocomplete{
     bool m_bReachable[MAXINPUTS][MAXINPUTS] = {false}; ///< Reachable from or to.
     int m_nReachCount[MAXINPUTS] = {0}; ///< Count of channels reachable from or to.
 
-    bool stillnearsorts(const size_t); ///< Does it still nearsort with this input change?
-    bool evennearsorts(); ///< Does it nearly sort, even number of inputs?
-    bool nearsorts(); ///< Does it nearly sort?
+    bool StillNearsorts(const size_t); ///< Does it still nearsort with this input change?
+    bool EvenNearsorts(); ///< Does it nearly sort, even number of inputs?
+    bool Nearsorts(); ///< Does it nearly sort?
  
     void Process(); ///< Process a candidate comparator network.
     void SetToS(); ///< Set top of stack.

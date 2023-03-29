@@ -35,10 +35,13 @@
 ///
 /// A comparator network, each level of which is represented by a matching
 /// stored in an array `m_nMatch`. There is a comparator between channels `j`
-/// and `k` at level `i` iff `m_nMatch[i][j] == k && m_nMatch[i][k] == j`. 
-/// This will allow for fast verification of whether a comparator network is a
-/// sorting network. Note that this is different from the implementation in
-/// `CMatching`, which is optimized for search rather than verification.
+/// and `k` at level `i-1` iff `m_nMatch[i][j] == k` and `m_nMatch[i][k] == j`. 
+/// Intuitively, `m_nMatch[i][j]` is the channel that channel `j` is matched
+/// to via a comparator in level `i-1`. This is called the _map_ representation.
+/// \image html map2.png "A sorting network (left) and its map representation (right)." width=47% 
+/// For example, in the above diagram at left there is a comparator between
+/// channels 0 and 1 at level 1, and in the table at right `m_nMatch[0][0] == 1`
+/// and `m_nMatch[0][1] == 0`.
 
 class CComparatorNetwork: public CSettings{
   protected: 
@@ -49,7 +52,7 @@ class CComparatorNetwork: public CSettings{
 
   public: 
     CComparatorNetwork(); ///< Constructor.
-    void save(const std::string&); ///< Save to file.
+    void Save(const std::string&); ///< Save to file.
 }; //CComparatorNetwork
 
 #endif //__ComparatorNetwork_h__

@@ -47,7 +47,7 @@ void CSearchable::SaveGeneratedSortingNetwork(){
     "s" + std::to_string(size) +
     "n" + std::to_string(m_nCount) + ".txt"; 
 
-  save(filename); //save to file with that name
+  Save(filename); //save to file with that name
 } //SaveGeneratedSortingNetwork
 
 /// Set top of stack `m_nToS` to the last level of the sorting network.
@@ -60,7 +60,7 @@ void CSearchable::SetToS(){
 /// it does, saving it to a file and incrementing a counter.
 
 void CSearchable::Process(){
-  if(sorts()){ //if it sorts
+  if(Sorts()){ //if it sorts
     SaveGeneratedSortingNetwork(); //save it
     m_nCount++; //add 1 to the total
   } //if
@@ -73,7 +73,7 @@ void CSearchable::Search(){
   bool unfinished = true; //assume we're not finished
 
   while(unfinished){ //until we're finished
-    Process(); //process the corrent comparator network, that is, see if it sorts
+    Process(); //process the current comparator network, that is, see if it sorts
     unfinished = NextComparatorNetwork(); //get the next comparator network, we're finished if this function says so  
   } //while
 } //Search

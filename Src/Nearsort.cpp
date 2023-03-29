@@ -37,26 +37,26 @@ CNearsort::CNearsort(CMatching& L2Matching, const size_t index):
 /// Check whether sorting network nearsorts all inputs.
 /// \return true iff it sorts
 
-bool CNearsort::evennearsorts(){ 
+bool CNearsort::EvenNearsorts(){ 
   bool bNearSorts = true;
-  size_t i = m_pGrayCode->next();
+  size_t i = m_pGrayCode->Next();
 
   do{
-    bNearSorts = stillnearsorts(i);
-    i = m_pGrayCode->next();
+    bNearSorts = StillNearsorts(i);
+    i = m_pGrayCode->Next();
   }while(bNearSorts && i < m_nWidth); 
 
-  m_pGrayCode->initialize();
+  m_pGrayCode->Initialize();
  
   return bNearSorts;
-} //evennearsorts
+} //EvenNearsorts
 
 /// Check whether sorting network nearsorts all inputs.
 /// Works for both odd and even n.
 /// \return true iff it nearsorts
 
-bool CNearsort::nearsorts(){
-  m_pGrayCode->initialize();  
+bool CNearsort::Nearsorts(){
+  m_pGrayCode->Initialize();  
   InitValues(1, m_nDepth - 3);
   m_nZeros = m_nWidth; //all zeros
 
@@ -67,34 +67,34 @@ bool CNearsort::nearsorts(){
     m_nReachCountFrom[i] = m_nReachCountTo[i] = m_nReachCount[i] = 0;
   } //for
 
-  if(!evennearsorts())
+  if(!EvenNearsorts())
     return false;
 
   //if odd number of inputs, handle the last one
 
   if(odd(m_nWidth)){     
-    m_pGrayCode->initialize();  
+    m_pGrayCode->Initialize();  
     InitValues(1, m_nDepth - 3);
     m_nZeros = m_nWidth - 1; //all zeros
 
     for(int j=1; j<m_nDepth; j++)
       m_nValue[j][m_nWidth - 1] = 1;
 
-    if(!evennearsorts())
+    if(!EvenNearsorts())
       return false;
   } //if
 
   return true;
-} //nearsorts
+} //Nearsorts
 
 /// Check whether sorting network nearsorts when the current input has channel
 /// flipped.
 /// \param delta Index of channel to flip.
 /// \return true if it still nearsorts when channel is flipped.
 
-bool CNearsort::stillnearsorts(const size_t delta){
+bool CNearsort::StillNearsorts(const size_t delta){
   size_t k = GetTarget(delta, 1); //destination channel 
-  size_t j = flipinput(delta, 1, m_nDepth - 3); //source channel into level d-2
+  size_t j = FlipInput(delta, 1, m_nDepth - 3); //source channel into level d-2
   
   if(j == k)return true; //self
 
@@ -132,7 +132,7 @@ bool CNearsort::stillnearsorts(const size_t delta){
 /// those that nearsort because some of them might actually sort.
 
 void CNearsort::Process(){
-  if(nearsorts()){
+  if(Nearsorts()){
     InitMatchingRepresentations(m_nDepth - 2);
     bool unfinished = true;
 

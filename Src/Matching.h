@@ -33,8 +33,8 @@
 
 /// \brief Perfect matching.
 ///
-/// CMatching represents a perfect matching on n vertices... well, as
-/// perfect as it can be if n is odd.
+/// `CMatching` represents a perfect matching... well, as
+/// perfect as it can be if its size is odd.
 
 class CMatching: public CSettings{
   private:   
