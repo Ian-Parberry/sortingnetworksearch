@@ -34,18 +34,18 @@
 /// \brief Comparator network.
 ///
 /// A comparator network, each level of which is represented by a matching
-/// stored in an array `m_nMatch`. There is a comparator between channels `j`
-/// and `k` at level `i-1` iff `m_nMatch[i][j] == k` and `m_nMatch[i][k] == j`. 
-/// Intuitively, `m_nMatch[i][j]` is the channel that channel `j` is matched
+/// stored in an array `m_nComparator`. There is a comparator between channels `j`
+/// and `k` at level `i-1` iff `m_nComparator[i][j] == k` and `m_nComparator[i][k] == j`. 
+/// Intuitively, `m_nComparator[i][j]` is the channel that channel `j` is matched
 /// to via a comparator in level `i-1`. This is called the _map_ representation.
-/// \image html map2.png "A sorting network (left) and its map representation (right)." width=47% 
+/// \image html comparator.png "A sorting network (left) and its map representation (right)." width=47% 
 /// For example, in the above diagram at left there is a comparator between
-/// channels 0 and 1 at level 1, and in the table at right `m_nMatch[0][0] == 1`
-/// and `m_nMatch[0][1] == 0`.
+/// channels 0 and 1 at level 1, and in the table at right `m_nComparator[0][0] == 1`
+/// and `m_nComparator[0][1] == 0`.
 
 class CComparatorNetwork: public CSettings{
   protected: 
-    size_t m_nMatch[MAXDEPTH][MAXINPUTS] = {0}; ///< Matchings at each level.
+    size_t m_nComparator[MAXDEPTH][MAXINPUTS] = {0}; ///< Matchings at each level.
     bool m_bRedundant[MAXDEPTH][MAXINPUTS] = {false}; ///< True if comparator is redundant.
     
     size_t RemoveRepeatedComparators(); ///< Remove redundant comparators and return size.

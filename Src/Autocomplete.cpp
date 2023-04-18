@@ -51,8 +51,8 @@ bool CAutocomplete::StillSorts(const size_t delta){
     return true; //success
 
   else{  
-    size_t& cj = m_nMatch[m_nDepth - 1][j]; //one end of comparator
-    size_t& ck = m_nMatch[m_nDepth - 1][k]; //other end of comparator
+    size_t& cj = m_nComparator[m_nDepth - 1][j]; //one end of comparator
+    size_t& ck = m_nComparator[m_nDepth - 1][k]; //other end of comparator
 
     if(cj == k && ck == j)
       return true; //comparator already exists  
@@ -82,7 +82,7 @@ void CAutocomplete::Initialize(){
 
 void CAutocomplete::initLastLevel(){
   for(int j=0; j<m_nWidth; j++) //for each channel
-    m_nMatch[m_nDepth - 1][j] = j;
+    m_nComparator[m_nDepth - 1][j] = j;
 } //initLastLevel
 
 /// Check whether sorting network sorts all inputs.

@@ -69,7 +69,7 @@ size_t CSortingNetwork::FlipInput(size_t j, const size_t first, const size_t las
   
   for(size_t i=first; i<=last; i++){ //for each layer in range
     m_nValue[i][j] = nBit; //flip the value on channel j at that level
-    const size_t k = m_nMatch[i][j]; //channel joined via a comparator  
+    const size_t k = m_nComparator[i][j]; //channel joined via a comparator  
     if(xor(m_nValue[i][k], j > k))
       j = k;
   } //for

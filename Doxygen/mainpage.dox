@@ -42,11 +42,14 @@ The maximum width and depth are constrained by sensible maximum values in `Defin
 \anchor section2_2
 ## 2.2 Sorting Network Classes
 
+Sorting networks are represented by members of a collection of derived classes
+as shown in \ref fig1 "Fig. 1".
+
 \anchor fig1
 \image html hierarchy.png "Fig. 1: Annotated inheritance diagram." width=70% 
 
-Sorting networks are represented by members of a collection of derived classes
-as shown in \ref fig1 "Fig. 1".
+### 2.2.1 `CComparatorNetwork`
+
 `CComparatorNetwork` represents a comparator network, that is, a network of comparators.
 It is derived from `CSettings`.
 Since the search will iterate through all matchings at all levels, there is a
@@ -54,6 +57,11 @@ danger of including _repeat comparators_ that are duplicates of comparators in t
 previous level. `CComparatorNetwork` contains code that removes repeat comparators,
 and also code for saving a comparator network to a text file in the format used by
 the [sorting network viewer](https://github.com/Ian-Parberry/sortingnetworkviewer).
+
+\anchor fig2
+\image html comparator.png "Fig. 2: A sorting network (left) and its representation as an array (right)." width=50% 
+
+### 2.2.2 `CSortingNetwork`
 
 `CSortingNetwork` represents a sorting network, that is, a comparator
 network that sorts all inputs. It is derived from `CComparatorNetwork`.
@@ -65,6 +73,11 @@ the first (all zero) binary string, and `CBinaryGrayCode::Next()` to generate
 the next binary string (which differs from the previous one in exactly one bit,
 the index of which is returned).
 
+\anchor fig3
+\image html path.png "Fig. 3: A sorting network with an input of zeros and ones (left) and the path followed by a change of a zero to a one (right)." width=55% 
+
+### 2.2.3 `C1NF`
+
 `C1NF` represents a _first normal form_ sorting network, which has comparators in the first
 level between channels 0-1, 2-3, 4-5, etc. It is derived from `CSortingNetwork` and has
 similar functionality, the most important modification being that `C1NF::Sorts()`,
@@ -74,6 +87,8 @@ to generate the inputs into the second level.
 Restricting our search to sorting networks in first normal form does no harm since
 every sorting network can be put into first normal form by permuting the channels and
 untwisting the comparators (see [the paper](https://ianparberry.com/pubs/9-input.pdf)).
+
+### 2.2.4 `CSearchable`
 
 `CSearchable` represents a searchable first normal form sorting network.
 It is derived from `C1NF`. The main function here is `CSearchable::Backtrack`,
@@ -92,11 +107,18 @@ generates the next. The map array `CComparatorNetwork::m_nMatch`
 is kept in step by calling `CSearchable::SynchMatchingRepresentations()` after each
 new matching is generated.
 
+\anchor fig4
+\image html matching.png "Fig. 4: A sorting network (left) and its representation as an array an matchings (right)." width=50% 
+
+### 2.2.5 `C2NF`
+
 `C2NF` represents a searchable _second normal form_ sorting network.
 It is derived from `CSearchable` and has similar functionality. However, its
 second level is provided as a parameter. 
 An instance of `C2NF` (or a class derived from it) will be given to a separate
 thread to test whether it can be built out into a sorting network.
+
+### 2.2.6 `CAutocomplete`
 
 `CAutocomplete` represents a searchable second normal form sorting network that
 constructs its last level (the one immediately before the outputs)
@@ -107,6 +129,11 @@ Function `CAutocomplete::StillSorts()` is where this happens,
 overriding the much simpler two-line `C1NF::StillSorts`.
 See [the paper](https://ianparberry.com/pubs/9-input.pdf) for more details.
 
+\anchor fig5
+\image html autocomplete.png "Fig. 5: A sorting network with an input of zeros and ones (left) and the autocompleted path followed by a change of a zero to a one (right)." width=55% 
+
+### 2.2.7 `CNearsort`
+
 `CNearsort` represents a searchable second normal form sorting network that
 constructs its last level and prunes out at any second-from-last level that
 fails a reachability heuristic called _nearsort_.
@@ -114,6 +141,8 @@ It is derived from `CAutocomplete`.
 If a comparator network is rejected at the second-from-last level by the nearsort heuristic,
 then it is guaranteed that there is no last level that completes a sorting network.
 See [the paper](https://ianparberry.com/pubs/9-input.pdf) for more details.
+
+### 2.2.8 `CNearsort2`
 
 `CNearsort2` represents a searchable second normal form sorting network with nearsort that
 constructs its last level and prunes out at any third-from-last level that

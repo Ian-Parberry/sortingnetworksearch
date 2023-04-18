@@ -97,7 +97,7 @@ void CSearchable::FirstComparatorNetwork(size_t toplevel){
     InitMatchingRepresentations(i); //initialize both matching representations
 } //FirstComparatorNetwork
 
-/// Synchronize m_nMatch to m_nMatching at a given level. The latter is 
+/// Synchronize m_nComparator to m_nMatching at a given level. The latter is 
 /// assumed to be correct.
 /// \param level The level at which to synchronize matchings.
 
@@ -107,16 +107,16 @@ void CSearchable::SynchMatchingRepresentations(size_t level){
     size_t y = m_nMatching[level][j + 1]; //channel at the other end
 
     if(y == m_nWidth) //if the rightmost channel is the last one in a comparator network with an odd number of inputs
-      m_nMatch[level][x] = x; //it's empty
+      m_nComparator[level][x] = x; //it's empty
 
     else{ //make the testable representation
-      m_nMatch[level][x] = y; //x goes to y
-      m_nMatch[level][y] = x; //y goes to x
+      m_nComparator[level][x] = y; //x goes to y
+      m_nComparator[level][y] = x; //y goes to x
     } //else
   } //for
 } //SynchMatchingRepresentations
 
-/// Initialize m_nMatch and m_nMatching to the first matching at a given level.
+/// Initialize m_nComparator and m_nMatching to the first matching at a given level.
 /// \param level The level at which to initialize matchings.
 
 void CSearchable::InitMatchingRepresentations(size_t level){
@@ -124,10 +124,10 @@ void CSearchable::InitMatchingRepresentations(size_t level){
   m_nStack[level] = 0; //and its stack
 
   for(size_t j=0; j<m_nWidth; j++) //initialize the testable form
-    m_nMatch[level][j] = j^1;
+    m_nComparator[level][j] = j^1;
 
   if(odd(m_nWidth)) //one extra one if n is odd
-    m_nMatch[level][m_nWidth - 1] = m_nWidth - 1;
+    m_nComparator[level][m_nWidth - 1] = m_nWidth - 1;
 } //InitMatchingRepresentations
 
 /// Change to next comparator network. This implementation uses a stack in the

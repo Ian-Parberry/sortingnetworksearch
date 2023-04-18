@@ -40,7 +40,7 @@ C1NF::C1NF(){
   //first layer is the identity matching
 
   for(size_t i=0; i<n; i++)
-    m_nMatch[0][i] = i ^ 1;
+    m_nComparator[0][i] = i ^ 1;
 } //constructor
 
 /// Initialize the network for the sorting test, that is, make the Gray code

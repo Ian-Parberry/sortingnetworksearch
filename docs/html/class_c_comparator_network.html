@@ -118,9 +118,9 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a0d6e268b10fba7e2a92fa1b6cc3c9f5c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_comparator_network.html#a0d6e268b10fba7e2a92fa1b6cc3c9f5c">m_nMatch</a> [<a class="el" href="_defines_8h.html#a0a852ddde438845110943cb3e2a0beea">MAXDEPTH</a>][<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>] = {0}</td></tr>
-<tr class="memdesc:a0d6e268b10fba7e2a92fa1b6cc3c9f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matchings at each level.  <a href="class_c_comparator_network.html#a0d6e268b10fba7e2a92fa1b6cc3c9f5c">More...</a><br /></td></tr>
-<tr class="separator:a0d6e268b10fba7e2a92fa1b6cc3c9f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66ccd12bf8858431b1fccdc35d3e67e3"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_comparator_network.html#a66ccd12bf8858431b1fccdc35d3e67e3">m_nComparator</a> [<a class="el" href="_defines_8h.html#a0a852ddde438845110943cb3e2a0beea">MAXDEPTH</a>][<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>] = {0}</td></tr>
+<tr class="memdesc:a66ccd12bf8858431b1fccdc35d3e67e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matchings at each level.  <a href="class_c_comparator_network.html#a66ccd12bf8858431b1fccdc35d3e67e3">More...</a><br /></td></tr>
+<tr class="separator:a66ccd12bf8858431b1fccdc35d3e67e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a465b86032b1e510303737e9e7fae82a9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_comparator_network.html#a465b86032b1e510303737e9e7fae82a9">m_bRedundant</a> [<a class="el" href="_defines_8h.html#a0a852ddde438845110943cb3e2a0beea">MAXDEPTH</a>][<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>] = {false}</td></tr>
 <tr class="memdesc:a465b86032b1e510303737e9e7fae82a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if comparator is redundant.  <a href="class_c_comparator_network.html#a465b86032b1e510303737e9e7fae82a9">More...</a><br /></td></tr>
 <tr class="separator:a465b86032b1e510303737e9e7fae82a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,11 +143,11 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a6bdd1a60968afb5aded68f59c5a06f62 inherit pro_static_attribs_class_c_settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A comparator network, each level of which is represented by a matching stored in an array <code>m_nMatch</code>. There is a comparator between channels <code>j</code> and <code>k</code> at level <code>i-1</code> iff <code>m_nMatch[i][j] == k</code> and <code>m_nMatch[i][k] == j</code>. Intuitively, <code>m_nMatch[i][j]</code> is the channel that channel <code>j</code> is matched to via a comparator in level <code>i-1</code>. This is called the <em>map</em> representation. </p><div class="image">
-<img src="map2.png" alt="" width="47%"/>
+<div class="textblock"><p >A comparator network, each level of which is represented by a matching stored in an array <code>m_nComparator</code>. There is a comparator between channels <code>j</code> and <code>k</code> at level <code>i-1</code> iff <code>m_nComparator[i][j] == k</code> and <code>m_nComparator[i][k] == j</code>. Intuitively, <code>m_nComparator[i][j]</code> is the channel that channel <code>j</code> is matched to via a comparator in level <code>i-1</code>. This is called the <em>map</em> representation. </p><div class="image">
+<img src="comparator.png" alt="" width="47%"/>
 <div class="caption">
 A sorting network (left) and its map representation (right).</div></div>
-<p> For example, in the above diagram at left there is a comparator between channels 0 and 1 at level 1, and in the table at right <code>m_nMatch[0][0] == 1</code> and <code>m_nMatch[0][1] == 0</code>. </p>
+<p> For example, in the above diagram at left there is a comparator between channels 0 and 1 at level 1, and in the table at right <code>m_nComparator[0][0] == 1</code> and <code>m_nComparator[0][1] == 0</code>. </p>
 
 <p class="definition">Definition at line <a class="el" href="_comparator_network_8h_source.html#l00046">46</a> of file <a class="el" href="_comparator_network_8h_source.html">ComparatorNetwork.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -251,8 +251,8 @@ A sorting network (left) and its map representation (right).</div></div>
 
 </div>
 </div>
-<a id="a0d6e268b10fba7e2a92fa1b6cc3c9f5c" name="a0d6e268b10fba7e2a92fa1b6cc3c9f5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d6e268b10fba7e2a92fa1b6cc3c9f5c">&#9670;&nbsp;</a></span>m_nMatch</h2>
+<a id="a66ccd12bf8858431b1fccdc35d3e67e3" name="a66ccd12bf8858431b1fccdc35d3e67e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66ccd12bf8858431b1fccdc35d3e67e3">&#9670;&nbsp;</a></span>m_nComparator</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,7 +261,7 @@ A sorting network (left) and its map representation (right).</div></div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">size_t CComparatorNetwork::m_nMatch[<a class="el" href="_defines_8h.html#a0a852ddde438845110943cb3e2a0beea">MAXDEPTH</a>][<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>] = {0}</td>
+          <td class="memname">size_t CComparatorNetwork::m_nComparator[<a class="el" href="_defines_8h.html#a0a852ddde438845110943cb3e2a0beea">MAXDEPTH</a>][<a class="el" href="_defines_8h.html#a42133f07fba6d47df909e181d3c93d8a">MAXINPUTS</a>] = {0}</td>
         </tr>
       </table>
   </td>
@@ -278,7 +278,7 @@ A sorting network (left) and its map representation (right).</div></div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 29 2023 16:03:01 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Tue Apr 18 2023 18:35:38 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>
