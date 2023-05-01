@@ -37,7 +37,7 @@
 class C2NF: public CSearchable{ 
   protected:   
     CLevel2Search* m_pLevel2 = nullptr; ///< Pointer to Level 2 generator.
-    size_t m_nSecondLevelIndex = 0; ///< Index of current level 2 candidate.
+    size_t m_nLevel2Index = 0; ///< Index of current level 2 candidate.
 
     void SaveGeneratedSortingNetwork(); ///< Save comparator network.
 

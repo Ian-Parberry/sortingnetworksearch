@@ -32,7 +32,7 @@
 
 C2NF::C2NF(CMatching& L2Matching, const size_t index): 
   CSearchable(),
-  m_nSecondLevelIndex(index)
+  m_nLevel2Index(index)
 {
   m_nStack[0] = 0;
   InitMatchingRepresentations(0); //the level 1 matching is the identity
@@ -53,19 +53,16 @@ void C2NF::Backtrack(){
 
 /// Save a generated sorting network into a file with a suitable name.
 /// Save comparator network to a file whose name encodes number of inputs,
-/// depth, second level index, size, and lexicographics number. For example,
-/// an 8-input comparator network of depth 5 with level 2 index 99, and 
-/// 12 comparators, which is the 20th sorting network found, would be saved 
-/// to file w8d5x99s12n20.txt.
+/// depth, second level index, and order found. For example, an 8-input 
+/// comparator network of depth 5 with second level index 99 that is the 20th
+/// sorting network found with that second level, would be saved to file 
+/// `w8d5x99n20.txt`.
 
 void C2NF::SaveGeneratedSortingNetwork(){
-  size_t size = RemoveRepeatedComparators(); //size after redundant comparators removed
-  
   std::string filename = //construct file name
     "w" + std::to_string(m_nWidth) + 
     "d" + std::to_string(m_nDepth) +
-    "x" + std::to_string(m_nSecondLevelIndex) +
-    "s" + std::to_string(size) +
+    "x" + std::to_string(m_nLevel2Index) +
     "n" + std::to_string(m_nCount) + ".txt"; 
 
   Save(filename); //save to file with that name

@@ -35,8 +35,9 @@ CSearchable::CSearchable(): C1NF(){
 
 /// Save a generated sorting network into a file with a suitable name.
 /// Save comparator network to a file whose name encodes number of inputs,
-/// depth, and size. For example an 8-input comparator network of depth
-/// 5 with 12 comparators would be saved to file w8d5s12.txt.
+/// depth, and order found. For example, an 8-input comparator network of
+/// depth 5 that is the 20th sorting network found would be saved to file 
+/// `w8d5n20.txt`.
 
 void CSearchable::SaveGeneratedSortingNetwork(){
   const size_t size = RemoveRepeatedComparators(); //size after redundant comparators removed

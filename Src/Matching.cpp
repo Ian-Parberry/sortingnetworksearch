@@ -185,8 +185,8 @@ size_t& CMatching::operator[](const size_t i){
 /// \return Copy of m.
 
 CMatching& CMatching::operator=(const CMatching& m){
-  if(this != &m){
-    for(int i=0; i<m_nWidth+1; i++){
+  if(this != &m){ //safety
+    for(size_t i=0; i<m_nWidth+1; i++){
       m_nMatching[i] = m.m_nMatching[i];
       m_nMap[i] = m.m_nMap[i];
       m_nStack[i] = m.m_nStack[i];
@@ -203,10 +203,11 @@ CMatching& CMatching::operator=(const CMatching& m){
 /// \return true if the first matching is less than the second matching.
 
 bool operator<(const CMatching& k1, const CMatching& k2){
-  if(&k1 != &k2){  
+  const size_t w = k1.m_nWidth;
+  if(&k1 != &k2 && w == k2.m_nWidth){ //safety
     size_t i = 0; //index
-    while(i <= k1.m_nWidth && k1.m_nMatching[i] == k2.m_nMatching[i]) i++;
-    return (i <= k1.m_nWidth)? k1.m_nMatching[i] < k2.m_nMatching[i]: false;
+    while(i <= w && k1.m_nMatching[i] == k2.m_nMatching[i]) i++; //skip equal entries
+    return (i <= w)? k1.m_nMatching[i] < k2.m_nMatching[i]: false; //first nonequal is 
   } //if
 
   return false;
