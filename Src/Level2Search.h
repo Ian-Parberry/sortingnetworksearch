@@ -42,13 +42,15 @@
 
 class CLevel2Search: public CSettings{
   private:
-    std::set<size_t> m_stlUsed; ///< Set of indices of used matchings.
+    std::set<CMatching> m_stlUsed; ///< Set of used matchings.
+    //std::set<size_t> m_stlUsed; ///< Set of indices of used matchings.
     std::vector<CMatching> m_stlResults; ///< Results.
-    size_t m_nCopy[MAXINPUTS + 1] = {0}; ///< Integer copy of matching.
+    //size_t m_nCopy[MAXINPUTS + 1] = {0}; ///< Integer copy of matching.
 
-    size_t Permute(CMatching&, const size_t); ///< Permute the matching.
+    //size_t Permute(CMatching&, const size_t); ///< Permute the matching.
+    CMatching Permute(CMatching&, const size_t); ///< Permute the matching.
 
-    size_t GetIndex(CMatching&); ///< Get the index of a matching.
+    //size_t GetIndex(CMatching&); ///< Get the index of a matching.
     const size_t GetNumMatchings(const size_t) const; ///< Number of matchings.
 
   public:
