@@ -17,6 +17,7 @@ export the image to a file in bitmap or vector graphic formats.
 This code implements the algorithm from
 
 > I. Parberry, "A computer assisted optimal depth lower bound for nine-input sorting networks", Proceedings of Supercomputing '89, pp. 152-161, 1989.
+>
 > I. Parberry, "A computer assisted optimal depth lower bound for nine-input sorting networks",  _Mathematical Systems Theory_, Vol. 24, pp. 101-116, 1991.
 
 A free PDF version can be found at
