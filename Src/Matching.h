@@ -39,7 +39,6 @@
 class CMatching: public CSettings{
   private:   
     size_t m_nMatching[MAXINPUTS + 1] = {0}; ///< Matching.
-    //int m_nCopy[MAXINPUTS + 1] = {0}; ///< Integer copy of matching.
     size_t m_nMap[MAXINPUTS + 1] = {0}; ///< Matching index map.
     int m_nStack[MAXINPUTS + 1] = {0}; ///< Stack to remove recursion from permutation.
     

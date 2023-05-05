@@ -64,7 +64,7 @@ CLevel2Search::CLevel2Search(){
 
   //sort the result matchings by index (not necessary but useful when debugging)
   
-  std::sort(m_stlResults.begin(), m_stlResults.end());
+  //std::sort(m_stlResults.begin(), m_stlResults.end());
   std::cout << m_stlResults.size() << " second levels found" << std::endl;
   Save(); //save results to file
 } //constructor
