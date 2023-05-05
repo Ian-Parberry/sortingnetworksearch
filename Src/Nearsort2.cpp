@@ -44,7 +44,7 @@ bool CNearsort2::EvenNearsorts2(){
 
   while(bNearSorts && i<m_nWidth){
     i = m_pGrayCode->Next();
-    bNearSorts = bNearSorts && (i>m_nWidth || StillNearsorts2(i));
+    bNearSorts = bNearSorts && (i>=m_nWidth || StillNearsorts2(i));
   } //while
   
   m_pGrayCode->Initialize(); 
