@@ -40,12 +40,9 @@ CSearchable::CSearchable(): C1NF(){
 /// `w8d5n20.txt`.
 
 void CSearchable::SaveGeneratedSortingNetwork(){
-  const size_t size = RemoveRepeatedComparators(); //size after redundant comparators removed
-  
   std::string filename = 
     "w" + std::to_string(m_nWidth) + 
     "d" + std::to_string(m_nDepth) +
-    "s" + std::to_string(size) +
     "n" + std::to_string(m_nCount) + ".txt"; 
 
   Save(filename); //save to file with that name

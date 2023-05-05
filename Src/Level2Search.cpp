@@ -169,6 +169,9 @@ void CLevel2Search::Save() const{
   const std::string fname = "level2-" + std::to_string(m_nWidth) + ".txt";
   std::ofstream outfile(fname); //output file
 
-  for(const CMatching& m: m_stlResults) //for each matching
-    outfile << std::string(m) << std::endl; //print matching as string
+  if(outfile.is_open()) //file opened correctly
+    for(const CMatching& m: m_stlResults) //for each matching
+      outfile << std::string(m) << std::endl; //print matching as string
+  
+  outfile.close(); //end of file
 } //Save
