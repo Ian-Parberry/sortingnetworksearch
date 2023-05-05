@@ -115,25 +115,27 @@ void CMatching::SwapPair(int m[], size_t i, size_t j){
 void CMatching::Normalize(){ 
   const size_t n = evenceil(m_nWidth);
   
+  int nCopy[MAXINPUTS + 1] = {0}; ///< Integer copy of matching.
+  
   for(size_t j=0; j<n; j++)
-    m_nCopy[j] = (int)m_nMatching[m_nMap[j]^1];
+    nCopy[j] = (int)m_nMatching[m_nMap[j]^1];
 
   size_t next = 1;
 
   for(size_t j=0; j<n; j++){
     const size_t src = std::max(next++, j/2 + 1); 
 
-    if(m_nCopy[j] > int(2*src + 1))
-      SwapPair(m_nCopy, src, m_nCopy[j]/2);
+    if(nCopy[j] > int(2*src + 1))
+      SwapPair(nCopy, src, nCopy[j]/2);
   } //for
 
   size_t top = 0;
 
   for(size_t k=0; k<n; k++)
-    if(m_nCopy[k] >= 0){
+    if(nCopy[k] >= 0){
       m_nMatching[top++] = k;
-      m_nMatching[top++] = m_nCopy[k];
-      m_nCopy[m_nCopy[k]] = -1;
+      m_nMatching[top++] = nCopy[k];
+      nCopy[nCopy[k]] = -1;
     } //if
 } //Normalize
 
@@ -172,11 +174,19 @@ CMatching::operator std::string() const{
   return str + std::to_string(m_nMatching[m_nWidth - 1]); //append last entry
 } //std::string
 
-/// Index operator, used to access members of `m_nMatching`.
+/// Index operator, used to access members of `m_nMatching` as an L-value.
 /// \param i Index.
 /// \return Reference to the indexed element of the matching.
 
 size_t& CMatching::operator[](const size_t i){ 
+  return m_nMatching[i];
+} //operator[]
+
+/// Index operator, used to access members of `m_nMatching` as an R-value.
+/// \param i Index.
+/// \return The indexed element of the matching.
+
+const size_t CMatching::operator[](const size_t i) const{ 
   return m_nMatching[i];
 } //operator[]
 
@@ -196,7 +206,7 @@ CMatching& CMatching::operator=(const CMatching& m){
   return *this;
 } //operator=
 
-/// "Less than" operator for matchings. Uses lexicographic ordering of the
+/// Less than operator for matchings. Uses lexicographic ordering of the
 /// matching's entries from first to last.
 /// \param k1 Reference to first matching.
 /// \param k2 Reference to second matching.
@@ -204,12 +214,30 @@ CMatching& CMatching::operator=(const CMatching& m){
 
 bool operator<(const CMatching& k1, const CMatching& k2){
   const size_t w = k1.m_nWidth;
+
   if(&k1 != &k2 && w == k2.m_nWidth){ //safety
     size_t i = 0; //index
     while(i <= w && k1.m_nMatching[i] == k2.m_nMatching[i]) i++; //skip equal entries
-    return (i <= w)? k1.m_nMatching[i] < k2.m_nMatching[i]: false; //first nonequal is 
+    return (i <= w)? k1.m_nMatching[i] < k2.m_nMatching[i]: false; //first nonequal 
   } //if
 
   return false;
 } //operator<
 
+/// Equality operator for matchings. Uses lexicographic ordering of the
+/// matching's entries from first to last.
+/// \param k1 Reference to first matching.
+/// \param k2 Reference to second matching.
+/// \return true if the first matching is the same as the second matching.
+
+bool operator==(const CMatching& k1, const CMatching& k2){
+  const size_t w = k1.m_nWidth;
+
+  if(&k1 != &k2 && w == k2.m_nWidth){ //safety
+    size_t i = 0; //index
+    while(i <= w && k1.m_nMatching[i] == k2.m_nMatching[i]) i++; //skip equal entries
+    return i > w; //should be nothing else 
+  } //if
+
+  return false;
+} //operator==

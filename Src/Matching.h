@@ -39,9 +39,10 @@
 class CMatching: public CSettings{
   private:   
     size_t m_nMatching[MAXINPUTS + 1] = {0}; ///< Matching.
-    int m_nCopy[MAXINPUTS + 1] = {0}; ///< Integer copy of matching.
+    //int m_nCopy[MAXINPUTS + 1] = {0}; ///< Integer copy of matching.
     size_t m_nMap[MAXINPUTS + 1] = {0}; ///< Matching index map.
     int m_nStack[MAXINPUTS + 1] = {0}; ///< Stack to remove recursion from permutation.
+    
     void SwapPair(int[], size_t, size_t); ///< Swap pair.
 
   public:
@@ -54,12 +55,14 @@ class CMatching: public CSettings{
     void Swap(const size_t, const size_t); ///< Swap.
 
     void Normalize(); ///< Normalize.
-
+    
     size_t& operator[](const size_t); ///< Overloaded index operator.
+    const size_t operator[](const size_t) const; ///< Overloaded index operator.
     CMatching& operator=(const CMatching&); ///< Overloaded assignment operator.
     operator std::string() const; ///< Cast to a string.
     
     friend bool operator<(const CMatching& k1, const CMatching& k2); ///< Less than.
+    friend bool operator==(const CMatching& k1, const CMatching& k2); ///< Equals.
 }; //CMatching
 
 #endif //__Matching_h__
