@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['save_0',['Save',['../class_c_comparator_network.html#a9c2fcdc664956c16b4ab98d0eb483a69',1,'CComparatorNetwork']]],
+  ['save_0',['Save',['../class_c_comparator_network.html#a9c2fcdc664956c16b4ab98d0eb483a69',1,'CComparatorNetwork::Save()'],['../class_c_level2_search.html#a675ee886ee981de07d247f1e4206dd50',1,'CLevel2Search::Save()']]],
   ['savegeneratedsortingnetwork_1',['SaveGeneratedSortingNetwork',['../class_c2_n_f.html#a29c0990404a13eb64bee178879c5f8d5',1,'C2NF::SaveGeneratedSortingNetwork()'],['../class_c_searchable.html#aedfe77f3cc53f04bc10d7045e1b83525',1,'CSearchable::SaveGeneratedSortingNetwork()']]],
   ['savesummary_2',['SaveSummary',['../_main_8cpp.html#a06f10c1d5b3731f1432000d7287726c7',1,'Main.cpp']]],
   ['search_3',['Search',['../class_c_searchable.html#af9184105dfcab3a3f8498b828c3f3443',1,'CSearchable::Search()'],['../_main_8cpp.html#a485049b9ff28ac293f0930e3778a2c4a',1,'Search(CThreadManager *p, const size_t nDepth, const bool bNearsort2):&#160;Main.cpp']]],

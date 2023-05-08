@@ -142,14 +142,20 @@ size_t CLevel2Search::Permute(CMatching& matching, const size_t n){
   return nMinIndex;
 } //Permute
 
-/// Reader function for the vector of matchings.
-/// \return Reference to the vector of matchings.
+/// Reader function for the resulting vector of matchings.
+/// \return Reference to `m_stlResults`.
 
 const std::vector<CMatching>& CLevel2Search::GetMatchings() const{
   return m_stlResults;
 } //GetMatchings
 
-/// Get number of matchings.
+/// Get number of matchings on \f$n\f$ channels, that is,
+/// \f[
+/// \prod_{i=1}^{\lfloor (n-1)/2\rfloor} (2i + 1).
+/// \f]
+/// Note that the result will fit into a 32-bit word for \f$n \leq 15\f$,
+/// which is probably larger than any sorting network width that could sensibly
+/// be used by this program in the forseeable future.
 /// \param n Number of channels.
 /// \return Number of matchings on n channels.
 

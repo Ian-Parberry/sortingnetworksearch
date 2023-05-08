@@ -57,11 +57,11 @@ class CMatching: public CSettings{
     
     size_t& operator[](const size_t); ///< Overloaded index operator.
     const size_t operator[](const size_t) const; ///< Overloaded index operator.
-    CMatching& operator=(const CMatching&); ///< Overloaded assignment operator.
+    //CMatching& operator=(const CMatching&); ///< Overloaded assignment operator.
     operator std::string() const; ///< Cast to a string.
     
-    friend bool operator<(const CMatching& k1, const CMatching& k2); ///< Less than.
-    friend bool operator==(const CMatching& k1, const CMatching& k2); ///< Equals.
+    //friend bool operator<(const CMatching& k1, const CMatching& k2); ///< Less than.
+    //friend bool operator==(const CMatching& k1, const CMatching& k2); ///< Equals.
 }; //CMatching
 
 #endif //__Matching_h__

@@ -190,54 +190,54 @@ const size_t CMatching::operator[](const size_t i) const{
   return m_nMatching[i];
 } //operator[]
 
-/// Assignment operator.
-/// \param m Matching to copy.
-/// \return Copy of m.
-
-CMatching& CMatching::operator=(const CMatching& m){
-  if(this != &m){ //safety
-    for(size_t i=0; i<m_nWidth+1; i++){
-      m_nMatching[i] = m.m_nMatching[i];
-      m_nMap[i] = m.m_nMap[i];
-      m_nStack[i] = m.m_nStack[i];
-    } //for
-  } //if
-
-  return *this;
-} //operator=
-
-/// Less than operator for matchings. Uses lexicographic ordering of the
-/// matching's entries from first to last.
-/// \param k1 Reference to first matching.
-/// \param k2 Reference to second matching.
-/// \return true if the first matching is less than the second matching.
-
-bool operator<(const CMatching& k1, const CMatching& k2){
-  const size_t w = k1.m_nWidth;
-
-  if(&k1 != &k2 && w == k2.m_nWidth){ //safety
-    size_t i = 0; //index
-    while(i <= w && k1.m_nMatching[i] == k2.m_nMatching[i]) i++; //skip equal entries
-    return (i <= w)? k1.m_nMatching[i] < k2.m_nMatching[i]: false; //first nonequal 
-  } //if
-
-  return false;
-} //operator<
-
-/// Equality operator for matchings. Uses lexicographic ordering of the
-/// matching's entries from first to last.
-/// \param k1 Reference to first matching.
-/// \param k2 Reference to second matching.
-/// \return true if the first matching is the same as the second matching.
-
-bool operator==(const CMatching& k1, const CMatching& k2){
-  const size_t w = k1.m_nWidth;
-
-  if(&k1 != &k2 && w == k2.m_nWidth){ //safety
-    size_t i = 0; //index
-    while(i <= w && k1.m_nMatching[i] == k2.m_nMatching[i]) i++; //skip equal entries
-    return i > w; //should be nothing else 
-  } //if
-
-  return false;
-} //operator==
+///// Assignment operator.
+///// \param m Matching to copy.
+///// \return Copy of m.
+//
+//CMatching& CMatching::operator=(const CMatching& m){
+//  if(this != &m){ //safety
+//    for(size_t i=0; i<m_nWidth+1; i++){
+//      m_nMatching[i] = m.m_nMatching[i];
+//      m_nMap[i] = m.m_nMap[i];
+//      m_nStack[i] = m.m_nStack[i];
+//    } //for
+//  } //if
+//
+//  return *this;
+//} //operator=
+//
+///// Less than operator for matchings. Uses lexicographic ordering of the
+///// matching's entries from first to last.
+///// \param k1 Reference to first matching.
+///// \param k2 Reference to second matching.
+///// \return true if the first matching is less than the second matching.
+//
+//bool operator<(const CMatching& k1, const CMatching& k2){
+//  const size_t w = k1.m_nWidth;
+//
+//  if(&k1 != &k2 && w == k2.m_nWidth){ //safety
+//    size_t i = 0; //index
+//    while(i <= w && k1.m_nMatching[i] == k2.m_nMatching[i]) i++; //skip equal entries
+//    return (i <= w)? k1.m_nMatching[i] < k2.m_nMatching[i]: false; //first nonequal 
+//  } //if
+//
+//  return false;
+//} //operator<
+//
+///// Equality operator for matchings. Uses lexicographic ordering of the
+///// matching's entries from first to last.
+///// \param k1 Reference to first matching.
+///// \param k2 Reference to second matching.
+///// \return true if the first matching is the same as the second matching.
+//
+//bool operator==(const CMatching& k1, const CMatching& k2){
+//  const size_t w = k1.m_nWidth;
+//
+//  if(&k1 != &k2 && w == k2.m_nWidth){ //safety
+//    size_t i = 0; //index
+//    while(i <= w && k1.m_nMatching[i] == k2.m_nMatching[i]) i++; //skip equal entries
+//    return i > w; //should be nothing else 
+//  } //if
+//
+//  return false;
+//} //operator==
