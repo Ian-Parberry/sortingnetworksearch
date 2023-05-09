@@ -4,7 +4,14 @@
 \anchor section1
 # 1. Introduction
 
-This sorting network backtracking tool, 
+A _comparator network_ consists of a fixed number of _channels_ that carry
+scalar values from some strongly ordered set (usually integers or floating point
+numbers), and _comparators_ that connect pairs of channels, swapping the values on
+the channels if they are not in a desired order. Comparator networks that sort
+all inputs are called _sorting networks_. See the 
+[Wikipedia page](https://en.wikipedia.org/wiki/Sorting_network) for more information.
+
+This sorting network backtracking code, 
 the source code of which is 
 written and maintained by
 [Ian Parberry](https://ianparberry.com), can
@@ -16,20 +23,44 @@ export the image to a file in bitmap or vector graphic formats.
 
 This code implements the algorithm from
 
-> I. Parberry, "A computer assisted optimal depth lower bound for nine-input sorting networks", Proceedings of Supercomputing '89, pp. 152-161, 1989.
->
 > I. Parberry, "A computer assisted optimal depth lower bound for nine-input sorting networks",  _Mathematical Systems Theory_, Vol. 24, pp. 101-116, 1991.
+
+A preliminary version of this paper appeared in
+
+> I. Parberry, "A computer assisted optimal depth lower bound for nine-input sorting networks", Proceedings of Supercomputing '89, pp. 152-161, 1989.
 
 A free PDF version can be found at
 [https://ianparberry.com/pubs/9-input.pdf](https://ianparberry.com/pubs/9-input.pdf).
 It will henceforth be referred to in this documentation as
 [the paper](https://ianparberry.com/pubs/9-input.pdf).
 
+Over a quarter of a century later, these results were cleverly expanded up to 20 inputs
+using a SAT solver in
+
+> D. Bundala, M. Codish, L. Cruz-Filipe, P. Schneider-Kamp, J. Závodný, "Optimal-depth sorting networks", _Journal of Computer and System Sciences_, Vol. 84, pp. 185-204, 2017.
+
+The original backtracking code from the 1980s has been lost to crashed floppy disks, hard
+drives and magnetic tapes. However, in the interest of completeness I have recreated it
+from [the paper](https://ianparberry.com/pubs/9-input.pdf). Any errors in this code
+do not imply errors in the original 1980s version.
+
+The remainder of this page is divided into three sections.
+\ref section2 "Section 2" gives an overview of the code.
+\ref section3 "Section 3" describes some experimental results, and
+\ref section4 "Section 4" shows how to run the code.
+
 ---
 
 \anchor section2
 # 2. Code Overview
 
+This section is divided into four subsections.
+\ref section2_1 "Section 2.1" describes how settings are shared through the code.
+\ref section2_2 "Section 2.2" gives an overview of the hierarchy of sorting network classes
+used.
+\ref section2_3 "Section 2.3" describes the multithreading classes.
+\ref section2_4 "Section 2.4" puts together the classes described in the
+previous three subsections.
 
 \anchor section2_1
 ## 2.1 Shared Settings
@@ -49,6 +80,8 @@ as shown in \ref fig1 "Fig. 1".
 \anchor fig1
 \image html hierarchy.png "Fig. 1: Annotated inheritance diagram." width=70% 
 
+Each of these will be described in a separate subsubsection below.
+
 ### 2.2.1 `CComparatorNetwork`
 
 `CComparatorNetwork` represents a comparator network, that is, a network of comparators.
@@ -58,9 +91,6 @@ danger of including _repeat comparators_ that are duplicates of comparators in t
 previous level. `CComparatorNetwork` contains code that removes repeat comparators,
 and also code for saving a comparator network to a text file in the format used by
 the [sorting network viewer](https://github.com/Ian-Parberry/sortingnetworkviewer).
-
-\anchor fig2
-\image html comparator.png "Fig. 2: A sorting network (left) and its representation as an array (right)." width=50% 
 
 ### 2.2.2 `CSortingNetwork`
 
@@ -73,9 +103,6 @@ The main functions here are `CBinaryGrayCode::Initialize()` to initialize to
 the first (all zero) binary string, and `CBinaryGrayCode::Next()` to generate
 the next binary string (which differs from the previous one in exactly one bit,
 the index of which is returned).
-
-\anchor fig3
-\image html path.png "Fig. 3: A sorting network with an input of zeros and ones (left) and the path followed by a change of a zero to a one (right)." width=55% 
 
 ### 2.2.3 `C1NF`
 
@@ -106,10 +133,7 @@ clarity uses a second representation of a level in class `CMatching`.
 `CMatching::Initialize()` generates the first matching and `CMatching::Next()`
 generates the next. The map array `CComparatorNetwork::m_nMatch`
 is kept in step by calling `CSearchable::SynchMatchingRepresentations()` after each
-new matching is generated.
-
-\anchor fig4
-\image html matching.png "Fig. 4: A sorting network (left) and its representation as an array an matchings (right)." width=50% 
+new matching is generated. 
 
 ### 2.2.5 `C2NF`
 
@@ -130,8 +154,6 @@ Function `CAutocomplete::StillSorts()` is where this happens,
 overriding the much simpler two-line `C1NF::StillSorts`.
 See [the paper](https://ianparberry.com/pubs/9-input.pdf) for more details.
 
-\anchor fig5
-\image html autocomplete.png "Fig. 5: A sorting network with an input of zeros and ones (left) and the autocompleted path followed by a change of a zero to a one (right)." width=55% 
 
 ### 2.2.7 `CNearsort`
 
@@ -198,16 +220,42 @@ the reader function `CThreadManager::GetCount()`.
 \anchor section3
 # 3. Experimental Results
 
+The following experiments were run on an
+Intel&reg; Core&trade; i9-7980XE CPU @ 2.60GHz
+running Windows 11.
+
 Proving that there are no
 9-input sorting networks of depth 6 took 
-1.75 seconds elapsed time consisting of 48 seconds CPU time over 35 threads.
+1.75 seconds elapsed time consisting of 48 seconds CPU time over 35 threads,
+without using the new nearsort2 heuristic.
+Considering that the original computation in the 1980s described in
+[the paper](https://ianparberry.com/pubs/9-input.pdf)
+took over 200 hours of CRAY 2 time, this implies that my desktop computer
+is over 400,000 times faster than a 1980s supercomputer.
+
 Proving that there are no
 11-input sorting networks of depth 7 using the new nearsort2 heuristic took
 2 days, 19 hr, 21 min sec elapsed time consisting of 
-88 days, 14 hr, 25 min CPU time over 35 threads.
-All experiments were run on an
-Intel&reg; Core&trade; i9-7980XE CPU @ 2.60GHz
-running Windows 11.
+88 days, 14 hr, 25 min CPU time over 35 threads  using the new nearsort2 heuristic.
+
+---
+
+\anchor section4
+# 4. Using the Code
+
+This project compiles into a console program that prompts the user
+for the number of inputs, the depth, and whether the new nearsort2
+heuristic should be used. It reports the number of sorting networks found,
+the elapsed time, and the amount of CPU time summed over all threads
+(see \ref fig2 "Fig. 2").
+It also appends this data to a text file `log.txt`. A new text file
+`level2-x.txt`, where `x` is the number of channels, is created
+listing the level 2 candidate matchings.
+
+
+\anchor fig2
+\image html sshot.png "Fig. 2: Console screen shot." width=50% 
+
 
 
 **/

@@ -137,7 +137,7 @@ void CNearsort2::Process(){
 
     while(unfinished){
       CNearsort::Process();
-      unfinished = m_nMatching[m_nDepth - 3].Next(); 
+      unfinished = m_cMatching[m_nDepth - 3].Next(); 
       if(unfinished)
         SynchMatchingRepresentations(m_nDepth - 3);
     } //while

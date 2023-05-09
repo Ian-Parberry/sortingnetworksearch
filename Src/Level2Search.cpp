@@ -30,10 +30,6 @@
 #include "Level2Search.h"
 
 /// Perform a search for level 2 matchings and store them in lexicographic
-/// order in `m_stlResults`. Print information to the console and the log file.
-
-
-/// Perform a search for level 2 matchings and store them in lexicographic
 /// order in m_stlResults. Print information to the console and the log file.
 
 CLevel2Search::CLevel2Search(){

@@ -28,9 +28,7 @@
 
 #include "ThreadManager.h"
 
-/// Default constructor. All this does is call the `CBaseThreadManager`
-/// default constructor. If you have any initialization code, then it should
-/// go here.
+/// Default constructor.
 
 CThreadManager::CThreadManager(): CBaseThreadManager(){
 } //constructor
@@ -44,8 +42,7 @@ void CThreadManager::ProcessTask(CTask* pTask){
     m_nCount += pTask->GetCount();
 } //ProcessTask
 
-/// Reader function for the count, that is, the number of sorting networks
-/// found.
+/// Reader function for `m_nCount`, the number of sorting networks found.
 /// \return The count.
 
 const size_t CThreadManager::GetCount() const{

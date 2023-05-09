@@ -41,26 +41,6 @@ CComparatorNetwork::CComparatorNetwork(){
 
 CComparatorNetwork::~CComparatorNetwork(){
 } //destructor
- 
-/// Remove any comparators that duplicate a comparator on the
-/// previous level.
-/// \return Number of comparators after redundant ones have been removed.
-
-size_t CComparatorNetwork::RemoveRepeatedComparators(){
-  size_t count = 2*(m_nWidth/2); //number of comparators
-
-  for(size_t i=0; i<m_nDepth; i++) //for each level
-    for(size_t j=0; j<m_nWidth; j++) //for each channel
-      m_bRedundant[i][j] = false;
-
-  for(size_t i=1; i<m_nDepth; i++) //for each level except the top one
-    for(size_t j=0; j<m_nWidth; j++) //for each channel
-      if((m_nComparator[i][j] == m_nComparator[i-1][j]) && !m_bRedundant[i][j]) //if channel connected to same one in previous level
-        m_bRedundant[i][j] = true;  //remove connection
-      else if(m_nComparator[i][j] != j)count++;
-
-  return count/2; //everything gets counted twice
-} //RemoveRepeatedComparators
 
 /// Save comparator network to a text file.
 /// \param fname File name string.
@@ -71,9 +51,9 @@ void CComparatorNetwork::Save(const std::string& fname){
   if(output.is_open()){ //file opened correctly
     for(size_t i=0; i<m_nDepth; i++){ //for each level
       for(size_t j=0; j<m_nWidth; j++){ //for each channel
-        const size_t k = m_nComparator[i][j]; //comparator between channels j, k at level i
+        const size_t k = m_nComparator[i][j]; //between channels j, k at level i
         
-        if(!m_bRedundant[i][j] && k > j) //not redundant and not already printed
+        if(k > j) //not already printed
           output << j << " " << k << " "; //print comparator
       } //for
 

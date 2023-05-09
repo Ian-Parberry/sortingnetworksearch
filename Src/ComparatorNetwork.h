@@ -46,9 +46,6 @@
 class CComparatorNetwork: public CSettings{
   protected: 
     size_t m_nComparator[MAXDEPTH][MAXINPUTS] = {0}; ///< Comparator array.
-    bool m_bRedundant[MAXDEPTH][MAXINPUTS] = {false}; ///< True if comparator is redundant.
-    
-    size_t RemoveRepeatedComparators(); ///< Remove redundant comparators and return size.
 
   public: 
     CComparatorNetwork(); ///< Constructor.

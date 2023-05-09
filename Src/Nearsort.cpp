@@ -138,7 +138,7 @@ void CNearsort::Process(){
 
     while(unfinished){
       CSearchable::Process();
-      unfinished = m_nMatching[m_nDepth - 2].Next();   
+      unfinished = m_cMatching[m_nDepth - 2].Next();   
 
       if(unfinished)SynchMatchingRepresentations(m_nDepth - 2);
     } //while

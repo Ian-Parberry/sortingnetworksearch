@@ -95,14 +95,14 @@ void CSearchable::FirstComparatorNetwork(size_t toplevel){
     InitMatchingRepresentations(i); //initialize both matching representations
 } //FirstComparatorNetwork
 
-/// Synchronize m_nComparator to m_nMatching at a given level. The latter is 
+/// Synchronize m_nComparator to m_cMatching at a given level. The latter is 
 /// assumed to be correct.
 /// \param level The level at which to synchronize matchings.
 
 void CSearchable::SynchMatchingRepresentations(size_t level){
   for(size_t j=0; j<m_nWidth; j+=2){ //for each pair of channels
-    size_t x = m_nMatching[level][j]; //channel at left end of comparator
-    size_t y = m_nMatching[level][j + 1]; //channel at the other end
+    size_t x = m_cMatching[level][j]; //channel at left end of comparator
+    size_t y = m_cMatching[level][j + 1]; //channel at the other end
 
     if(y == m_nWidth) //if the rightmost channel is the last one in a comparator network with an odd number of inputs
       m_nComparator[level][x] = x; //it's empty
@@ -114,11 +114,11 @@ void CSearchable::SynchMatchingRepresentations(size_t level){
   } //for
 } //SynchMatchingRepresentations
 
-/// Initialize m_nComparator and m_nMatching to the first matching at a given level.
+/// Initialize m_nComparator and m_cMatching to the first matching at a given level.
 /// \param level The level at which to initialize matchings.
 
 void CSearchable::InitMatchingRepresentations(size_t level){
-  m_nMatching[level].Initialize();  //initialize the generatable form
+  m_cMatching[level].Initialize();  //initialize the generatable form
   m_nStack[level] = 0; //and its stack
 
   for(size_t j=0; j<m_nWidth; j++) //initialize the testable form
@@ -137,7 +137,7 @@ bool CSearchable::NextComparatorNetwork(){
 
   m_nStack[m_nToS]++;
 
-  if(m_nMatching[m_nToS].Next())
+  if(m_cMatching[m_nToS].Next())
     SynchMatchingRepresentations(m_nToS);
 
   while((m_nToS >= m_nTop) && (m_nStack[m_nToS] == m_nNumMatchings)){
@@ -146,7 +146,7 @@ bool CSearchable::NextComparatorNetwork(){
     if(--m_nToS >= m_nTop){
       m_nStack[m_nToS]++;
 
-      if(m_nStack[m_nToS] < m_nNumMatchings && m_nMatching[m_nToS].Next())
+      if(m_nStack[m_nToS] < m_nNumMatchings && m_cMatching[m_nToS].Next())
         SynchMatchingRepresentations(m_nToS);
     } //if
   } //while

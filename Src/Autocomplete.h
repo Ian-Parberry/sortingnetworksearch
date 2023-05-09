@@ -32,6 +32,11 @@
 ///
 /// A searchable second normal form sorting network that tries to autocomplete
 /// the last level instead of iterating through all possibilities.
+/// The image below shows a sorting network with an input of zeros and ones
+/// (left) and the autocompleted path followed by a change of a zero to a one
+/// (right)."
+/// \image html autocomplete.png width=55% 
+
 
 class CAutocomplete: public C2NF{
   protected:  

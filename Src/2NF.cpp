@@ -38,14 +38,14 @@ C2NF::C2NF(CMatching& L2Matching, const size_t index):
   InitMatchingRepresentations(0); //the level 1 matching is the identity
 
   for(int j=0; j<m_nWidth; j++)
-    m_nMatching[1][j] = L2Matching[j]; //install second level candidate
+    m_cMatching[1][j] = L2Matching[j]; //install second level candidate
 } //constructor
 
 /// Initialize and then start a backtracking search for all sorting networks
 /// in Second Normal Form of given width and depth.
 
 void C2NF::Backtrack(){ 
-  if(odd(m_nWidth))m_nMatching[1][m_nWidth] = m_nWidth; 
+  if(odd(m_nWidth))m_cMatching[1][m_nWidth] = m_nWidth; 
   SynchMatchingRepresentations(1); //synch representation for testing
   FirstComparatorNetwork(2); //initialize from there down
   Search(); //begin actual search

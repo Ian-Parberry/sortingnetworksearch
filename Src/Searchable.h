@@ -40,7 +40,7 @@ class CSearchable: public C1NF{
   protected:  
     size_t m_nCount = 0; ///< Number of comparator networks found that sort.
 
-    CMatching m_nMatching[MAXDEPTH]; ///< Matchings that make up comparator network in a form that makes searching faster. 
+    CMatching m_cMatching[MAXDEPTH]; ///< Matchings that make up comparator network in a form that makes searching faster. 
 
     int m_nStack[MAXDEPTH] = {0}; ///< Stack to remove recursion from search.
     int m_nToS = 0; ///< Top of stack.
