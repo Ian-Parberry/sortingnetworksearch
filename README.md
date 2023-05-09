@@ -11,7 +11,7 @@ for documentation.
 
 ## Requirements
 
-Windows 10 and Visual C++.
+Windows and Visual C++.
 This code has been tested with Visual Studio 2022 Community under Windows 11.
 
 ## License
