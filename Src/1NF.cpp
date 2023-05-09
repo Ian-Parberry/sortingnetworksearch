@@ -32,7 +32,8 @@
 /// identity matching, which places comparators between channels 0 and 1,
 /// 2 and 3, 4 and 5, etc.
 
-C1NF::C1NF(){
+C1NF::C1NF(): CSortingNetwork(){
+  delete m_pGrayCode;
   m_pGrayCode = new CTernaryGrayCode;
 
   const size_t n = evenfloor(m_nWidth); 
@@ -58,7 +59,7 @@ void C1NF::Initialize(){
 /// \return true if it still sorts when channel is flipped.
 
 bool C1NF::StillSorts(const size_t delta){
-  const size_t nTarget = GetTarget(delta, 1); //target before flipping
+  const size_t nTarget = m_nValue[1][delta]? m_nZeros: m_nZeros - 1;
   return FlipInput(delta, 1, m_nDepth - 1) == nTarget;
 } //StillSorts
 

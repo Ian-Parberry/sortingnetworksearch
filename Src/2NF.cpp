@@ -58,12 +58,12 @@ void C2NF::Backtrack(){
 /// sorting network found with that second level, would be saved to file 
 /// `w8d5x99n20.txt`.
 
-void C2NF::SaveGeneratedSortingNetwork(){
+void C2NF::Save(){
   std::string filename = //construct file name
     "w" + std::to_string(m_nWidth) + 
     "d" + std::to_string(m_nDepth) +
     "x" + std::to_string(m_nLevel2Index) +
     "n" + std::to_string(m_nCount) + ".txt"; 
 
-  Save(filename); //save to file with that name
-} //SaveGeneratedSortingNetwork
+  CComparatorNetwork::Save(filename); //save to file with that name
+} //Save

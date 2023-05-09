@@ -268,9 +268,27 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a6bdd1a60968afb5aded68f59c5a06f62 inherit pro_static_attribs_class_c_settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A first normal form sorting network that takes its second level from a generator that provides second level candidates unique up to symmetry. </p>
+<div class="textblock"><p >A first normal form sorting network that takes its second level from a generator that provides second level candidates unique up to symmetry. Consider the sorting network in the figure below (left). We can construct a new sorting network by swapping the pair of green channels with the pair of blue channels. The resulting sorting network on the right has both the min-max comparators that we have used so far (which put the maximum on the bottom channel and the minimum on the top channel), and max-min comparators, which put the maximum on the top channel and the minimum on the bottom channel. See also <code>C1NF1</code>. In the figure below (right) the arrows on the comparators point in the direction taken by the maximum. Notice that we have created four max-min comparators and a twist at the end of the channel to keep the outputs in sorted order. </p><div class="image">
+<img src="2NFa.png" alt="" width="60%"/>
+</div>
+<p> We flip the first max-min comparator and the green and blue channels to the right of it (below, left) and make the corresponding twist at the end (below, right). </p><div class="image">
+<img src="2NFb.png" alt="" width="60%"/>
+</div>
+<p> We flip the second max-min comparator and the green and blue channels to the right of it (below, left) and make the corresponding twist at the end (below, right). </p><div class="image">
+<img src="2NFc.png" alt="" width="60%"/>
+</div>
+<p> We flip the third max-min comparator and the green and blue channels to the right of it (below, left) and make the corresponding twist at the end (below, right). </p><div class="image">
+<img src="2NFd.png" alt="" width="60%"/>
+</div>
+<p> We flip the fourth max-min comparator and the green and blue channels to the right of it (below, left) and make the corresponding twist at the end (below, right). Notice that the twists have cancelled out leaving us with a new sorting network that has a different second level than the one we started with. </p><div class="image">
+<img src="2NFe.png" alt="" width="60%"/>
+</div>
+<p> Our search therefore needs to include only one of the second level candidates that can be obtained by permuting pairs of channels. In our example above, only one of the two second levels in the figure below need appear in the search. Notice that the comparator networks remain in first normal form (see <code><a class="el" href="class_c1_n_f.html" title="Sorting network in first normal form.">C1NF</a></code>). </p><div class="image">
+<img src="2NFf.png" alt="" width="25%"/>
+</div>
+<p> This speeds up the search by not having to iterate through all possibilities for the second level. </p>
 
-<p class="definition">Definition at line <a class="el" href="2_n_f_8h_source.html#l00037">37</a> of file <a class="el" href="2_n_f_8h_source.html">2NF.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="2_n_f_8h_source.html#l00074">74</a> of file <a class="el" href="2_n_f_8h_source.html">2NF.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8374f3e26f05067eea08549c513bac8e" name="a8374f3e26f05067eea08549c513bac8e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8374f3e26f05067eea08549c513bac8e">&#9670;&nbsp;</a></span>C2NF()</h2>
@@ -391,7 +409,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="2_n_f_8h_source.html#l00040">40</a> of file <a class="el" href="2_n_f_8h_source.html">2NF.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="2_n_f_8h_source.html#l00077">77</a> of file <a class="el" href="2_n_f_8h_source.html">2NF.h</a>.</p>
 
 </div>
 </div>
@@ -415,14 +433,14 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="2_n_f_8h_source.html#l00039">39</a> of file <a class="el" href="2_n_f_8h_source.html">2NF.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="2_n_f_8h_source.html#l00076">76</a> of file <a class="el" href="2_n_f_8h_source.html">2NF.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 8 2023 11:28:33 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Tue May 9 2023 12:22:52 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>

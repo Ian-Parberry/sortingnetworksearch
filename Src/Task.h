@@ -43,7 +43,7 @@ class CTask: public CBaseTask{
     CTask(CSearchable*); ///< Default constructor.
 
     virtual void Perform(); ///< Perform the task.
-    const size_t GetCount() const; ///< Get count.
+    size_t GetCount(); ///< Get count.
 }; //CTask
 
 #endif //__Task_h__

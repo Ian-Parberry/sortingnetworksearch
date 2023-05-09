@@ -193,10 +193,16 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a6bdd1a60968afb5aded68f59c5a06f62 inherit pro_static_attribs_class_c_settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A <em>first normal form</em> sorting network has comparators in the first level between channels 0-1, 2-3, 4-5, etc. If there exists an \(n\)-input sorting network of depth \(d\), then there exists an \(n\)-input sorting network of depth \(d\) that is in first normal form (see <a href="https://ianparberry.com/pubs/9-input.pdf">the paper</a>). Restricting the search to sorting networks in first normal form therefore does us no harm, and it speeds up the search by not having to iterate through all possibilities for the first level, and it speeds up the sorting test since we need only test ternary Gray code strings instead of binary. These are generated using an instance of <code><a class="el" href="class_c_ternary_gray_code.html" title="Ternary reflected Gray code generator.">CTernaryGrayCode</a></code> instead of an instance of <code><a class="el" href="class_c_binary_gray_code.html" title="Binary reflected Gray code generator.">CBinaryGrayCode</a></code>. <br  />
+<div class="textblock"><p >A <em>first normal form</em> sorting network has comparators in the first level between channels 0-1, 2-3, 4-5, etc. If there exists an \(n\)-input sorting network of depth \(d\), then there exists an \(n\)-input sorting network of depth \(d\) that is in first normal form. For example, the sorting network in the figure below (left) is not in first normal form. We swap the green and blue channels to get the sorting network on the right, which has both the min-max comparators that we have used so far (which put the maximum on the bottom channel and the minimum on the top channel), and max-min comparators, which put the maximum on the top channel and the minimum on the bottom channel. In the figure below (right) the arrows on the comparators point in the direction taken by the maximum. Notice that we have created a single max-min comparator (shown in red) and a twist at the end of the channel to keep the outputs in sorted order. </p><div class="image">
+<img src="1NFa.png" alt="" width="60%"/>
+</div>
+<p> Next, as shown in the figure below (left) we flip the max-min comparator by swapping the channels to its right shown in green and blue, and introducing the corresponding twist at the end. This will undo the twist from the first step. In general there may be more than two steps but the twists will always cancel out as in this example. The resulting sorting network below (right) is in first normal form. </p><div class="image">
+<img src="1NFb.png" alt="" width="60%"/>
+</div>
+<p> Restricting the search to sorting networks in first normal form therefore does us no harm, and it speeds up the search by not having to iterate through all possibilities for the first level. In addition, it speeds up the sorting test since we need only test ternary Gray code strings (00, 01, and 11 as inputs to pairs of channels) instead of binary Gray code strings. These are generated using an instance of <code><a class="el" href="class_c_ternary_gray_code.html" title="Ternary reflected Gray code generator.">CTernaryGrayCode</a></code> instead of the instance of <code><a class="el" href="class_c_binary_gray_code.html" title="Binary reflected Gray code generator.">CBinaryGrayCode</a></code>. <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="1_n_f_8h_source.html#l00045">45</a> of file <a class="el" href="1_n_f_8h_source.html">1NF.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="1_n_f_8h_source.html#l00062">62</a> of file <a class="el" href="1_n_f_8h_source.html">1NF.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abea14a328c9b7c888fb5e6af427bc80a" name="abea14a328c9b7c888fb5e6af427bc80a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abea14a328c9b7c888fb5e6af427bc80a">&#9670;&nbsp;</a></span>C1NF()</h2>
@@ -353,7 +359,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 8 2023 11:28:33 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Tue May 9 2023 12:22:52 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>

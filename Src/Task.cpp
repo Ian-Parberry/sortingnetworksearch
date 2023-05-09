@@ -46,8 +46,8 @@ void CTask::Perform(){
 /// Reader function for the number of sorting networks found.
 /// \return The count.
 
-const size_t CTask::GetCount() const{
-  if(m_pSearch)
-    return m_pSearch->GetCount();
-  else return 0;
+size_t CTask::GetCount(){
+  const size_t nCount = m_pSearch? m_pSearch->GetCount(): 0;
+  delete m_pSearch;
+  return nCount;
 } //GetCount

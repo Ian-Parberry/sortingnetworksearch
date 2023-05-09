@@ -54,7 +54,6 @@ class CSortingNetwork: public CComparatorNetwork{
 
     virtual bool StillSorts(const size_t); ///< Does it still sort when a bit is changed?
 
-    const size_t GetTarget(const size_t, const size_t) const; ///< Get output channel.
     size_t FlipInput(size_t, const size_t, const size_t); ///< Recompute network values when a bit is changed.
     void InitValues(const size_t, const size_t); ///< Initialize the network values to the all zero input.
 
