@@ -1,7 +1,7 @@
 # Backtracking for Small Sorting Networks
 
 <p align="center">
-  <img src="logo.png" width="300" title="logo">
+  <img src="logo.png" width="150" title="logo">
 </p>
 
 The source code for this sorting network backtracking search is written and maintained by
