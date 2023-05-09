@@ -53,7 +53,7 @@ class CSearchable: public C1NF{
     void SynchMatchingRepresentations(size_t); ///< Synchronize the two different matching representations.
     void InitMatchingRepresentations(size_t); ///< Initialize the two different matching representations.
 
-    virtual void SaveGeneratedSortingNetwork(); ///< Save comparator network.
+    virtual void Save(); ///< Save comparator network.
     virtual void SetToS(); ///< Set top of stack.
     virtual void Process(); ///< Process a candidate comparator network.
 

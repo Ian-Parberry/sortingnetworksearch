@@ -36,6 +36,11 @@ CComparatorNetwork::CComparatorNetwork(){
     for(size_t j=0; j<m_nWidth; j++) //for each channel
       m_nComparator[i][j] = j; //connected to self means no comparator
 } //constructor
+
+/// Virtual destructor.
+
+CComparatorNetwork::~CComparatorNetwork(){
+} //destructor
  
 /// Remove any comparators that duplicate a comparator on the
 /// previous level.

@@ -93,7 +93,7 @@ bool CNearsort::Nearsorts(){
 /// \return true if it still nearsorts when channel is flipped.
 
 bool CNearsort::StillNearsorts(const size_t delta){
-  size_t k = GetTarget(delta, 1); //destination channel 
+  size_t k = m_nValue[1][delta]? m_nZeros: m_nZeros - 1; //destination channel 
   size_t j = FlipInput(delta, 1, m_nDepth - 3); //source channel into level d-2
   
   if(j == k)return true; //self

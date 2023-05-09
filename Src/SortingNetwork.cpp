@@ -27,7 +27,7 @@
 
 /// Create a binary Gray code generator.
 
-CSortingNetwork::CSortingNetwork(){
+CSortingNetwork::CSortingNetwork(): CComparatorNetwork(){
   m_pGrayCode = new CBinaryGrayCode;
 } //constructor
 
@@ -57,7 +57,16 @@ void CSortingNetwork::Initialize(){
   m_nZeros = m_nWidth - 1; //all zeros
 } //initialize
 
-/// Flip value and propagate down the comparator network.
+/// Flip bit and propagate down the comparator network. Note that when a
+/// bit is flipped at a certain level, exactly one bit is changed at subsequent
+/// levels following a path to the outputs. An example is shown in the following
+/// figure.
+/// \image html path.png width=60%
+/// On the left we see a 6-input sorting network of depth 5 on input
+/// \f$1, 1, 1, 0, 0, 0\f$. The output is in ascending order from top to bottom.
+/// On the right we see what happens when we flip the second-from-last input
+/// from a 0 to a 1. That change follows a path from the input channel to the
+/// channel formerly carrying the last 0, shown in red.
 /// \param j Flip value in this channel.
 /// \param first Flip value starting at this level.
 /// \param last Propagate change down to this level.
@@ -88,21 +97,17 @@ size_t CSortingNetwork::FlipInput(size_t j, const size_t first, const size_t las
 /// \param j Input level.
 /// \return Index of output channel whose value is flipped.
 
-const size_t CSortingNetwork::GetTarget(const size_t delta, const size_t j) const{
-  size_t nTarget = m_nZeros;
+//const size_t CSortingNetwork::GetTarget(const size_t delta, const size_t j) const{
+//  return m_nValue[j][delta]? m_nZeros: m_nZeros - 1;
+//} //GetTarget
 
-  if(m_nValue[j][delta] == 0) //a zero to be flipped to a 1
-    nTarget--;
-
-  return nTarget;
-} //GetTarget
-
-/// Check whether sorting network sorts when the current input has channel flipped.
+/// Check whether sorting network sorts when the input value on a given
+/// channel is flipped.
 /// \param delta Index of channel to flip.
 /// \return true if it still sorts when channel is flipped.
 
 bool CSortingNetwork::StillSorts(const size_t delta){
-  const size_t nTarget = GetTarget(delta, 0); //target before flipping
+  const size_t nTarget = m_nValue[0][delta]? m_nZeros: m_nZeros - 1;
   return FlipInput(delta, 0, m_nDepth - 1) == nTarget;
 } //StillSorts
 

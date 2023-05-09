@@ -92,7 +92,7 @@ bool CNearsort2::Nearsorts2(){
 /// \return true if it still nearsorts2 when channel is flipped.
 
 bool CNearsort2::StillNearsorts2(const size_t delta){
-  size_t k = GetTarget(delta, 1); //destination channel  
+  size_t k = m_nValue[1][delta]? m_nZeros: m_nZeros - 1; //destination channel  
   const size_t j = FlipInput(delta, 1, m_nDepth - 4);
   
   if(j == k)return true; //self

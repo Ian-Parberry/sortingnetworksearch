@@ -39,14 +39,14 @@ CSearchable::CSearchable(): C1NF(){
 /// depth 5 that is the 20th sorting network found would be saved to file 
 /// `w8d5n20.txt`.
 
-void CSearchable::SaveGeneratedSortingNetwork(){
+void CSearchable::Save(){
   std::string filename = 
     "w" + std::to_string(m_nWidth) + 
     "d" + std::to_string(m_nDepth) +
     "n" + std::to_string(m_nCount) + ".txt"; 
 
-  Save(filename); //save to file with that name
-} //SaveGeneratedSortingNetwork
+  CComparatorNetwork::Save(filename); //save to file with that name
+} //Save
 
 /// Set top of stack `m_nToS` to the last level of the sorting network.
 
@@ -59,7 +59,7 @@ void CSearchable::SetToS(){
 
 void CSearchable::Process(){
   if(Sorts()){ //if it sorts
-    SaveGeneratedSortingNetwork(); //save it
+    Save(); //save it
     m_nCount++; //add 1 to the total
   } //if
 } //Process

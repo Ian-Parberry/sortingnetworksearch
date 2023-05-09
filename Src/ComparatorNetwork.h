@@ -52,6 +52,8 @@ class CComparatorNetwork: public CSettings{
 
   public: 
     CComparatorNetwork(); ///< Constructor.
+    virtual ~CComparatorNetwork(); ///< Destructor.
+
     void Save(const std::string&); ///< Save to file.
 }; //CComparatorNetwork
 
