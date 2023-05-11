@@ -102,6 +102,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9038f50e9042355e4cd63f4769e69e33"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_binary_gray_code.html#a9038f50e9042355e4cd63f4769e69e33">Next</a> ()</td></tr>
 <tr class="memdesc:a9038f50e9042355e4cd63f4769e69e33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next code word.  <a href="class_c_binary_gray_code.html#a9038f50e9042355e4cd63f4769e69e33">More...</a><br /></td></tr>
 <tr class="separator:a9038f50e9042355e4cd63f4769e69e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fc2d1a82cd19038ced799e9de5ec12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_binary_gray_code.html#a8fc2d1a82cd19038ced799e9de5ec12f">Print</a> ()</td></tr>
+<tr class="memdesc:a8fc2d1a82cd19038ced799e9de5ec12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug print.  <a href="class_c_binary_gray_code.html#a8fc2d1a82cd19038ced799e9de5ec12f">More...</a><br /></td></tr>
+<tr class="separator:a8fc2d1a82cd19038ced799e9de5ec12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -130,13 +133,30 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a6bdd1a60968afb5aded68f59c5a06f62 inherit pro_static_attribs_class_c_settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A binary Gray code generates all strings of a fixed number of bits in such a way that each string differs from the previous one in exactly one bit. This class implements a nonrecursive version of the binary reflected Gray code generation algorithm from the following paper:</p>
+<div class="textblock"><p >A binary Gray code generates all strings of a fixed number of bits in such a way that each string differs from the previous one in exactly one bit. For example, the following is a binary reflected Gray code on 4 bits with each bit string followed by the index of the changed bit (from right to left starting at zero).</p>
+<div class="fragment"><div class="line">0000</div>
+<div class="line">0001 0</div>
+<div class="line">0011 1</div>
+<div class="line">0010 0</div>
+<div class="line">0110 2</div>
+<div class="line">0111 0</div>
+<div class="line">0101 1</div>
+<div class="line">0100 0</div>
+<div class="line">1100 3</div>
+<div class="line">1101 0</div>
+<div class="line">1111 1</div>
+<div class="line">1110 0</div>
+<div class="line">1010 2</div>
+<div class="line">1011 0</div>
+<div class="line">1001 1</div>
+<div class="line">1000 0</div>
+</div><!-- fragment --><p >This class implements a nonrecursive version of the binary reflected Gray code generation algorithm from the following paper:</p>
 <blockquote class="doxtable">
 <p >&zwj;Bitner, Ehrlich, and Reingold, "Efficient generation of the Binary
 Reflected Gray Code and its applications", <em>Communications of the ACM</em>, Vol. 19, No. 9, pp 517-521, 1976. </p>
 </blockquote>
 
-<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8h_source.html#l00043">43</a> of file <a class="el" href="_binary_gray_code_8h_source.html">BinaryGrayCode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8h_source.html#l00066">66</a> of file <a class="el" href="_binary_gray_code_8h_source.html">BinaryGrayCode.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ac6f007e21ec85e5226298ba600b1cd2e" name="ac6f007e21ec85e5226298ba600b1cd2e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac6f007e21ec85e5226298ba600b1cd2e">&#9670;&nbsp;</a></span>Initialize()</h2>
@@ -164,7 +184,7 @@ Reflected Gray Code and its applications", <em>Communications of the ACM</em>, V
 
 <p>Reimplemented in <a class="el" href="class_c_ternary_gray_code.html#a91ae2a38c3264db2c884d3b142de31d6">CTernaryGrayCode</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8cpp_source.html#l00031">31</a> of file <a class="el" href="_binary_gray_code_8cpp_source.html">BinaryGrayCode.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8cpp_source.html#l00033">33</a> of file <a class="el" href="_binary_gray_code_8cpp_source.html">BinaryGrayCode.cpp</a>.</p>
 
 </div>
 </div>
@@ -194,7 +214,27 @@ Reflected Gray Code and its applications", <em>Communications of the ACM</em>, V
 
 <p>Reimplemented in <a class="el" href="class_c_ternary_gray_code.html#adcf587178dec76cf9e165851fcf0cdcc">CTernaryGrayCode</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8cpp_source.html#l00043">43</a> of file <a class="el" href="_binary_gray_code_8cpp_source.html">BinaryGrayCode.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8cpp_source.html#l00045">45</a> of file <a class="el" href="_binary_gray_code_8cpp_source.html">BinaryGrayCode.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a8fc2d1a82cd19038ced799e9de5ec12f" name="a8fc2d1a82cd19038ced799e9de5ec12f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fc2d1a82cd19038ced799e9de5ec12f">&#9670;&nbsp;</a></span>Print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBinaryGrayCode::Print </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Print to the console a sequence of Gray code changes, that is, the index of the bit that flips to get the next binary string. </p>
+
+<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8cpp_source.html#l00059">59</a> of file <a class="el" href="_binary_gray_code_8cpp_source.html">BinaryGrayCode.cpp</a>.</p>
 
 </div>
 </div>
@@ -219,7 +259,7 @@ Reflected Gray Code and its applications", <em>Communications of the ACM</em>, V
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8h_source.html#l00045">45</a> of file <a class="el" href="_binary_gray_code_8h_source.html">BinaryGrayCode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8h_source.html#l00068">68</a> of file <a class="el" href="_binary_gray_code_8h_source.html">BinaryGrayCode.h</a>.</p>
 
 </div>
 </div>
@@ -243,14 +283,14 @@ Reflected Gray Code and its applications", <em>Communications of the ACM</em>, V
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8h_source.html#l00046">46</a> of file <a class="el" href="_binary_gray_code_8h_source.html">BinaryGrayCode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_binary_gray_code_8h_source.html#l00069">69</a> of file <a class="el" href="_binary_gray_code_8h_source.html">BinaryGrayCode.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 9 2023 16:18:10 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Wed May 10 2023 20:18:41 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>

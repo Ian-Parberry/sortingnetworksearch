@@ -42,6 +42,8 @@
 #include "Task.h"
 #include "Timer.h"
 
+#include "TernaryGrayCode.h"
+
 /// \brief Get `size_t` from input.
 ///
 /// Print a banner and read a value of type `size_t`.

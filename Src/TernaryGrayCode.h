@@ -36,7 +36,28 @@
 /// A ternary Gray code generates all strings of \f$n\f$ bits in such a way
 /// that it is made up of the following bit pairs: 00 01 11, with an additional 
 /// single bit if \f$n\f$ is odd, and each string differs from the previous one
-/// in exactly one bit. This class implements a nonrecursive version of the
+/// in exactly one bit. For example, the following is the ternary reflected
+/// Gray code on 4 bits, with the ternary version followed by the binary
+/// equivalent, then by the index of the changed bit (from right to left 
+/// starting at zero). The ternary digit 0 corresponds to the binary
+/// string 00, the ternary digit 1 corresponds to 10, and the ternary digit
+/// 2 corresponds to 11. There is no need for the bit pair 01 since each bit
+/// pair is input into a comparator on the first level of a first normal form
+/// comparator network.
+/// 
+/// \code
+/// 00 0000
+/// 01 0010 1
+/// 02 0011 0
+/// 12 1011 3
+/// 11 1010 0
+/// 10 1000 1
+/// 20 1100 2
+/// 21 1101 1
+/// 22 1111 0
+/// \endcode
+/// 
+/// This class implements a nonrecursive version of the
 /// algorithm from [the paper](https://ianparberry.com/pubs/9-input.pdf).
 
 class CTernaryGrayCode: public CBinaryGrayCode{

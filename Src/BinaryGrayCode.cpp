@@ -23,6 +23,8 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
+#include <iostream>
+
 #include "BinaryGrayCode.h"
 
 /// Reset Gray code generator to the first word in Gray code order, which is
@@ -50,3 +52,16 @@ size_t CBinaryGrayCode::Next(){
 
   return i - 1; //return bit changed
 } //Next
+
+/// Print to the console a sequence of Gray code changes, that is, the
+/// index of the bit that flips to get the next binary string.
+
+void CBinaryGrayCode::Print(){
+  Initialize();
+  size_t i = Next(); //current index
+
+  while(i < m_nWidth){ //while not finished
+    std::cout << i << std::endl;
+    i = Next(); //next index
+  } //while
+} //Print
