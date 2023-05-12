@@ -31,15 +31,39 @@
 #include "Defines.h"
 #include "Settings.h"
 
+#define NEWMATCHING
+
+class CComparator: public CSettings{
+  protected:
+    size_t m_nMatch[MAXINPUTS + 1] = {0}; ///< Comparator array.
+
+  public:
+    CComparator(); ///< Constructor.
+
+    void MakeIdentity(); ///< Nake the identity.
+    void MakeEmpty(); ///< Make empty.
+
+    const size_t GetMatch(const size_t) const; ///< Get match.
+    void SetMatch(const size_t, const size_t); ///, Set math.
+}; //CComparator
+
+///////////////////////////////////////////////////////////////////////////////
+
 /// \brief Perfect matching.
 ///
 /// `CMatching` represents a perfect matching... well, as
 /// perfect as it can be if its size is odd.
 
+#ifdef NEWMATCHING
+class CMatching: public CComparator{
+#else
 class CMatching: public CSettings{
+#endif
   private:   
     size_t m_nMatching[MAXINPUTS + 1] = {0}; ///< Matching.
+#ifndef NEWMATCHING
     size_t m_nMap[MAXINPUTS + 1] = {0}; ///< Matching index map.
+#endif
     int m_nStack[MAXINPUTS + 1] = {0}; ///< Stack to remove recursion from permutation.
     
     void SwapPair(int[], size_t, size_t); ///< Swap pair.

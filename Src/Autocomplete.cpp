@@ -51,14 +51,28 @@ bool CAutocomplete::StillSorts(const size_t delta){
     return true; //success
 
   else{  
+
+#ifdef NEWMATCHING
+    const size_t cj = m_cComparator[m_nDepth - 1].GetMatch(j); //one end of comparator
+    const size_t ck = m_cComparator[m_nDepth - 1].GetMatch(k); //other end of comparator
+#else
     size_t& cj = m_nComparator[m_nDepth - 1][j]; //one end of comparator
     size_t& ck = m_nComparator[m_nDepth - 1][k]; //other end of comparator
+#endif
+    
 
     if(cj == k && ck == j)
       return true; //comparator already exists  
 
     else if(cj == j && ck == k){ //both channels free
-      cj = k; ck = j; //insert comparator
+      
+#ifdef NEWMATCHING
+      m_cComparator[m_nDepth - 1].SetMatch(j, k); //insert comparator
+#else
+      cj = k; 
+      ck = j; //insert comparator
+#endif
+
       return true;
     } //else if
 
@@ -81,8 +95,13 @@ void CAutocomplete::Initialize(){
 /// network to be empty, that is, containing no comparators.
 
 void CAutocomplete::initLastLevel(){
+
+#ifdef NEWMATCHING
+  m_cComparator[m_nDepth - 1].MakeEmpty();
+#else
   for(int j=0; j<m_nWidth; j++) //for each channel
     m_nComparator[m_nDepth - 1][j] = j;
+#endif
 } //initLastLevel
 
 /// Check whether sorting network sorts all inputs.

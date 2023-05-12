@@ -27,6 +27,37 @@
 
 #include "Matching.h"
 
+CComparator::CComparator(){
+  MakeEmpty();
+} //constructor
+
+/// Set to the identity matching, which places comparators between channels 
+/// 0 and 1, 2 and 3, 4 and 5, etc.
+
+void CComparator::MakeIdentity(){
+  for(size_t j=0; j<m_nWidth; j++) 
+    m_nMatch[j] = j^1;
+
+  if(odd(m_nWidth)) //empty channel if width is odd
+    m_nMatch[m_nWidth - 1] = m_nWidth - 1;
+} //MakeIdentity
+
+void CComparator::MakeEmpty(){
+  for(size_t j=0; j<m_nWidth; j++) 
+    m_nMatch[j] = j;
+} //MakeEmpty
+
+const size_t CComparator::GetMatch(const size_t index) const{
+  return m_nMatch[index];
+} //GetMatch
+
+void CComparator::SetMatch(const size_t i, const size_t j){
+  m_nMatch[i] = j;
+  m_nMatch[j] = i;
+} //SetMatch
+
+///////////////////////////////////////////////////////////////////////////////
+
 /// Initialize the matching to the identity matching.
 
 CMatching::CMatching(){
@@ -39,7 +70,13 @@ CMatching::CMatching(){
 CMatching::CMatching(const CMatching& m){ //copy constructor
   for(size_t i=0; i<m_nWidth+1; i++){
     m_nMatching[i] = m.m_nMatching[i];
+
+#ifdef NEWMATCHING
+    m_nMatch[i] = m.m_nMatch[i];
+#else
     m_nMap[i] = m.m_nMap[i];
+#endif
+
     m_nStack[i] = m.m_nStack[i];
   } //for
 } //copy constructor
@@ -49,7 +86,13 @@ CMatching::CMatching(const CMatching& m){ //copy constructor
 void CMatching::Initialize(){
   for(size_t i=0; i<evenceil(m_nWidth); i++){
     m_nMatching[i] = i;
+
+#ifdef NEWMATCHING
+    m_nMatch[i] = i;
+#else
     m_nMap[i] = i;
+#endif 
+
     m_nStack[i] = (int)i - 1;
   } //for
 } //Initialize
@@ -66,11 +109,22 @@ bool CMatching::Next(){
 
     for(size_t j=s-1; j>=2; j--){
       m_nMatching[j - 1] = m_nMatching[j - 2];
+
+#ifdef NEWMATCHING
+      m_nMatch[m_nMatching[j - 1]] = j - 1;
+#else
       m_nMap[m_nMatching[j - 1]] = j - 1;
+#endif
+
     } //for
 
     m_nMatching[0] = temp;
+
+#ifdef NEWMATCHING
+    m_nMatch[temp] = 0;
+#else
     m_nMap[temp] = 0;
+#endif
 
     for(size_t j=0; j<s; j++)
       m_nStack[j] = (int)j - 1;
@@ -81,8 +135,15 @@ bool CMatching::Next(){
 
   if(i > 0){
     std::swap(m_nMatching[i - 1], m_nMatching[s - 2]);
+
+#ifdef NEWMATCHING
+    m_nMatch[m_nMatching[i - 1]] = i - 1;
+    m_nMatch[m_nMatching[s - 2]] = s - 2;
+#else
     m_nMap[m_nMatching[i - 1]] = i - 1;
     m_nMap[m_nMatching[s - 2]] = s - 2;
+#endif
+
     m_nStack[s - 1] = (int)i - 1;
   } //if
 
@@ -118,7 +179,12 @@ void CMatching::Normalize(){
   int nCopy[MAXINPUTS + 1] = {0}; ///< Integer copy of matching.
   
   for(size_t j=0; j<n; j++)
+
+#ifdef NEWMATCHING
+    nCopy[j] = (int)m_nMatching[m_nMatch[j]^1];
+#else
     nCopy[j] = (int)m_nMatching[m_nMap[j]^1];
+#endif
 
   size_t next = 1;
 
@@ -144,21 +210,45 @@ void CMatching::Normalize(){
 /// \param j Index of second pair.
 
 void CMatching::Swap(const size_t i, const size_t j){
+
+#ifdef NEWMATCHING
+  const size_t i0 = m_nMatch[2*i];
+  const size_t j0 = m_nMatch[2*j]; 
+#else
   const size_t i0 = m_nMap[2*i];
   const size_t j0 = m_nMap[2*j]; 
+#endif
 
   m_nMatching[i0] = 2*j;
   m_nMatching[j0] = 2*i;
+
+#ifdef NEWMATCHING
+  m_nMatch[m_nMatching[i0]] = i0;
+  m_nMatch[m_nMatching[j0]] = j0;
+#else
   m_nMap[m_nMatching[i0]] = i0;
   m_nMap[m_nMatching[j0]] = j0;
+#endif
 
+
+#ifdef NEWMATCHING
+  const size_t i1 = m_nMatch[2*i + 1];
+  const size_t j1 = m_nMatch[2*j + 1];
+#else
   const size_t i1 = m_nMap[2*i + 1];
   const size_t j1 = m_nMap[2*j + 1];
+#endif
 
   m_nMatching[i1] = 2*j + 1;
   m_nMatching[j1] = 2*i + 1;
+
+#ifdef NEWMATCHING
+  m_nMatch[m_nMatching[i1]] = i1;
+  m_nMatch[m_nMatching[j1]] = j1;
+#else
   m_nMap[m_nMatching[i1]] = i1;
   m_nMap[m_nMatching[j1]] = j1;
+#endif
 } //swap
 
 /// Type cast to a string consisting of space-separated values

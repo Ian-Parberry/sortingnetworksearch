@@ -105,11 +105,21 @@ void CSearchable::SynchMatchingRepresentations(size_t level){
     size_t y = m_cMatching[level][j + 1]; //channel at the other end
 
     if(y == m_nWidth) //if the rightmost channel is the last one in a comparator network with an odd number of inputs
+      
+#ifdef NEWMATCHING
+      m_cComparator[level].SetMatch(x, x);
+#else
       m_nComparator[level][x] = x; //it's empty
+#endif
 
     else{ //make the testable representation
+
+#ifdef NEWMATCHING
+      m_cComparator[level].SetMatch(x, y);
+#else
       m_nComparator[level][x] = y; //x goes to y
       m_nComparator[level][y] = x; //y goes to x
+#endif
     } //else
   } //for
 } //SynchMatchingRepresentations
@@ -121,11 +131,15 @@ void CSearchable::InitMatchingRepresentations(size_t level){
   m_cMatching[level].Initialize();  //initialize the generatable form
   m_nStack[level] = 0; //and its stack
 
+#ifdef NEWMATCHING
+  m_cComparator[level].MakeIdentity();
+#else
   for(size_t j=0; j<m_nWidth; j++) //initialize the testable form
     m_nComparator[level][j] = j^1;
 
   if(odd(m_nWidth)) //one extra one if n is odd
     m_nComparator[level][m_nWidth - 1] = m_nWidth - 1;
+#endif
 } //InitMatchingRepresentations
 
 /// Change to next comparator network. This implementation uses a stack in the

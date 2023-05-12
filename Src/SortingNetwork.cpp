@@ -77,8 +77,14 @@ size_t CSortingNetwork::FlipInput(size_t j, const size_t first, const size_t las
   m_nZeros += nBit? -1: 1; //if nBit has flipped to 1, one less zero, else one more
   
   for(size_t i=first; i<=last; i++){ //for each layer in range
-    m_nValue[i][j] = nBit; //flip the value on channel j at that level
-    const size_t k = m_nComparator[i][j]; //channel joined via a comparator  
+    m_nValue[i][j] = nBit; //flip the value on channel j at that level 
+
+#ifdef NEWMATCHING
+    const size_t k = m_cComparator[i].GetMatch(j);
+#else
+    const size_t k = m_nComparator[i][j]; //channel joined via a comparator
+#endif
+
     if(xor(m_nValue[i][k], j > k))
       j = k;
   } //for

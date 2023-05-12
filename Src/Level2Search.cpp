@@ -36,9 +36,10 @@ CLevel2Search::CLevel2Search(){
   size_t m_nCurIndex = 0; //index of current matching - no need to call GetIndex
 
   CMatching curMatching; //current matching
+  curMatching.Initialize();
 
   do{ //for each matching
-    if(odd(m_nWidth))curMatching[m_nWidth] = m_nWidth; //dummy last channel for odd width networks
+    //if(odd(m_nWidth))curMatching[m_nWidth] = m_nWidth; //dummy last channel for odd width networks
     CMatching copy(curMatching);
 
     if(m_stlUsed.find(m_nCurIndex) == m_stlUsed.end()){ //if it is not used
@@ -57,8 +58,9 @@ CLevel2Search::CLevel2Search(){
 
   for(auto m: m_stlResults)
     m.Normalize();
- 
-  std::cout << m_stlResults.size() << " second levels found" << std::endl;
+
+  std::cout << m_stlResults.size() << " second levels found out of ";
+  std::cout << m_nCurIndex << " matchings" << std::endl;
   Save(); //save results to file
 } //constructor
 
