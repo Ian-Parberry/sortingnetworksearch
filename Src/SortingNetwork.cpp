@@ -88,21 +88,6 @@ size_t CSortingNetwork::FlipInput(size_t j, const size_t first, const size_t las
   return j;
 } //FlipInput
 
-/// Get target output channel when the value on an input channel is flipped.
-/// Assumes that local variable `m_nZeros` is set to the number of zeros in
-/// the input before this value is flipped, and that the value in 
-/// `m_nValue` has not been flipped yet (that is, `FlipInput()`has
-/// not been called on that channel yet). If a 1 is to be flipped to a 0, then
-/// it should output at channel `m_nZeros`. If a 0 is to be flipped to a 1,
-/// then it should output at channel `m_nZeros - 1`.
-/// \param delta Index of input channel whose value is to be flipped.
-/// \param j Input level.
-/// \return Index of output channel whose value is flipped.
-
-//const size_t CSortingNetwork::GetTarget(const size_t delta, const size_t j) const{
-//  return m_nValue[j][delta]? m_nZeros: m_nZeros - 1;
-//} //GetTarget
-
 /// Check whether sorting network sorts when the input value on a given
 /// channel is flipped.
 /// \param delta Index of channel to flip.

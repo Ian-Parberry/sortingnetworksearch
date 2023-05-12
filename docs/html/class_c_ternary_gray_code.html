@@ -144,15 +144,15 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a6bdd1a60968afb5aded68f59c5a06f62 inherit pro_static_attribs_class_c_settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A ternary Gray code generates all strings of \(n\) bits in such a way that it is made up of the following bit pairs: 00 01 11, with an additional single bit if \(n\) is odd, and each string differs from the previous one in exactly one bit. For example, the following is the ternary reflected Gray code on 4 bits, with the ternary version followed by the binary equivalent, then by the index of the changed bit (from right to left starting at zero). The ternary digit 0 corresponds to the binary string 00, the ternary digit 1 corresponds to 10, and the ternary digit 2 corresponds to 11. There is no need for the bit pair 01 since each bit pair is input into a comparator on the first level of a first normal form comparator network.</p>
+<div class="textblock"><p >A ternary Gray code generates all strings of \(n\) bits in such a way that it is made up of the following bit pairs: 00 01 11, with an additional single bit if \(n\) is odd, and each string differs from the previous one in exactly one bit. For example, the following is the ternary reflected Gray code on 4 bits, with the ternary version followed by the binary equivalent, then by the index of the changed bit (from left to right starting at zero). The ternary digit 0 corresponds to the binary string 00, the ternary digit 1 corresponds to 10, and the ternary digit 2 corresponds to 11. There is no need for the bit pair 10 since each bit pair is input into a comparator on the first level of a first normal form comparator network.</p>
 <div class="fragment"><div class="line">00 0000</div>
-<div class="line">01 0010 1</div>
-<div class="line">02 0011 0</div>
-<div class="line">12 1011 3</div>
-<div class="line">11 1010 0</div>
-<div class="line">10 1000 1</div>
-<div class="line">20 1100 2</div>
-<div class="line">21 1101 1</div>
+<div class="line">10 0100 1</div>
+<div class="line">20 1100 0</div>
+<div class="line">21 1101 3 </div>
+<div class="line">11 0101 0</div>
+<div class="line">01 1000 1</div>
+<div class="line">02 0011 2</div>
+<div class="line">12 1011 1</div>
 <div class="line">22 1111 0</div>
 </div><!-- fragment --><p >This class implements a nonrecursive version of the algorithm from <a href="https://ianparberry.com/pubs/9-input.pdf">the paper</a>. </p>
 
@@ -246,7 +246,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed May 10 2023 20:18:41 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Fri May 12 2023 15:08:40 for Sorting Network Search by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>
