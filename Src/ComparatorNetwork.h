@@ -46,12 +46,7 @@
 
 class CComparatorNetwork: public CSettings{
   protected: 
-
-#ifdef NEWMATCHING
-    CComparator m_cComparator[MAXDEPTH]; ///< Comparator array.
-#else
     size_t m_nComparator[MAXDEPTH][MAXINPUTS] = {0}; ///< Comparator array.
-#endif
 
   public: 
     CComparatorNetwork(); ///< Constructor.

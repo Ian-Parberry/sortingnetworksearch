@@ -36,18 +36,12 @@ C1NF::C1NF(): CSortingNetwork(){
   delete m_pGrayCode;
   m_pGrayCode = new CTernaryGrayCode;
 
-
   //first layer is the identity matching
 
-#ifdef NEWMATCHING
-  m_cComparator[0].MakeIdentity();
-#else
   const size_t n = evenfloor(m_nWidth); 
 
   for(size_t i=0; i<n; i++)
     m_nComparator[0][i] = i ^ 1;
-#endif
-
 } //constructor
 
 /// Initialize the network for the sorting test, that is, make the Gray code

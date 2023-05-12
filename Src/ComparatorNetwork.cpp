@@ -51,13 +51,7 @@ void CComparatorNetwork::Save(const std::string& fname){
   if(output.is_open()){ //file opened correctly
     for(size_t i=0; i<m_nDepth; i++){ //for each level
       for(size_t j=0; j<m_nWidth; j++){ //for each channel
-        
-#ifdef NEWMATCHING
-        const size_t k = m_cComparator[i].GetMatch(j); //channels j, k at level i
-#else
         const size_t k = m_nComparator[i][j]; //between channels j, k at level i
-#endif
-
         if(k > j) //not already printed
           output << j << " " << k << " "; //print comparator
       } //for
