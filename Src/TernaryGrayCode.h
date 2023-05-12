@@ -38,22 +38,22 @@
 /// single bit if \f$n\f$ is odd, and each string differs from the previous one
 /// in exactly one bit. For example, the following is the ternary reflected
 /// Gray code on 4 bits, with the ternary version followed by the binary
-/// equivalent, then by the index of the changed bit (from right to left 
+/// equivalent, then by the index of the changed bit (from left to right 
 /// starting at zero). The ternary digit 0 corresponds to the binary
 /// string 00, the ternary digit 1 corresponds to 10, and the ternary digit
-/// 2 corresponds to 11. There is no need for the bit pair 01 since each bit
+/// 2 corresponds to 11. There is no need for the bit pair 10 since each bit
 /// pair is input into a comparator on the first level of a first normal form
 /// comparator network.
 /// 
 /// \code
 /// 00 0000
-/// 01 0010 1
-/// 02 0011 0
-/// 12 1011 3
-/// 11 1010 0
-/// 10 1000 1
-/// 20 1100 2
-/// 21 1101 1
+/// 10 0100 1
+/// 20 1100 0
+/// 21 1101 3 
+/// 11 0101 0
+/// 01 1000 1
+/// 02 0011 2
+/// 12 1011 1
 /// 22 1111 0
 /// \endcode
 /// 
